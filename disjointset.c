@@ -9,6 +9,7 @@ int Rank[n];
 
 int Find(int x);
 int Union(int x, int y);
+int display();
 
 
 void main()
@@ -45,9 +46,7 @@ void main()
 				}		
 				break;
 			case 3:
-				for (int i = 0; i < n; i++)
-					printf("%d ", Parent[i]);
-				printf("\n");
+				display();
 				break;
 			case 5:
 				exit(0);
@@ -90,4 +89,42 @@ int Union(int u, int v)
 			Rank[u]++;
 	}
 }
+
+
+int display()
+{
+	// Initialise a set to store all the elements 
+	int sets[n];
+	for (int i = 0; i < n; i++)
+		sets[i] = i;
+		
+	// Sort the set in the order of their root (Bubble sort)
+	for (int i = 0; i < n - 1; i++)
+	{
+		for (int j = 1; j < n - 1; j++)
+		{
+			if (Find(sets[j]) > Find(sets[j + 1]))
+			{
+				// Swap
+				int temp = sets[j];
+				sets[j] = sets[j + 1];
+				sets[j + 1] = temp;
+			}
+		}
+	}
+	
+	// Display the disjoint set
+	int prevParent = Find(sets[0]);
+	printf("( ");
+	for (int i = 0; i < n; i++)
+	{
+		int par = Find(sets[i]);
+		if (i != 0 && par != prevParent)
+			printf(")( ");
+		printf("%d ", sets[i]);
+		prevParent = par;
+	}
+	printf(")\n");
+}
+
 
