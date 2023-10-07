@@ -21,16 +21,39 @@ void main()
 	}
 	
 	while (1) {
-		int x, y;
-		printf("Enter the subsets to merge: ");
-		scanf("%d%d", &x, &y);
+		int ans;
+		printf("Enter 1 to find the parent of an element, 2 to merge two sets, 3 to display, or 5 to exit: ");
+		scanf("%d", &ans);
 		
-		Union(x, y);
-		
-		// Debug
-		for (int i = 0; i < n; i++)
-			printf("%d ", Parent[i]);
-		printf("\n");
+		switch (ans)
+		{
+			case 1:
+				int element;
+				printf("Element: ");
+				scanf("%d", &element);
+				if (element < n)
+					printf("%d\n", Find(element));
+				break;
+			case 2:
+				int x, y;
+				printf("Enter the subsets to merge: ");
+				scanf("%d%d", &x, &y);
+				if (x < n && y < n)
+				{
+					Union(x, y);
+					printf("Success!\n");
+				}		
+				break;
+			case 3:
+				for (int i = 0; i < n; i++)
+					printf("%d ", Parent[i]);
+				printf("\n");
+				break;
+			case 5:
+				exit(0);
+			default:
+				break;
+		}
 	}
 }
 
@@ -39,8 +62,11 @@ int Find(int x)
 {
 	if (Parent[x] == x)
 		return x;
+
 	// Path compression
-	return Parent[x] = Find(x);
+	int root = Find(Parent[x]);
+	Parent[x] = root;
+	return root;
 }
 
 
