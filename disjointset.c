@@ -87,7 +87,10 @@ int Union(int u, int v)
 		// If both trees have the same depth (we have already attached it to u)
 		if (Rank[u] == Rank[v])
 			Rank[u]++;
+
+		return 0;
 	}
+	return 1;
 }
 
 

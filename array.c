@@ -120,6 +120,7 @@ int search()
 		}
 	}
 	printf("Not found!\n");
+	return 1;
 }
 
 
@@ -139,5 +140,6 @@ int sort()
 		}
 	}
 	printf("Sorted!\n");
+	return 0;
 }
 
