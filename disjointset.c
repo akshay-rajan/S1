@@ -22,11 +22,11 @@ void main()
 	}
 	
 	while (1) {
-		int ans;
+		int choice;
 		printf("Enter 1 to find the parent of an element, 2 to merge two sets, 3 to display, or 5 to exit: ");
-		scanf("%d", &ans);
+		scanf("%d", &choice);
 		
-		switch (ans)
+		switch (choice)
 		{
 			case 1:
 				int element;
