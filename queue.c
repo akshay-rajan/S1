@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-# define size 10
+#define size 10
 
 
 void display();
@@ -65,6 +65,7 @@ int enqueue()
 		printf("Overflow!\n");
 		return 1;
 	}
+	
     if (front == rear)
     {
         front = -1;
