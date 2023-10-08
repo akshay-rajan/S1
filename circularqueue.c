@@ -51,11 +51,11 @@ void display()
         return;
     }
 
-	for (int i = front; i != rear + 1; i = (i + 1) % size)
+	for (int i = front; i != rear; i = (i + 1) % size)
 	{
 		printf("%d ", queue[i]);
 	}
-	printf("\n");
+	printf("%d\n", queue[rear]);
 }
 
 
@@ -104,14 +104,14 @@ int dequeue()
 	}
 	int value = queue[front];
 	
-	// If only one element remains
+	// If no element remains, but front and end are not at the starting position
 	if (front == rear)
 	{
 		front = -1;
 		rear = -1;
 	}
 	// If front is at the end of the queue
-	else if (front = size - 1)
+	else if (front == size - 1)
 	{
 		front = 0;
 	}
