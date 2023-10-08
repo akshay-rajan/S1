@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-# define size 10
+#define size 10
 
 
 void display();
