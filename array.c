@@ -1,10 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#define size 10
-
 int array[100];
-int n = 0;
+int n;
 
 
 void display();
@@ -16,11 +14,18 @@ int sort();
 
 void main()
 {
+	// Read the array
+	printf("Enter the size of the array: ");
+	scanf("%d", &n);
+	printf("Enter the elements: \n");
+	for (int i = 0; i < n; i++)
+		scanf("%d", &array[i]);
+	
 	while (1) {
-		int ans;
+		int choice;
 		printf("Enter 0 to display, 1 to insert, 2 to delete, 3 to search, 4 to sort or 5 to exit: ");
-		scanf("%d", &ans);
-		switch (ans) {
+		scanf("%d", &choice);
+		switch (choice) {
 			case 0:
 				display();
 				break;
@@ -49,7 +54,7 @@ void main()
 // Traverse through the array
 void display()
 {
-	for (int i = 0; i < size; i++)
+	for (int i = 0; i < n; i++)
 		printf("%d ", array[i]);
 	printf("\n");
 }
@@ -62,18 +67,18 @@ int insertion()
 	printf("Position: ");
 	scanf("%d", &position);
 
-	if (n == size)
+	if (position > n + 1)
 		return 1;
 
 	printf("Element: ");
 	scanf("%d", &element);
 
-	for (int i = n - 1; i > position; i++)
-	{
-		array[i - 1] = array[i];
-	}
-	array[position] = element;
 	n++;
+	for (int i = n - 1; i > position - 1; i--)
+	{
+		array[i] = array[i - 1];
+	}
+	array[position - 1] = element;
 	return element;
 }
 
@@ -87,12 +92,16 @@ int deletion()
 	printf("Position: ");
 	scanf("%d", &position);
 
-	int element = array[position];
-	for (int i = position; i < n; i++)
+	if (position > n)
+		return 1;
+
+	int element = array[position - 1];
+	for (int i = position - 1; i < n; i++)
 	{
 		array[i] = array[i + 1];
 	}
-	return position;
+	n--;
+	return element;
 }
 
 
@@ -106,7 +115,7 @@ int search()
 	{
 		if (array[i] == element)
 		{
-			printf("Element %d found at Postion: %d\n", element, i);
+			printf("Element %d found at Postion: %d\n", element, i + 1);
 			return i;
 		}
 	}
