@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#define size 10
+#define size 5
 
 
 void display();
@@ -20,6 +20,7 @@ void main()
 	while (1)
 	{
 		int choice;
+		printf("%d %d\n", front, rear);
 		printf("Enter 0 to print, 1 to enqueue, 2 to dequeue, 5 to exit: ");
 		scanf("%d", &choice);
 		switch(choice)
@@ -51,7 +52,7 @@ void display()
         printf("Queue is empty!\n");
 		return;
     }
-	for (int i = front + 1; i <= rear; i++)
+	for (int i = front; i <= rear; i++)
 		printf("%d ", queue[i]);
 	printf("\n");
 }
@@ -66,16 +67,17 @@ int enqueue()
 		return 1;
 	}
 	
-    if (front == rear)
+    if (front == -1)
     {
-        front = -1;
-        rear = -1;
+        front = 0;
     }
-    rear++;
+	rear++;
+	int item;
 	printf("Element: ");
-	scanf("%d", &queue[rear]);
+	scanf("%d", &item);
+	queue[rear] = item;
     display();
-	return 0;
+	return item;
 }
 
 
@@ -89,6 +91,10 @@ int dequeue()
 	}
 	int element = queue[front];
 	front++;
+
+	if (front > rear)
+		front = -1, rear = -1;
+	
     display();
 	return element;
 }
@@ -103,7 +109,7 @@ int IsFull()
 
 int IsEmpty()
 {
-	if (rear == front)
+	if (front == -1 || front > rear)
 		return 1;
 	return 0;
 }
