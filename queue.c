@@ -17,14 +17,11 @@ int front = -1, rear = -1;
 
 void main()
 {
-	while (1)
-	{
+	while (1) {
 		int choice;
-		printf("%d %d\n", front, rear);
 		printf("Enter 0 to print, 1 to enqueue, 2 to dequeue, 5 to exit: ");
 		scanf("%d", &choice);
-		switch(choice)
-		{
+		switch(choice) {
 			case 0:
 				display();
 				break;
@@ -68,9 +65,8 @@ int enqueue()
 	}
 	
     if (front == -1)
-    {
         front = 0;
-    }
+
 	rear++;
 	int item;
 	printf("Element: ");
