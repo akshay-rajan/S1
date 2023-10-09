@@ -104,7 +104,7 @@ int dequeue()
 	}
 	int value = queue[front];
 	
-	// If no element remains, but front and end are not at the starting position
+	// If only one element remains
 	if (front == rear)
 	{
 		front = -1;
