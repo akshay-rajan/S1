@@ -18,28 +18,136 @@
 
 		<h3 id="web">Introduction to Web</h3>
 		<div>
-			Web consists of billions of clients and server connected through wires and wireless networks. The web clients make requests to web server. The web server receives the request, finds the resources and return the response to the client. When a server answers a request, it usually sends some type of content to the client. The client uses web browser to send request to the server. The server often sends response to the browser with a set of instructions written in HTML(HyperText Markup Language). All browsers know how to display HTML page to the client. 
+			 Web consists of billions of clients and server connected through wires and wireless networks. The web clients make requests to web server. The web server receives the request, finds the resources and return the response to the client. When a server answers a request, it usually sends some type of content to the client. The client uses web browser to send request to the server. The server often sends response to the browser with a set of instructions written in HTML(HyperText Markup Language). All browsers know how to display HTML page to the client.
+
+client and server functioning
+
+This is a modal window.
+No compatible source was found for this media.
+Web Application
+
+A website is a collection of static files(webpages) such as HTML pages, images, graphics etc. A Web application is a web site with dynamic functionality on the server. Google, Facebook, Twitter are examples of web applications.
+HTTP (Hypertext Transfer Protocol)
+
+    HTTP is a protocol that clients and servers use on the web to communicate.
+    It is similar to other internet protocols such as SMTP(Simple Mail Transfer Protocol) and FTP(File Transfer Protocol) but there is one fundamental difference.
+    HTTP is a stateless protocol i.e HTTP supports only one request per connection. This means that with HTTP the clients connect to the server to send one request and then disconnects. This mechanism allows more users to connect to a given server over a period of time.
+    The client sends an HTTP request and the server answers with an HTML page to the client, using HTTP.
+
+HTTP protocol and its characteristics
+HTTP Methods
+
+HTTP request can be made using a variety of methods, but the ones you will use most often are Get and Post. The method name tells the server the kind of request that is being made, and how the rest of the message will be formated.
+
+HTTP Methods and Descriptions :
+Method Name
+	
+Description
+OPTIONS	Request for communication options that are available on the request/response chain.
+GET	Request to retrieve information from server using a given URI.
+HEAD	Identical to GET except that it does not return a message-body, only the headers and status line.
+POST	Request for server to accept the entity enclosed in the body of HTTP method.
+DELETE	Request for the Server to delete the resource.
+CONNECT	Reserved for use with a proxy that can switch to being a tunnel.
+PUT	This is same as POST, but POST is used to create, PUT can be used to create as well as update. It replaces all current representations of the target resource with the uploaded content.
+Difference between GET and POST requests
+GET Request
+	
+POST Request
+Data is sent in header to the server	Data is sent in the request body
+Get request can send only limited amount of data	Large amount of data can be sent.
+Get request is not secured because data is exposed in URL	Post request is secured because data is not exposed in URL.
+Get request can be bookmarked and is more efficient.	Post request cannot be bookmarked.
+General Difference between PUT and POST methods
+
+Following are some basic differences between the PUT and the POST methods :
+
+    POST to a URL creates a child resource at a server defined URL while PUT to a URL creates/replaces the resource in its entirety at the client defined URL.
+    POST creates a child resource, so POST to /books will create a resources that will live under the /books resource. Eg. /books/1. Sending the same post request twice will create two resources.
+    PUT is for creating or replacing a resource at a URL known by the client.
+    PUT must be used for CREATE when the client already knows the url before the resource is created.
+    PUT replaces the resource at the known url if it already exists, so sending the same request twice has no effect. In other words, calls to PUT are idempotent.
+
 		</div>
 
 		<h3 id="client-server">Client-Server</h3>
 		<div>
-				Client-server is a relationship in which one program, the client, requests a service or resource from another program, the server. The label client-server was previously used to distinguish distributed computing by PCs from the monolithic, centralized computing model used by mainframes.Today, computer transactions in which the server fulfills a request made by a client are very common. The client-server model has become one of the central ideas of network computing. In this context, the client establishes a connection to the server over a LAN or WAN, such as the internet.
+				Client-server is a relationship in which one program, the client, requests a service or resource from another program, the server. The label client-server was previously used to distinguish distributed computing by PCs from the monolithic, centralized computing model used by mainframes.
+
+Today, computer transactions in which the server fulfills a request made by a client are very common. The client-server model has become one of the central ideas of network computing. In this context, the client establishes a connection to the server over a LAN or WAN, such as the internet.
+
+Once the server fulfils the client's request, the connection terminates. Because multiple client programs share the services of the same server program, a special server called a daemon might activate to await client requests.
+
+In the early days of the internet, most network traffic traveled through what is known as north-south traffic. This is when data moves between remote clients that request web content and data center servers that provide the content. Today, with the maturity of virtualization and cloud computing, network traffic is more likely to flow server-to-server -- a pattern known as east-west traffic.
+Depiction of client and server requesting and receiving information.
+In the client-server model, clients request information from servers, and servers send information back to clients.
+
+This has changed the focus of network administration from a centralized security model designed to protect the network perimeter to a decentralized security model that controls individual user access to services and data. Network professionals also audit network behavior to ensure compliance with policies and regulations.
+Advantages and disadvantages of the client-server model
+
+An important advantage of the client-server model is that its centralized architecture makes it easier to protect data with access controls enforced by security policies. It also doesn't matter if the clients and the server exist on the same operating system because data transfers through platform-agnostic client-server protocols.
+
+An important disadvantage of the client-server model is that if too many clients simultaneously request data, the server could become overloaded. This can cause network congestion or result in a denial of service.
+Client-server protocols
+
+Clients typically communicate with servers by using the TCP/IP protocol suite. TCP is a connection-oriented protocol, which means the protocol establishes and maintains connections until the application programs at each end have finished exchanging messages. TCP protocols help with the following:
+
+    Determines how to break application data into packets.
+    Sends packets to and accepts packets from the network layer.
+    Manages traffic flow control.
+    Handles retransmission of dropped or garbled packets.
+    Acknowledges all packets that arrive in the network.
+
+In the Open Systems Interconnection (OSI) communication model, TCP covers parts of Layer 4, the transport layer, and parts of Layer 5, the session layer.
+
+By contrast IP is a connectionless protocol, which means endpoints don't continue to communicate following the initial transmission because there is no connection. The internet treats each packet that travels through the network as an independent unit of data without any relation to any other unit, while TCP organizes packets in the correct order. In the OSI communication model, IP is in Layer 3, the network layer.
+Other program relationship models
+
+Other program relationship models include peer-to-peer (P2P) and primary/secondary. In the P2P model, each node in the network can function as both a client and a server. In the primary/secondary model, the primary device or process controls one or more other secondary devices or processes. Once the network establishes the primary/secondary relationship, the direction of control is always from the primary to the secondary.
 		</div>
 
 		<h3 id="components">Components of Web</h3>
-		<div></div>
+		<div>
+Web Components is a suite of different technologies allowing you to create reusable custom elements — with their functionality encapsulated away from the rest of your code — and utilize them in your web apps.
+Concepts and usage
+
+As developers, we all know that reusing code as much as possible is a good idea. This has traditionally not been so easy for custom markup structures — think of the complex HTML (and associated style and script) you've sometimes had to write to render custom UI controls, and how using them multiple times can turn your page into a mess if you are not careful.
+
+Web Components aims to solve such problems — it consists of three main technologies, which can be used together to create versatile custom elements with encapsulated functionality that can be reused wherever you like without fear of code collisions.
+
+Custom elements
+
+    A set of JavaScript APIs that allow you to define custom elements and their behavior, which can then be used as desired in your user interface.
+Shadow DOM
+
+    A set of JavaScript APIs for attaching an encapsulated "shadow" DOM tree to an element — which is rendered separately from the main document DOM — and controlling associated functionality. In this way, you can keep an element's features private, so they can be scripted and styled without the fear of collision with other parts of the document.
+HTML templates
+
+    The template and slot elements enable you to write markup templates that are not displayed in the rendered page. These can then be reused multiple times as the basis of a custom element's structure.
+
+The basic approach for implementing a web component generally looks something like this:
+
+    Create a class in which you specify your web component functionality, using the class syntax.
+    Register your new custom element using the CustomElementRegistry.define() method, passing it the element name to be defined, the class or function in which its functionality is specified, and optionally, what element it inherits from.
+    If required, attach a shadow DOM to the custom element using Element.attachShadow() method. Add child elements, event listeners, etc., to the shadow DOM using regular DOM methods.
+    If required, define an HTML template using template and slot. Again use regular DOM methods to clone the template and attach it to your shadow DOM.
+    Use your custom element wherever you like on your page, just like you would any regular HTML element.
+
+Guides
+
+Using custom elements
+
+    A guide showing how to use the features of custom elements to create simple web components, as well as looking into lifecycle callbacks and some other more advanced features.
+Using shadow DOM
+
+    A guide that looks at shadow DOM fundamentals, showing how to attach a shadow DOM to an element, add to the shadow DOM tree, style it, and more.
+Using templates and slots
+
+    A guide showing how to define a reusable HTML structure using template and slot elements, and then use that structure inside your web components.
+		</div>
 
 		<h3 id="types">Types of Web Content</h3>
 		<div>
-			
-Types of Web Content
-
-Default (GPT-3.5)
-
-User
-Write a description on types of web content 
-
-ChatGPT
 Web content comes in various forms, catering to diverse purposes and audiences. Here are some common types of web content:
 
 Text Content: This includes articles, blog posts, and written information. Text content is the backbone of the web and is essential for conveying information and ideas.
@@ -85,16 +193,180 @@ Legal Documents and Policies: Terms of service, privacy policies, and other lega
 
 		<h3 id="overview">Overview of HTTP</h3>
 		<div>
+What is HTTP?
+
+The Hypertext Transfer Protocol (HTTP) is the foundation of the World Wide Web, and is used to load webpages using hypertext links. HTTP is an application layer protocol designed to transfer information between networked devices and runs on top of other layers of the network protocol stack. A typical flow over HTTP involves a client machine making a request to a server, which then sends a response message.
+What is in an HTTP request?
+
+An HTTP request is the way Internet communications platforms such as web browsers ask for the information they need to load a website.
+
+Each HTTP request made across the Internet carries with it a series of encoded data that carries different types of information. A typical HTTP request contains:
+
+    HTTP version type
+    a URL
+    an HTTP method
+    HTTP request headers
+    Optional HTTP body.
+
+Let’s explore in greater depth how these requests work, and how the contents of a request can be used to share information.
+What is an HTTP method?
+
+An HTTP method, sometimes referred to as an HTTP verb, indicates the action that the HTTP request expects from the queried server. For example, two of the most common HTTP methods are ‘GET’ and ‘POST’; a ‘GET’ request expects information back in return (usually in the form of a website), while a ‘POST’ request typically indicates that the client is submitting information to the web server (such as form information, e.g. a submitted username and password).
+What are HTTP request headers?
+
+HTTP headers contain text information stored in key-value pairs, and they are included in every HTTP request (and response, more on that later). These headers communicate core information, such as what browser the client is using and what data is being requested.
+
+Example of HTTP request headers from Google Chrome's network tab:
+
+HTTP request headers
+What is in an HTTP request body?
+
+The body of a request is the part that contains the ‘body’ of information the request is transferring. The body of an HTTP request contains any information being submitted to the web server, such as a username and password, or any other data entered into a form.
+What is in an HTTP response?
+
+An HTTP response is what web clients (often browsers) receive from an Internet server in answer to an HTTP request. These responses communicate valuable information based on what was asked for in the HTTP request.
+
+A typical HTTP response contains:
+
+    an HTTP status code
+    HTTP response headers
+    optional HTTP body
+
+    Let's break these down:
+    What’s an HTTP status code?
+
+    HTTP status codes are 3-digit codes most often used to indicate whether an HTTP request has been successfully completed. Status codes are broken into the following 5 blocks:
+        1xx Informational
+        2xx Success
+        3xx Redirection
+        4xx Client Error
+        5xx Server Error
+
+        The “xx” refers to different numbers between 00 and 99.
+
+        Status codes starting with the number ‘2’ indicate a success. For example, after a client requests a webpage, the most commonly seen responses have a status code of ‘200 OK’, indicating that the request was properly completed.
+
+        If the response starts with a ‘4’ or a ‘5’ that means there was an error and the webpage will not be displayed. A status code that begins with a ‘4’ indicates a client-side error (it is very common to encounter a ‘404 NOT FOUND’ status code when making a typo in a URL). A status code beginning in ‘5’ means something went wrong on the server side. Status codes can also begin with a ‘1’ or a ‘3’, which indicate an informational response and a redirect, respectively.
+        What are HTTP response headers?
+
+        Much like an HTTP request, an HTTP response comes with headers that convey important information such as the language and format of the data being sent in the response body.
+
+        Example of HTTP response headers from Google Chrome's network tab:
+
+        HTTP response headers
+        What is in an HTTP response body?
+
+        Successful HTTP responses to ‘GET’ requests generally have a body which contains the requested information. In most web requests, this is HTML data that a web browser will translate into a webpage.
+        Can DDoS attacks be launched over HTTP?
+
+        Keep in mind that HTTP is a “stateless” protocol, which means that each command runs independent of any other command. In the original spec, HTTP requests each created and closed a TCP connection. In newer versions of the HTTP protocol (HTTP 1.1 and above), persistent connection allows for multiple HTTP requests to pass over a persistent TCP connection, improving resource consumption. In the context of DoS or DDoS attacks, HTTP requests in large quantities can be used to mount an attack on a target device, and are considered part of application layer attacks or layer 7 attacks.
 		</div>
 
 		<h3 id="dynamic">Generation of Dynamic Webpages</h3>
-		<div></div>
+		<div>
+What Is a Dynamic Web Page?
+
+A dynamic website is a site that generates pages in real time, responding to dynamic characteristics such as screen size and device type. The structure and content of a dynamic web page are flexible, allowing you to customize the end-user’s experience based on the browser or requests.
+
+Dynamic websites respond to user actions to display the relevant content in an appropriate format. The extent of the change the website can handle differs according to the intricacy of the website’s interactive components and the developer’s skill level.
+
+Dynamic websites are used for a variety of purposes, including social media, photo and video sharing, web applications, and digital commerce websites.
+    A dynamic website requires significant back end complexity to enable front end flexibility. It does not store each page as a separate HTML file—rather, the web server builds the pages when a user requests the page. The server pulls the website’s data from the database (or databases) and constructs a custom HTML file for the user. When the server finishes building the page, it ships the HTML file back to the end-user’s browser.
+
+    Dynamic websites use various client-side and server-side languages to build web pages on the back end. Examples include JavaScript, HTML, and CSS for the client-side and Python, Ruby, and PHP for the server-side. The amount of information pulled to generate the page varies, and the process can be complex. The end-user does not see the back end process, only the resulting web page in the browser. The user experience is similar to that of a static website.
+
+    Crucial data points that dynamic websites can leverage to customize content and functionality include:
+        Viewer demographics: Age, gender, interests, and other relevant demographic factors are taken into account to display tailored content to different user segments.
+        Time of day: Depending on the user’s local time, dynamic websites can showcase special offers, news updates, or relevant messages to further pique their interest.
+        Location: By identifying users’ geographic locations, the website can show region-specific promotions, facilitate faster delivery options, or list nearby offline stores.
+        Language settings: Understanding users’ preferred languages allows dynamic websites to present content that is both intuitive and culturally appropriate, increasing the likelihood of conversions.
+
+    Today, most websites are at least partially dynamic, incorporating some level of dynamic content. Social media platforms, news media sites, blogs, web apps, and eCommerce sites all require responsive, interactive content.
+    Static vs Dynamic Websites
+
+    Static websites store a set number of ready-built files written in client-side languages on a web server. The server returns HTML files based on the user’s URL requests. There is no manipulation of the files before shipping to the client—the page is identical for all users. Static content can still be engaging and interactive, for example, by including buttons, links, and visuals.
+
+    On the other hand, dynamic websites display different content in different formats, depending on the visitor. The time, location, preferences, and other user settings determine the web page’s appearance. This approach enables a customized user experience. While static sites can be effective, dynamic websites can enhance the user experience and appear more professional. However, they require more skill and complexity to develop.
+
+    “E-commerce“
+    Dynamic Website Elements
+
+    By creating a dynamic website, you can increase the relevance of your page content and attract visitors. Here are some common elements of dynamic web pages:
+        Responsive page elements—dynamic websites can serve pages in different layouts depending on screen size and device type. This includes repositioning buttons, changing text format and typography, and resizing images to fit the visitor’s view. Learn more in our guide to responsive images.
+        Localization—a website can dynamically adapt its content to the language of the region from which pages are viewed.
+        Personalized suggestions—dynamic websites can use cookies to store user history and preferences. Based on data in a user’s cookie, the page can provide a personalized experience, including content or product recommendations. This can dramatically improve website engagement.
+        Integrating social media or third-party content—dynamic websites can embed feeds or content from social media or other websites. Even if the website owner cannot update content frequently, these feeds will provide fresh, relevant content.
+        Dynamic visual display—dynamic websites can have page elements that move and rearrange dynamically or as a result of user actions. If properly executed, this can create a powerful visual effect and make content more engaging.
+
+    Dynamic website Supporting
+    Dynamic Website Examples
+
+    Here are a few examples of popular dynamic websites:
+        YouTube—shows a personalized homepage to each visitor, containing videos they might like based on their historical usage and preferences.
+        Google—displays a dynamic set of search results based on the user’s search query. Google provides several search options including general web search, image search, and news search. Each is dynamically updated according to the user’s interests and personalized according to previous searches.
+        Facebook—the Facebook feed is a classic dynamic web page that shows Facebook posts and information based on the user’s connections and preferences.
+        HubSpot—the Hubspot CRM and marketing automation platform relies on dynamic pages based on actionable business and customer information.
+        New York Times—the New York Times is a large news publication that dynamically generates article pages using server-side JavaScript. It also updates the home page according to the user’s preferences and history. All news sites must have a setup that allows frequent, frictionless article publishing.
+
+    All these websites (except for HubSpot’s web application) dynamically insert relevant advertising into their content, personalized according to the user’s preferences.
+    Dynamic Websites: Pros and Cons
+
+    Dynamic website design is the obvious choice for many creators because dynamic pages have multiple advantages:
+        Easy to update—an effective business website requires continuous updates to ensure the page content remains current. Dynamic websites are the easiest way to keep web content fresh. You can automate the duplication of changes from one page to others without changing the website’s design. Users with database access can manage content without impacting the site’s overall structure. Easy updates enable faster, easier maintenance. Dynamic practices are especially useful for large sites with many pages. Dynamic pages are scalable because you can manage multiple pages simultaneously.
+        Improved user experience—dynamic websites provide content tailored to the individual user, ensuring its relevance. The content may change based on the user’s interests and previous actions. Personalized customer experience increases the likelihood of a visitor returning and improves conversion rates.
+        Improved functionality—static websites can include interactive components, but dynamic pages offer greater functionality—the only limits are the language and logic required to build each page. Large, complex websites like Netflix can deliver massive amounts of content to users, providing recommendations for each user based on their location and viewing history
+		</div>
 
 		<h3 id="appl">Application Server</h3>
-		<div></div>
+		<div>
+Application servers are network computers that store and run an application for client computers. Application servers, whatever their function, occupy a large chunk of computing territory between database servers and the end user. Most broadly, this is called “middleware” which tells us something about what application servers do. First and foremost, application servers connect database information (usually coming from a database server) and the end-user or client program (often running in a Web browser). There are many reasons for having an intermediate player in this connection, including a desire to decrease the size and complexity of client programs, the need to cache and control the data flow for better performance, and a requirement to provide security for both data and user traffic.
+
+In the early days of application servers, it was realized that applications themselves, the programs people were using to get work done, were becoming bigger and more complex, both to write and maintain. At the same time, pressure was increasing for applications to share more of their data and sometimes functionality. More applications were either located on a network or used networks extensively. It seemed logical to have some kind of program residing on the network that would help share application capabilities in an organized and efficient way, and make it easier to write, manage, and maintain the applications.
+
+These designated application servers first appeared in client/server computing and on LANs. At first, they were often associated with “tiered” applications, when people described the functionality of applications as two-tiered (database and client program), three-tiered (database, client program, and application service), or n-tiered (all of the above plus whatever). This was (and still is) a complex model of application development, and it resisted wide-scale implementation. Then along came the Internet application. The Internet application is automatically three-tiered (usually consisting of a database, client program, and Web servers). Managing data along with application functionality suddenly became not only an esoteric exercise in better program design, but also a downright necessity. This vaulted the application server from obscurity to the top of a pedestal, and literally scores of companies jumped in to develop products. Not surprisingly, people do not consider or think of the role of the application server in the same way, so application servers have different roles and functionalities as different companies build from their requirements and understanding. Scalability is a good example. Some companies might want an application server that simply helps them organize their applications for the Web, give them better control over the business logic they contain, and make it easier to monitor and secure the data. They do not need thousands of servers. Other companies, especially big ones, do need to manage thousands of servers. For them, the scalability of an application server is crucial. So some application servers feature scalability, others feature other things, and some try to do everything. Also, application server products belong to a variety of programming domains: some are Java based, while others are written by C++; one might support CORBA, and another could be implemented through Microsoft DCOM. It is relatively important to consider these servers in light of an organization's programming preferences
+		</div>
 
 		<h3 id="security">Web Security</h3>
-		<div></div>
+		<div>
+
+
+Web security refers to protecting networks, servers, and computer systems from damage to or the theft of software, hardware, or data. It includes protecting computer systems from misdirecting or disrupting the services they are designed to provide.
+
+Web security is synonymous with cybersecurity and also covers website security, which involves protecting websites from attacks. It includes cloud security and web application security, which defend cloud services and web-based applications, respectively. Website protection technology has enabled enhanced protection mechanisms, such as the protection of a virtual private network (VPN), which also falls under the web security umbrella.
+
+Web security is crucial to the smooth operation of any business that uses computers. If a website is hacked or hackers are able to manipulate your systems or software, your website—and even your entire network—can be brought down, halting business operations. Businesses need to account for the factors that go into web security and threat prevention.
+Factors That Go Into Web Security and Web Protection
+
+To comply with internal policies, government-imposed criteria, or Open Web Application Security Project (OWASP) standards, security professionals consider a variety of factors when establishing a security posture for their web security gateway. Keeping abreast with OWASP standards helps security staff stay up to date with industry-standard web safety expectations.
+
+In addition to ensuring compliance with various standards and criteria, encryption must be kept up to date, the latest threats in the Web Hacking Incident Database (WHID) monitored, and user authentications properly managed. When vulnerabilities emerge, security personnel must install the most recent patches to address them. To secure data, software development teams have to implement protocols that shield code from being stolen during or after writing it.
+Technologies for Web Security
+
+Various technologies are available to help companies achieve web security, including web application firewalls (WAFs), security or vulnerability scanners, password-cracking tools, fuzzing tools, black box testing tools, and white box testing tools.
+Web Application Firewalls (WAFs)
+
+A web application firewall (WAF) protects web applications by monitoring and filtering internet traffic that flows between an application and the internet. In this way, a WAF works as a secure web gateway (SWG). It provides protection for web applications against attacks, including cross-site scripting, file inclusion, cross-site forgery, Structured Query Language (SQL) injection, and other threats. 
+
+In the Open Systems Interconnection (OSI) model, a WAF works within Layer 7. Even though it works against many internet threats, it is not intended to defend against all kinds of threats. A WAF often works within a suite of protective tools meant to defend a network, computer, or application. Learn more about what is WAF.  
+Security or Vulnerability Scanners
+
+Vulnerability scanners refer to tools that organizations use to automatically examine their systems, networks, and applications to check for weaknesses in their security. Once a vulnerability scanner has finished checking the target system, security teams can use the results to address critical vulnerabilities.
+Password-cracking Tools
+
+With password-cracking tools, you can still gain access to your system even if you have lost or forgotten your password. This helps maintain web security for business in a couple of different ways. 
+
+First, if you need to reset your password but cannot remember the original one, a password-cracking tool allows you to gain access. Second, if someone has penetrated your system and changed the password, you can use a password-cracking tool to get back in and change the password to something harder to figure out, thereby regaining control.
+Fuzzing Tools
+
+Fuzzing tools are used to check software, networks, or operating systems for coding errors that may result in security weaknesses. Once an error is found, a fuzzer pinpoints the potential causes of the problem. 
+
+Fuzzing tools can be valuable at various stages of the software development process as well. Whether implemented during initial testing, before final deployment, or somewhere in between, developers can use them to gain insights into vulnerabilities so they can be addressed.
+Black Box Testing Tools
+
+Black box testing refers to checking a system without any knowledge regarding how it works. The only thing the tester sees is the input they key in and the resulting output. In many ways, the tester has only as much knowledge of the system as a random user would have. 
+
+Black box testing tools are used to see how the system responds to unexpected actions taken by users. They can help security personnel inspect response times and detect issues in software performance and whether or not the system is reliable
+		</div>
 	</body>
 </html>
 
