@@ -3,16 +3,39 @@
 		<title>Form</title>
 	</head>
 	<body bgcolor="skyblue">
-		<form method="get">
-			<table border=1 align="center">
+	<marquee behavior="scroll" onmouseover="stop()" onmouseout="start()"><h1><font color="red">WELCOME TO FRESHERS WORLD!!!</font></h1></marquee>
+		<form method="post">
+			<table border=1 align="center" width="50%">
 				<tr>
 					<th colspan="2">Registration Form</th>
 				</tr>
-				<tr></tr>
-				<tr></tr>
-				<tr></tr>
-				<tr></tr>
-				<tr></tr>
+				<tr>
+					<td>Name</td>
+					<td><input type="text"></td>
+				</tr>
+				<tr>
+					<td>Age</td>
+					<td>
+						<select name="age" id="age">
+							<option value="none" selected disabled>SELECT</option>
+							<option	value="18">18</option>
+							<option value="19">19</option>
+							<option value="20">20</option>
+							<option value="21">21</option>
+							<option value="22">22</option>
+						</select>						
+					</td>
+				</tr>
+				<tr>
+					<td>Password</td>
+					<td><input type="password"></td>	
+				</tr>
+				<tr>
+					<td>Re-enter Password</td>
+					<td><input type="text"></td>				
+				</tr>
+				<tr>
+				</tr>
 				<tr></tr>
 				<tr></tr>
 				<tr></tr>
