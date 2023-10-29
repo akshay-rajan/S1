@@ -4,19 +4,39 @@
 struct node {
 	int data;
 	struct node *next;
-}
+};
 
 int size = 0;
-struct node *head, *newnode;
+struct node *head = NULL;
+struct node *newnode;
+
+
+void display();
+int insertion();
+int deletion();
 
 
 void main()
 {
 	while (1) {
-		case 5:
-			return;
-		default:
-			break;
+		int choice;
+		printf("Enter 0 to display, 1 to insert, 2 to delete, 5 to exit: ");
+		scanf("%d", &choice);
+		switch (choice) {
+			case 0:
+				display();
+				break;
+			case 1:
+				insertion();
+				break;
+			case 2:
+				deletion();
+				break;
+			case 5:
+				return;
+			default:
+				break;
+		}
 	}
 }
 
@@ -80,9 +100,13 @@ int deletion()
 // Display the linked list
 void display()
 {
+	if (head = NULL)
+		return;
 	struct node *temp;
 	temp = head;
-	while (temp->next != NULL)
+	while (temp->next != NULL) {
+		printf("%d ->", temp->data);
+	}
 	
 }
 
