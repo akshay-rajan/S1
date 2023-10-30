@@ -1,10 +1,12 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+
 struct node {
 	int data;
 	struct node *next;
 };
+
 
 int size = 0;
 struct node *head = NULL;
@@ -44,29 +46,39 @@ void main()
 // Insertion at any position
 int insertion()
 {
+	// Read position and element
 	int position;
 	newnode = (struct node *) malloc (sizeof(struct node));
 	printf("Position: ");
 	scanf("%d", &position);	
 	if (position > size) {
-		printf("Invalid!");
+		free(newnode);
+		printf("Invalid!\n");
 		return 1;
 	}
-
 	printf("Element: ");
 	scanf("%d", &newnode->data);
 
-	struct node *temp;
-	temp = head;
-	int i = 0;
-	while (i < position) {
-		temp = temp->next;
-		i++;
-	}	
+	struct node *temp = head;
+	int i = 1;
 
-	newnode->next = temp->next;
-	temp->next = newnode;
+	// Insertion at the beginning
+	if (position == 0) {
+		newnode->next = head;
+		head = newnode;
+	} else {
+		// Insertion at the position
+		while (i < position) {
+			if (temp->next != NULL) {
+				temp = temp->next;
+			}
+			i++;
+		}
+		newnode->next = temp->next;
+		temp->next = newnode;
+	}
 	size++;
+	return 0;
 }
 
 
@@ -78,7 +90,7 @@ int deletion()
 	printf("Position: ");
 	scanf("%d", &position);	
 	if (position > size) {
-		printf("Invalid!");
+		printf("Invalid!\n");
 		return 1;
 	}
 
@@ -100,14 +112,15 @@ int deletion()
 // Display the linked list
 void display()
 {
-	if (head = NULL)
-		return;
-	struct node *temp;
-	temp = head;
-	while (temp->next != NULL) {
-		printf("%d ->", temp->data);
+	struct node *temp = head;
+	while (temp != NULL) {
+		if (temp->next == NULL) {
+			printf("%d\n", temp->data);
+			return;
+		}
+		printf("%d -> ", temp->data);
+		temp = temp->next;
 	}
-	
 }
 
 
