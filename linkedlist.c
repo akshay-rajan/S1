@@ -13,7 +13,7 @@ struct node *head = NULL;
 struct node *newnode;
 
 
-void display();
+void display(struct node *ptr);
 int insertion();
 int deletion();
 
@@ -26,7 +26,7 @@ void main()
 		scanf("%d", &choice);
 		switch (choice) {
 			case 0:
-				display();
+				display(head);
 				break;
 			case 1:
 				insertion();
@@ -60,7 +60,7 @@ int insertion()
 	scanf("%d", &newnode->data);
 
 	struct node *temp = head;
-	int i = 1;
+	int i = 2;
 
 	// Insertion at the beginning
 	if (position == 0) {
@@ -78,6 +78,7 @@ int insertion()
 		temp->next = newnode;
 	}
 	size++;
+	display(head);
 	return 0;
 }
 
@@ -96,8 +97,8 @@ int deletion()
 
 	struct node *temp, *delnode;
 	temp = head;
-	int i = 0;
-	while (i < position - 1) {
+	int i = 2;
+	while (i < position) {
 		temp = temp->next;
 		i++;
 	}	
@@ -105,22 +106,21 @@ int deletion()
 	delnode = temp->next;
 	temp->next = delnode->next;
 	free(delnode);
+	display(head);
 	return 0;
 }
 
 
 // Display the linked list
-void display()
+void display(struct node *ptr)
 {
-	struct node *temp = head;
-	while (temp != NULL) {
-		if (temp->next == NULL) {
-			printf("%d\n", temp->data);
-			return;
-		}
-		printf("%d -> ", temp->data);
-		temp = temp->next;
+	if (ptr == NULL) {
+		printf("NULL\n");
+		return;
 	}
-}
+	printf("%d -> ", ptr->data);
 
+	// Recursion
+	display(ptr->next);
+}
 
