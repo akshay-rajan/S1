@@ -10,7 +10,6 @@ struct node {
 
 int size = 0;
 struct node *head = NULL;
-struct node *newnode;
 
 
 void display(struct node *ptr);
@@ -46,27 +45,38 @@ void main()
 // Insertion at any position
 int insertion()
 {
-	// Read position and element
-	int position;
-	newnode = (struct node *) malloc (sizeof(struct node));
-	printf("Position: ");
-	scanf("%d", &position);	
-	if (position > size) {
-		free(newnode);
-		printf("Invalid!\n");
-		return 1;
-	}
+	int type;
+	struct node *newnode, *temp;
+	newnode = (struct node *) malloc(sizeof(struct node));
+	printf("Enter 0 for insertion at the beginning, 1 for insertion at the end or 2 for insertion at any position: ");
+	scanf("%d", &type);
+	temp = head;
 	printf("Element: ");
 	scanf("%d", &newnode->data);
 
-	struct node *temp = head;
-	int i = 2;
-
-	// Insertion at the beginning
-	if (position == 0) {
+	int beginning() {
 		newnode->next = head;
 		head = newnode;
-	} else {
+	}
+	int end() {
+		int i = 2;
+		while (temp->next != NULL) {
+			temp = temp->next;
+		}
+		temp->next = newnode;
+		newnode->next = NULL;
+	}
+	int anypos() {
+		// Read position and element
+		int position;
+		printf("Position: ");
+		scanf("%d", &position);
+		if (position <= 1 || position < size - 1) {
+			printf("Invalid!\n");
+			return 1;
+		}
+
+		int i = 2;
 		// Insertion at the position
 		while (i < position) {
 			if (temp->next != NULL) {
@@ -76,6 +86,20 @@ int insertion()
 		}
 		newnode->next = temp->next;
 		temp->next = newnode;
+		size++;
+	}
+
+
+	switch (type) {
+		case 0:
+			beginning();
+			break;
+		case 1:
+			end();
+			break;
+		case 2:
+			anypos();
+			break;
 	}
 	size++;
 	display(head);
@@ -86,10 +110,16 @@ int insertion()
 // Deletion from any position
 int deletion()
 {
+	/*
+	int type;
+	printf("Enter 0 to delete from the beginning, 1 to delete from the end, 2 to delete from any positon: ");
+	switch (type) {
+
+	}
+	*/
 	int position;
-	newnode = (struct node *) malloc (sizeof(struct node));
 	printf("Position: ");
-	scanf("%d", &position);	
+	scanf("%d", &position);
 	if (position > size) {
 		printf("Invalid!\n");
 		return 1;
