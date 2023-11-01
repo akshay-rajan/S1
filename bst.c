@@ -18,6 +18,7 @@ int isEmpty = 1;
 int insert();
 int preOrder(struct node *);
 int postOrder(struct node *);
+int inOrder(struct node *);
 
 
 void main()
@@ -30,6 +31,8 @@ void main()
             case 0:
 				printf("Preorder: ");
                 preOrder(head);
+				printf("\nInorder: ");
+				inOrder(head);
 				printf("\nPostorder: ");
 				postOrder(head);
 				printf("\n");
@@ -70,7 +73,7 @@ int insert()
     // Reach the appropriate position to insert
     temp = head;
     while (temp != NULL) {
-        if (temp->data < value) {
+        if (temp->data > value) {
             if (temp->left == NULL) {
                 temp->left = newnode;
                 return 0;
@@ -94,10 +97,24 @@ int preOrder(struct node *root)
 {
     if (root == NULL)
         return 1;
+
     printf("%d -> ", root->data);
     
     // Recursively traverse through the left and right sub trees
     preOrder(root->left);
+    preOrder(root->right);
+}
+
+// Traverse through the elements in the order: Left->Root->Right
+int inOrder(struct node *root)
+{
+	if (root == NULL)
+        return 1;
+
+	preOrder(root->left);
+
+    printf("%d -> ", root->data);
+    
     preOrder(root->right);
 }
 
