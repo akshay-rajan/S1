@@ -1,0 +1,54 @@
+h1 {
+	color:#2B3499;
+}
+
+.heading {
+	background-image: url('csshead.png');
+}
+
+body {
+	background-color: #FFD099;
+}
+
+.cssimg {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	opacity: 0;
+	animation: imgSwitch 5s infinite alternate;
+}
+
+.container {
+	display: flex;
+}
+
+.left {
+	flex: 1;
+	background-color: #FF9209;
+	color: #2B3499;
+}
+
+.right {
+	flex: 3;
+	background-color: #2B3499;
+	color: #FFD099;
+	padding: 20px;
+}
+
+.img-container {
+	position: relative;
+	width: 100%;
+	height: 40%;
+}
+
+@keyframes imgSwitch {
+	0%, 100% {
+		opacity: 0;
+	}
+	10%, 90% {
+		opacity: 1;
+	}
+}
+
+
+
