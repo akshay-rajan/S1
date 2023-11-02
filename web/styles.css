@@ -10,14 +10,6 @@ body {
 	background-color: #FFD099;
 }
 
-.cssimg {
-	position: absolute;
-	width: 100%;
-	height: 100%;
-	opacity: 0;
-	animation: imgSwitch 5s infinite alternate;
-}
-
 .container {
 	display: flex;
 }
@@ -34,11 +26,33 @@ body {
 	color: #FFD099;
 	padding: 20px;
 }
-
 .img-container {
+	margin-bottom: 1000px;
+	width: 300px;
+	height: 200px;
 	position: relative;
+}
+
+.cssimg {
+	position: absolute;
 	width: 100%;
-	height: 40%;
+	height: 100px;
+	opacity: 0;
+	animation: imgSwitch 6s infinite alternate;
+}
+.cssheading {
+	width: 100%;
+	height: 100px;
+}
+#img1 {
+	opacity: 1;
+	animation-delay: 0s;
+}
+#img2 {
+	animation-delay: 3s;
+}
+#img3 {
+	animation-delay: 6s;
 }
 
 @keyframes imgSwitch {
@@ -49,6 +63,4 @@ body {
 		opacity: 1;
 	}
 }
-
-
 
