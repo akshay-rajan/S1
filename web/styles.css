@@ -61,11 +61,14 @@ body {
 }
 
 @keyframes imgSwitch {
-	0%, 100% {
-        opacity: 0;
+	0% {
+		opacity: 0;
 	}
-	10%, 90% {
+	0.01%, 33.32% {
 		opacity: 1;
+	}
+	33.33% {
+		opacity: 0;
 	}
 }
 
