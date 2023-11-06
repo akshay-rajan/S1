@@ -27,12 +27,6 @@ body {
 	padding: 20px;
 }
 
-.img-container {
-	width: 300px;
-	height: 200px;
-	position: relative;
-}
-
 .cssimg {
 	position: absolute;
 	width: 100%;
