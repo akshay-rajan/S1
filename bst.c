@@ -17,9 +17,7 @@ int isEmpty = 1;
 
 int insert();
 int delete();
-int preOrder(struct node *);
-int postOrder(struct node *);
-int inOrder(struct node *);
+int display();
 
 
 void main()
@@ -30,13 +28,7 @@ void main()
         scanf("%d", &choice);
         switch(choice) {
             case 0:
-				printf("Preorder: ");
-                preOrder(head);
-				printf("\nInorder: ");
-				inOrder(head);
-				printf("\nPostorder: ");
-				postOrder(head);
-				printf("\n");
+				display();
                 break;
             case 1:
                 insert();
@@ -105,88 +97,110 @@ int delete()
 	scanf("%d", &value);
 
 	// Find the node with the value
-	struct node *temp, *temp1;
+	struct node *temp, *parent;
 	temp = head;
     while (temp != NULL) {
+        // If the value is lesser, search left half
         if (temp->data > value) {
 			left = 1;
-			temp1 = temp;
+			parent = temp;
             temp = temp->left;
-        }
+        } 
+        // If the value is greater, search right half
         else if (temp->data < value) {
 			left = 0;
-			temp1 = temp;
+			parent = temp;
             temp = temp->right;
         }
+        // If the node to delete has been found
 		else {
-			// We have reached the node to delete
-			if (left == 1) {	// If the node is the left child of its parent
-				// Replace the node with one of its child
+			if (left == 1) {
+                // If the node is the left child of its parent
 				if (temp->left != NULL) {
-					temp1->left = temp->left;				
+                    // If the node has a left child, replace the node with it
+					parent->left = temp->left;				
 				}
 				else if (temp->right != NULL) {
-					temp1->left = temp->left;				
+                    // If the node has no left child, but a right child is present
+					parent->left = temp->left;				
 				}
 				else {
-					temp1->left = NULL;
+                    // If the node is a leaf node
+					parent->left = NULL;
 				}
-			} else {			// If the node is the right child of its parent
-				// Replace the node with one of its child
-				if (temp->left != NULL) {
-					temp1->right = temp->left;				
-				}
-				else if (temp->right != NULL) {
-					temp1->right = temp->left;				
-				} else {
-					temp1->right = NULL;
-				}
+			} 
+            else {
+                // If the node is the right child of its parent, same method used above
+				if (temp->left != NULL) 
+					parent->right = temp->left;	
+				else if (temp->right != NULL)
+					parent->right = temp->left;				
+				else
+					parent->right = NULL;
 			}
 			free(temp);
 			return 0;
 		}
-		printf("Cannot find the node!\n");
-		return 1;
     }
-	
+    // If no such value is present in the tree
+    printf("Cannot find the node!\n");
+    return 1;
 }
 
 
-// Traverse through the elements in the order: Root->Left->Right
-int preOrder(struct node *root)
-{
-    if (root == NULL)
+// Perform all three traversals
+int display(){
+    if (head == NULL) {
+        printf("Tree is empty!\n");
         return 1;
+    }
 
-    printf("%d -> ", root->data);
-    
-    // Recursively traverse through the left and right sub trees
-    preOrder(root->left);
-    preOrder(root->right);
-}
+    // Traverse through the elements in the order: Root->Left->Right
+    int preOrder(struct node *root)
+    {
+        if (root == NULL)
+            return 1;
 
-// Traverse through the elements in the order: Left->Root->Right
-int inOrder(struct node *root)
-{
-	if (root == NULL)
-        return 1;
+        printf("%d -> ", root->data);
+        
+        // Recursively traverse through the left and right sub trees
+        preOrder(root->left);
+        preOrder(root->right);
+    }
 
-	preOrder(root->left);
+    // Traverse through the elements in the order: Left->Root->Right
+    int inOrder(struct node *root)
+    {
+        if (root == NULL)
+            return 1;
 
-    printf("%d -> ", root->data);
-    
-    preOrder(root->right);
-}
+        preOrder(root->left);
 
-// Traverse through the elements in the order: Left->Right->Root
-int postOrder(struct node *root)
-{
-	if (root == NULL)
-		return 1;
+        printf("%d -> ", root->data);
+        
+        preOrder(root->right);
+    }
 
-   	postOrder(root->left);
-   	postOrder(root->right);
+    // Traverse through the elements in the order: Left->Right->Root
+    int postOrder(struct node *root)
+    {
+        if (root == NULL)
+            return 1;
 
-	printf("%d -> ", root->data);   
+        postOrder(root->left);
+        postOrder(root->right);
+
+        printf("%d -> ", root->data);   
+    }
+
+    // Function calls
+    printf("Preorder: ");
+    preOrder(head);
+    printf("\nInorder: ");
+    inOrder(head);
+    printf("\nPostorder: ");
+    postOrder(head);
+    printf("\n");
+    return 0;
 }
 
