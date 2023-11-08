@@ -54,11 +54,11 @@ int insertion()
 	printf("Element: ");
 	scanf("%d", &newnode->data);
 
-	int beginning() {
+	void beginning() {
 		newnode->next = head;
 		head = newnode;
 	}
-	int end() {
+	void end() {
 		int i = 2;
 		while (temp->next != NULL) {
 			temp = temp->next;
@@ -66,7 +66,7 @@ int insertion()
 		temp->next = newnode;
 		newnode->next = NULL;
 	}
-	int anypos() {
+	void anypos() {
 		// Read position and element
 		int position;
 		printf("Position: ");
