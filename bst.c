@@ -174,11 +174,11 @@ int display(){
         if (root == NULL)
             return 1;
 
-        preOrder(root->left);
+        inOrder(root->left);
 
         printf("%d -> ", root->data);
         
-        preOrder(root->right);
+        inOrder(root->right);
     }
 
     // Traverse through the elements in the order: Left->Right->Root
