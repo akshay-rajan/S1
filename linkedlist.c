@@ -59,7 +59,6 @@ int insertion()
 		head = newnode;
 	}
 	void end() {
-		int i = 2;
 		while (temp->next != NULL) {
 			temp = temp->next;
 		}
@@ -71,9 +70,9 @@ int insertion()
 		int position;
 		printf("Position: ");
 		scanf("%d", &position);
-		if (position <= 1 || position < size - 1) {
+		if (position <= 1 || position > size - 1) {
 			printf("Invalid!\n");
-			return 1;
+			return;
 		}
 
 		int i = 2;
@@ -110,13 +109,26 @@ int insertion()
 // Deletion from any position
 int deletion()
 {
-	/*
 	int type;
+	struct node *temp, *temp1, *delnode;
+	temp = head;
+/*
 	printf("Enter 0 to delete from the beginning, 1 to delete from the end, 2 to delete from any positon: ");
 	switch (type) {
 
 	}
 	*/
+	void beginning() {
+		head = temp->next;
+		free(temp);
+	}
+	void end() {
+		while (temp->next != NULL) {
+			temp = temp->next;
+		}
+		delnode = temp;
+		newnode->next = NULL;
+	}
 	int position;
 	printf("Position: ");
 	scanf("%d", &position);
@@ -125,8 +137,6 @@ int deletion()
 		return 1;
 	}
 
-	struct node *temp, *delnode;
-	temp = head;
 	int i = 2;
 	while (i < position) {
 		temp = temp->next;
