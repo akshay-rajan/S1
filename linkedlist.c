@@ -112,40 +112,52 @@ int deletion()
 	int type;
 	struct node *temp, *temp1, *delnode;
 	temp = head;
-/*
 	printf("Enter 0 to delete from the beginning, 1 to delete from the end, 2 to delete from any positon: ");
-	switch (type) {
+	scanf("%d", &type);
 
-	}
-	*/
 	void beginning() {
 		head = temp->next;
 		free(temp);
 	}
 	void end() {
 		while (temp->next != NULL) {
+			temp1 = temp;
 			temp = temp->next;
 		}
-		delnode = temp;
-		newnode->next = NULL;
+		temp1->next = NULL;
+		free(temp);
 	}
-	int position;
-	printf("Position: ");
-	scanf("%d", &position);
-	if (position > size) {
-		printf("Invalid!\n");
-		return 1;
+	void anypos() {
+		int position;
+		printf("Position: ");
+		scanf("%d", &position);
+		if (position > size) {
+			printf("Invalid!\n");
+			return;
+		}
+
+		int i = 2;
+		while (i < position) {
+			temp = temp->next;
+			i++;
+		}	
+
+		delnode = temp->next;
+		temp->next = delnode->next;
+		free(delnode);
 	}
 
-	int i = 2;
-	while (i < position) {
-		temp = temp->next;
-		i++;
-	}	
-
-	delnode = temp->next;
-	temp->next = delnode->next;
-	free(delnode);
+	switch (type) {
+		case 0:
+			beginning();
+			break;
+		case 1:
+			end();
+			break;
+		case 2:
+			anypos();
+			break;
+	}
 	display(head);
 	return 0;
 }
