@@ -2,6 +2,17 @@
 <html>
     <head>
         <title>php</title>
+        <style>
+            body {
+                padding: 20px;
+                color: black;
+                background-color: #ECF4D6;
+            }
+            h2, h3, h4 {
+                color: #265073;
+                background-color: #9AD0C2;
+            }
+        </style>
     </head>
     <body>
         <h1><a href="https://www.w3schools.com/php/">php</a></h1>
@@ -109,7 +120,7 @@
                 </div>
                 <div>
                     <h3>TypeCasting</h3>
-                    $int_cast = (int) $x;
+                    <pre>$int_cast = (int) $x;</pre>
                 </div>
                 <div>
                     <h3>Math</h3>
@@ -124,7 +135,110 @@
                     <h3>Constants</h3>
                     define(name, value, case-insensitive(true or false));<br>
                     const name = value;
+                    <h3>Magic Constants</h3>
+                    <li>__CLASS__ : name of the class</li>
+                    <li>__DIR__: directory</li>
+                    <li>__FILE__: filename</li>
+                    <li>__FUNCTION__: function name</li>   
+                    <li>__METHOD__: class and function name</li>
+                </div><br>
+                <div>
+                    <h3>Operators</h3>
+                PHP contains Arithmetic operators (+, -, *, /, %, **), Assignment operators (=, +=, /=, %=,...), 
+                    Comparison Operators (==, ===, != or <>, >, <, >=, <=, <=> {to find the max/min}), Increment/decrement operators (++, --, ...) etc.
+                    <li>and, &&</li>
+                    <li>or, ||</li>
+                    <li>xor: true if only one is true and not both</li>
+                    <li>!</li>
+                    <li>.: concatenation in string</li>
+                    <li>.=: concatenation assignment-- $a .= $b appends $b to $a</li>
+                    <li>Array Operators: +(Union), ==(Equality), ===(Identity~order), != etc.</li>
+                    <li>Conditional: 1. Ternary: $x = condition? if_true; if_false;<br>
+                        2. Null coalescing: $x = if_this_exists?? if_that_does_not_exist;
+                    </li>
                 </div>
+                <div>
+                    <h3>Conditional Statements</h3>
+                    <pre>
+                        if (condition) {
+                            code;
+                        } elseif (codition) {
+                            code;
+                        } else {
+                            code;
+                        }
+                </div>
+                <div>
+                    <h3>Switch</h3>
+                    <pre>
+                    switch (n) {
+                        case label1:
+                            code;
+                            break;
+                        case label2:
+                            code;
+                            break;
+                        case label3:
+                            code;
+                            break;
+                            ...
+                        default:
+                            code;
+                        } 
+                </div>
+                <div>
+                    <h3>Loops</h3>
+                    <h4>While</h4>
+                    <pre>
+                        while (condition) {
+                            code;
+                        }
+                    </pre>
+                    <h4>do while</h4>
+                    <pre>
+                        do {
+                            code;
+                        } while (condition);
+                    </pre>
+                    <h4>For</h4>
+                    <pre>
+                        for ($i = 0; $i < 100; $i++) {
+                            echo i;
+                        }
+                    </pre>
+                    <h4>Foreach: for arrays</h4>
+                    <pre>
+                        $colors = array("red", "green", "blue", "yellow");
+
+                        foreach ($colors as $value) {
+                            echo "$value";
+                        }
+                    </pre>
+                    <li>break: to exit the loop</li>
+                    <li>continue: to skip the current iteration</li>
+                </div>
+                <div>
+                    <h3>Functions</h3>
+                    <pre>
+                        function func_name($argument) {
+                            code;
+                        }
+                    </pre>
+                    <li>Default argument values can be included in the function definition by <pre>($arg = value)</pre></li>
+                    <li>We can even return a function call</li>
+                    <li>Pass by reference is also available, to update a variable</li>
+                    <pre>
+                        function add_five(&$value) {
+                            $value += 5;
+                        }
+
+                        $num = 2;
+                        add_five($num);
+                    </pre>
+                </div>
+                <div></div>
+                <div></div>
+                
             </ul>
         </div>
     </div>
