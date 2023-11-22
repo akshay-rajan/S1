@@ -3,6 +3,16 @@
 		<title>Job Application</title>
 	</head>
 	<body>
+		<?php
+			$name = $_POST['name'];
+			$age = $_POST['age'];
+			$email = $_POST['email'];
+			$mal = $_POST['mal'];
+			$eng = $_POST['hin'];
+			$hin = $_POST['hin'];
+			$home = $_POST['home'];
+			$office = $_POST['office'];
+		?>
 		<table border=1 align="center" width="60%">
 			<tr>
 				<th colspan="2">Registration Form</th>
@@ -11,7 +21,6 @@
 				<td>Name</td>
 				<td>
 					<?php 
-						$name = $_POST['name'];
 						echo $name;
 					?>
 				</td>
@@ -20,7 +29,6 @@
 				<td>Age</td>
 				<td>
 					<?php 
-						$age = $_POST['age'];
 						echo $age;
 					?>				
 				</td>
@@ -29,7 +37,6 @@
 				<td>Email id</td>
 				<td>
 					<?php 
-						$email = $_POST['email'];
 						echo $email;
 					?>
 				</td>
@@ -37,11 +44,7 @@
 			<tr>
 				<td>Languages Known</td>
 				<td>
-					<?php 
-						$mal = $_POST['mal'];
-						$eng = $_POST['hin'];
-						$hin = $_POST['hin'];
-						
+					<?php 						
 						if (isset($mal)) {
 							echo "Malayalam";
 						}
@@ -65,13 +68,11 @@
 						<tr>
 							<td>
 								<?php 
-									$home = $_POST['home'];
 									echo $home;
 								?>
 							</td>
 							<td>
 								<?php 
-									$office = $_POST['office'];
 									echo $office;
 								?>
 							</td>
