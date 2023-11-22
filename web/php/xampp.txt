@@ -1,0 +1,11 @@
+1. Download xampp
+	https://sourceforge.net/projects/xampp/files/XAMPP%20Linux/8.2.4/xampp-linux-x64-8.2.4-0-installer.run
+2. Install xampp
+	sudo chmod 755 xampp-linux-x64-8.2.4-0-installer.run
+	sudo ./xampp-linux-x64-8.2.4-0-installer.run
+3. Start servers:
+	sudo /opt/lampp/lampp start
+
+If server already in use:
+Detect which server causes the issue: sudo lsof -i :80
+Stop that server: sudo service apache2 stop
