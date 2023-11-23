@@ -6,6 +6,10 @@
 3. Start servers:
 	sudo /opt/lampp/lampp start
 
-If server already in use:
-Detect which server causes the issue: sudo lsof -i :80
-Stop that server: sudo service apache2 stop
+4. If server already in use:
+    Detect which server causes the issue: sudo lsof -i :80
+    Stop that server: sudo service apache2 stop
+    Restart xampp: 	sudo /opt/lampp/lampp restart
+5. If the files are not accessible:
+    Change the default path in /opt/lampp/etc/httpd.conf to DocumentRoot "/var/www/html"
+
