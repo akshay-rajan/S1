@@ -236,9 +236,60 @@
                         add_five($num);
                     </pre>
                 </div>
-                <div></div>
-                <div></div>
-                
+                <div>
+                    <h3>Array</h3>
+                    <li>In php, the array() function is used to create an array.</li>
+                    <li>Indexed Array:</li>
+                        <pre>
+                            $car = array('bmw', 'honda', 'toyota');
+                        </pre>
+                    We can use the 'count()' function to find the length of the array.
+                    <li>Associative Array (like dictionary in python):</li>
+                        <pre>
+                            $age = array("a"=>"5", "b"=>"7");
+                        </pre>
+                    <li>Multidimensional arrays: arrays inside an array</li>
+                    We can use functions like sort(), rsort(), asort() etc. to sort different kinds of arrays.
+                </div>
+                <div>
+                    <h3>SuperGlobals</h3>
+                    Some predefined variables in php, that are always accessible from anywhere.
+                    <li>$GLOBALS : To access global variables from anywhere</li>
+                        <pre>
+                            $x = 5;
+                            $y = 7;
+                            function addition($x, $y) {
+                                $GLOBALS['z'] = $GLOBALS['x'] + $GLOBALS['y'];
+                            }
+                            echo "$z";
+                        </pre>
+                    <li><a href="https://www.w3schools.com/php/php_superglobals_server.asp">$_SERVER : Holds info about headers, paths, and script locations.</a></li>
+                        <pre>
+                        echo $_SERVER['PHP_SELF']; // Filename
+                        echo $_SERVER['SERVER_NAME'];
+                        echo $_SERVER['HTTP_HOST'];
+                        echo $_SERVER['HTTP_REFERER'];
+                        echo $_SERVER['HTTP_USER_AGENT'];
+                        echo $_SERVER['SCRIPT_NAME'];
+                        </pre>
+                    <li>$_REQUEST : To collect data from a form submission</li>
+                        <pre>
+                            $name = $_REQUEST['name'];
+                        </pre>
+                    <li>$_POST : To collect data from a form submission via POST method</li>
+                    <li>$_GET : To collect data from a form submission via GET (from url)</li>
+                </div>
+                <div>
+                    <h3>RegEx-- Regular Expression</h3>
+                    Regular expressions are patterns containing delimeters (/), a pattern and optional modifiers (i)
+                    <pre>
+                        $str = "Visit W3Schools";
+                        $pattern = "/w3schools/i";
+                        echo preg_match($pattern, $str); // Outputs 1
+                    </pre>
+                    There are several functions associated with regular expressions.<br>
+                    Many <a href="https://www.w3schools.com/php/php_regex.asp">Modifiers, Patterns, Metacharacters and Quantifiers</a> are present in php.
+                </div>
             </ul>
         </div>
     </div>
