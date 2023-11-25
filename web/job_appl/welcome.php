@@ -1,0 +1,9 @@
+<html>
+	<body>
+		Welcome
+<?php 
+session_start();
+$_SESSION["name"]="pooja";
+?>
+	</body>
+</html>

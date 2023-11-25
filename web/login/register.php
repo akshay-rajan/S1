@@ -3,6 +3,7 @@
 		<title>Register</title>
 	</head>
 	<body>
+		<h1>REGISTER</h1>
 		<form action="" method="post">
 			NAME: <input type="text" name="name"><br>
 			E-MAIL: <input type="text" name="email"><br>
@@ -11,7 +12,9 @@
 			RE-TYPE PASSWORD: <input type="password" name="repassword">
 			<input type="submit" value="Register">
 		</form>
-
+		<div>
+			Already have an account? <a href="login.php">Login</a>
+		</div>
 <?php
 	$name=$_POST['name'];
 	$email=$_POST['email'];
@@ -32,10 +35,8 @@
 		}
 		else
 		{
-			$q = "INSERT INTO users (name, email, phone, password) VALUES ($name, $email, $phone, $password)";
-			echo $q;	
+			$q = "INSERT INTO users (name, email, phone, password) VALUES ('$name', '$email', '$phone', '$password')";
 			$query = mysqli_query($conn, $q);
-			echo $q;
 			if ($query) {
 				echo "<h2>Registered!</h2>";
 			} else {
