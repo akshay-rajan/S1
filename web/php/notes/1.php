@@ -291,6 +291,9 @@
                     Many <a href="https://www.w3schools.com/php/php_regex.asp">Modifiers, Patterns, Metacharacters and Quantifiers</a> are present in php.
                 </div>
             </ul>
+            <div style="text-align: right;">
+                <a href="2.php"><button>Next</button></a>
+            </div>
         </div>
     </div>
 
