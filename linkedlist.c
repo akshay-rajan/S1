@@ -19,8 +19,8 @@ int deletion();
 
 void main()
 {
+	int choice;
 	while (1) {
-		int choice;
 		printf("Enter 0 to display, 1 to insert, 2 to delete, 5 to exit: ");
 		scanf("%d", &choice);
 		switch (choice) {
@@ -46,7 +46,7 @@ void main()
 int insertion()
 {
 	int type;
-	struct node *newnode, *temp, *temp1;
+	struct node *newnode, *temp;
 	newnode = (struct node *) malloc(sizeof(struct node));
 	printf("Enter 0 for insertion at the beginning, 1 for insertion at the end or 2 for insertion at any position: ");
 	scanf("%d", &type);
@@ -77,17 +77,15 @@ int insertion()
 
 		int i = 2;
 		// Insertion at the position
-		while (i <= position) {
+		while (i < position) {
 			if (temp->next != NULL) {
 				temp1 = temp;
 				temp = temp->next;
 			}
 			i++;
 		}
-		newnode->next = temp;
-		temp->prev = newnode;
-		temp1->next = newnode;
-		newnode->prev = temp1;
+		newnode->next = temp->next;
+		temp->next = newnode;
 		size++;
 	}
 
