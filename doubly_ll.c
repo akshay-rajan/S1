@@ -11,6 +11,7 @@ struct node {
 
 int size = 0;
 struct node *head = NULL;
+struct node *tail = NULL;
 
 
 int insertion();
@@ -41,38 +42,38 @@ void main()
 int insertion()
 {
 	int type;
-	struct node *newnode, *temp;
+	struct node *newnode;
 	newnode = (struct node *) malloc(sizeof(struct node));
 	printf("Enter 0 for insertion at the beginning, 1 for insertion at the end or 2 for insertion at any position: ");
 	scanf("%d", &type);
 	printf("Element: ");
 	scanf("%d", &newnode->data);
+	
+	// If empty
+	if (head == NULL) {
+		newnode->next = NULL;
+		newnode->prev = NULL;
+		head = newnode;
+		tail = newnode;
+		size++;
+		display(head);
+		return 0;
+	}
 
 	// Insertion at the beginning	
 	void beginning() {
-		if (head == NULL) {
-			newnode->next = NULL;
-			head = newnode;		
-			newnode->prev = head;
-			return;
-		}
-	
 		newnode->next = head;
 		head->prev = newnode;
 		head = newnode;
-		newnode->prev = head;
-		return;
+		newnode->prev = NULL;
 	}
 
 
 	// Insertion at the end
 	void end() {
-		temp = head;
-		while (temp->next != NULL) {
-			temp = temp->next;
-		}
-		temp->next = newnode;
-		newnode->prev = temp;
+		newnode->prev = tail;
+		tail->next = newnode;
+		tail = newnode;
 		newnode->next = NULL;
 	}
 
@@ -81,20 +82,24 @@ int insertion()
 		int position;
 		printf("Position: ");
 		scanf("%d", &position);
-		if (position < 1 || position > size) {
+		if (position <= 1 || position >= size) {
 			printf("Invalid!\n");
 			return;
 		}
-		int i = 2;
+		struct node *temp, *temp1;
+		temp = head;
+		int i = 1;
 		while (i < position) {
 			if (temp->next != NULL) {
+				temp1 = temp;
 				temp = temp->next;
 			}
 			i++;
 		}
-		newnode->next = temp->next;
-		temp->next = newnode;
-
+		newnode->next = temp;
+		temp->prev = newnode;
+		temp1->next = newnode;
+		newnode->prev = temp1;
 	}
 
 	switch (type) {
@@ -107,6 +112,8 @@ int insertion()
 		case 2:
 			anypos();
 			break;
+		default:
+			return 0;
 	}
 	size++;
 	display(head);
@@ -114,17 +121,38 @@ int insertion()
 }
 
 
-// Deletion at the beginning
 int deletion()
 {
 	if (head == NULL)
 		return 1;
 
+	int type;
 	struct node *delnode;
-	delnode = head->next;
-	head->next = delnode->next;
-	delnode->next->prev = head;
+	printf("Enter 0 for insertion at the beginning, 1 for insertion at the end or 2 for insertion at any position: ");
+	scanf("%d", &type);
+	
+	// Deletion at the beginning
+	void beginning() {
+		delnode = head;
+		head->next = delnode->next;
+		delnode->next = head;
+	}
+
+
+
 	free(delnode);
+	
+	switch (type) {
+		case 0:
+			beginning();
+			break;
+/*		case 1:
+			end();
+			break;
+		case 2:
+			anypos();
+			break;*/
+	}
 }
 
 
