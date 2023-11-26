@@ -16,7 +16,7 @@ struct node *tail = NULL;
 
 int insertion();
 int deletion();
-void display(struct node *ptr);
+void display();
 
 
 void main()
@@ -32,6 +32,9 @@ void main()
 			case 1:
 				insertion();
 				break;
+			case 2:
+				deletion();
+				break;				
 			case 5:
 				return;
 		}
@@ -123,63 +126,121 @@ int insertion()
 
 int deletion()
 {
-	if (head == NULL)
+	if (head == NULL) {
 		return 1;
+	}
 
 	int type;
-	struct node *delnode;
-	printf("Enter 0 for insertion at the beginning, 1 for insertion at the end or 2 for insertion at any position: ");
+	struct node *delnode, *temp;
+	printf("Enter 0 for deletion at the beginning, 1 for deletion at the end or 2 for deletion at any position: ");
 	scanf("%d", &type);
+	
+	// If only one node remaining
+	if (size == 1) {
+		delnode = head;
+		head = NULL;
+		tail = NULL;
+		free(delnode);
+		size--;
+		display(head);
+		return 0;
+	}
 	
 	// Deletion at the beginning
 	void beginning() {
 		delnode = head;
-		head->next = delnode->next;
-		delnode->next = head;
+		temp = head->next;
+		head = temp;
+		temp->prev = NULL;
+	}
+	
+	// Deletion at the end
+	void end() {
+		delnode = tail;
+		temp = tail->prev;
+		tail = temp;
+		temp->next = NULL;
 	}
 
-
-
-	free(delnode);
+	// Deletion at any position
+	void anypos() {
+		int position;
+		printf("Position: ");
+		scanf("%d", &position);
+		if (position <= 1 || position >= size || size < 3) {
+			printf("Invalid!\n");
+			return;
+		}
+		struct node *temp, *temp1, *temp2;
+		temp = head;
+		int i = 1;
+		while (i < position) {
+			if (temp->next != NULL) {
+				temp1 = temp;
+				temp = temp->next;
+				temp2 = temp->next;
+			}
+			i++;
+		}
+		delnode = temp;
+		temp1->next = temp2;
+		temp2->prev = temp1;
+	}
 	
 	switch (type) {
 		case 0:
 			beginning();
 			break;
-/*		case 1:
+		case 1:
 			end();
 			break;
 		case 2:
 			anypos();
-			break;*/
+			break;
 	}
+	free(delnode);
+	size--;
+	display(head);
+	return 0;
 }
 
 
 // Display the doubly linked list
-void display(struct node *ptr)
+void display()
 {
-	if (ptr == NULL) {
-		printf("NULL\n");
+	if (size == 0) {
+		printf("The linked list is empty!\n");
 		return;
 	}
-	printf("%d <-> ", ptr->data);
+	
+	// From head to tail
+	void headtotail(struct node * ptr) {
+		if (ptr == head)
+			printf("Head ->");
+		if (ptr == NULL) {
+			printf("<- Tail\n");
+			return;
+		}
+		printf("<- %d -> ", ptr->data);
 
-	// Recursion
-	display(ptr->next);
+		headtotail(ptr->next);		
+	}
+
+	// From tail to head
+	void tailtohead(struct node *ptr) {
+		if (ptr == tail)
+			printf("Tail ->");
+		if (ptr == NULL) {
+			printf("<- Head\n");
+			return;
+		}
+		printf("<- %d -> ", ptr->data);
+
+		tailtohead(ptr->prev);
+	}
+	
+	headtotail(head);
+	tailtohead(tail);
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
