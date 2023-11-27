@@ -52,6 +52,7 @@ void insertion() {
 	// Insertion at the beginning
 	else {
 		newnode->next = head;
+		head->next = newnode;
 		head = newnode;
 	}
 	
