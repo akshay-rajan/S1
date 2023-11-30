@@ -13,11 +13,11 @@ def copy_files(source, destination):
         print(f"An error occurred: {e}")
 
 
-choice = int(input("Enter 1 for '/home/superuser1/Desktop/Programs/git/S1/web/' -> '/var/www/html/web/'\nEnter 2 for any other folder to '/var/www/html/web/': "))
+choice = int(input("Enter 1 for '/home/superuser1/Desktop/Programs/git/S1/web/' -> '/var/www/html/web/'\nEnter 2 for '/home/exam1/Desktop/git/S1' to '/var/www/html/web/': "))
 if choice == 1:
     source_folder = "/home/superuser1/Desktop/Programs/git/S1/web/"
 else:
-    source_folder = input("Enter the folder to copy from: ")
+    source_folder = "/home/exam1/Desktop/git/S1/web/"
 destination_folder = "/var/www/html/web/"
 
 copy_files(source_folder, destination_folder)
