@@ -45,11 +45,8 @@ void main()
 // Insertion at any position
 int insertion()
 {
-	int type;
 	struct node *newnode, *temp;
 	newnode = (struct node *) malloc(sizeof(struct node));
-	printf("Enter 0 for insertion at the beginning, 1 for insertion at the end or 2 for insertion at any position: ");
-	scanf("%d", &type);
 	temp = head;
 	printf("Element: ");
 	scanf("%d", &newnode->data);
@@ -78,18 +75,17 @@ int insertion()
 		int i = 2;
 		// Insertion at the position
 		while (i < position) {
-			if (temp->next != NULL) {
-				temp1 = temp;
+			if (temp->next != NULL) 
 				temp = temp->next;
-			}
 			i++;
 		}
 		newnode->next = temp->next;
 		temp->next = newnode;
-		size++;
 	}
 
-
+	int type;
+	printf("Enter 0 for insertion at the beginning, 1 for insertion at the end or 2 for insertion at any position: ");
+	scanf("%d", &type);
 	switch (type) {
 		case 0:
 			beginning();
@@ -110,11 +106,8 @@ int insertion()
 // Deletion from any position
 int deletion()
 {
-	int type;
 	struct node *temp, *temp1, *delnode;
 	temp = head;
-	printf("Enter 0 to delete from the beginning, 1 to delete from the end, 2 to delete from any positon: ");
-	scanf("%d", &type);
 
 	void beginning() {
 		head = temp->next;
@@ -148,6 +141,9 @@ int deletion()
 		free(delnode);
 	}
 
+	int type;
+	printf("Enter 0 to delete from the beginning, 1 to delete from the end, 2 to delete from any positon: ");
+	scanf("%d", &type);
 	switch (type) {
 		case 0:
 			beginning();
