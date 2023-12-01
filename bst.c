@@ -2,7 +2,6 @@
 #include <stdlib.h>
 
 
-// Define node
 struct node
 {
     int data;
@@ -18,7 +17,8 @@ int isEmpty = 1;
 int insert();
 int delete();
 int display();
-
+int largest(struct node *root);
+int deletion(struct node *root, int value);
 
 void main()
 {
@@ -28,14 +28,14 @@ void main()
         scanf("%d", &choice);
         switch(choice) {
             case 0:
-				display();
+		display();
                 break;
             case 1:
                 insert();
                 break;
-			case 2:
-				delete();
-				break;
+	    case 2:
+		delete();
+		break;
             case 5:
                 return;
             default:
@@ -45,7 +45,7 @@ void main()
 }
 
 
-// Insert an element into the tree
+// Insert a node into the tree
 int insert()
 {
     int value;
@@ -88,63 +88,96 @@ int insert()
 }
 
 
-// Delete an element of a particular value
+// Delete a node with a particular value
 int delete()
 {
-	// Read the value to delete
 	int value, left;
-	printf("Enter the value to delete: ");
+	printf("Enter the node to delete: ");
 	scanf("%d", &value);
 
-	// Find the node with the value
+	// Find the node to delete: BST Search
 	struct node *temp, *parent;
 	temp = head;
-    while (temp != NULL) {
-        // If the value is lesser, search left half
-        if (temp->data > value) {
-			left = 1;
-			parent = temp;
-            temp = temp->left;
-        } 
-        // If the value is greater, search right half
-        else if (temp->data < value) {
-			left = 0;
-			parent = temp;
-            temp = temp->right;
-        }
-        // If the node to delete has been found
-		else {
-			if (left == 1) {
-                // If the node is the left child of its parent
-				if (temp->left != NULL) {
-                    // If the node has a left child, replace the node with it
-					parent->left = temp->left;				
-				}
-				else if (temp->right != NULL) {
-                    // If the node has no left child, but a right child is present
-					parent->left = temp->left;				
-				}
-				else {
-                    // If the node is a leaf node
+	while (temp != NULL) {
+	        if (temp->data > value) {
+			if (temp->left != NULL) {
+				left = 1;	
+				parent = temp;
+		        	temp = temp->left;
+		       	}
+        	} else if (temp->data < value) {
+        		if (temp->right != NULL) {
+        			left = 0;
+				parent = temp;
+				temp = temp->right;
+        		}
+		} else {
+			// If the node has no children, simply delete
+			if (temp->left == NULL && temp->right == NULL) {
+				if (left)
 					parent->left = NULL;
-				}
-			} 
-            else {
-                // If the node is the right child of its parent, same method used above
-				if (temp->left != NULL) 
-					parent->right = temp->left;	
-				else if (temp->right != NULL)
-					parent->right = temp->left;				
 				else
 					parent->right = NULL;
+				free(temp);
 			}
-			free(temp);
+			// If the node has one child, replace the node with its child
+			else if (temp->left == NULL || temp->right == NULL) {
+				if (temp->left != NULL) {
+					if (left)
+						parent->left = temp->left;
+					else
+						parent->right = temp->left;
+				} else {
+					if (left)
+						parent->left = temp->right;
+					else
+						parent->right = temp->right;
+				}
+				free(temp);
+			}
+			// If the node has two children, replace the node with its inorder predecesor
+			else {
+				struct node *predecessor;
+				predecessor = temp->left;
+				while (1) {
+					if (predecessor->right != NULL)
+						predecessor = predecessor->right;
+				}
+				if (left)
+					return 1;
+				else 
+					return 1;	
+			}
 			return 0;
 		}
-    }
-    // If no such value is present in the tree
-    printf("Cannot find the node!\n");
-    return 1;
+	}
+	// If no such value is present in the tree
+	printf("Cannot find the node!\n");
+	return 1;
+}
+
+
+int deletion(struct node *root, int value) {
+	if (root == NULL) {
+		printf("Not found!\n");
+		return 1;
+	}
+	
+	if (value < root->data) {
+		deletion(root->left, value);
+	} else if (value > root->data) {
+		deletion(root->right, value);
+	}
+	// https://www.javatpoint.com/deletion-in-binary-search-tree
+}
+
+
+// Get the largest node in a tree
+int largest(struct node *root) {
+	while (root->right != NULL) {
+		root = root->right;
+	}
+	return root;
 }
 
 
@@ -203,4 +236,10 @@ int display(){
     printf("\n");
     return 0;
 }
+
+
+
+
+
+
 
