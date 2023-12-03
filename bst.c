@@ -10,15 +10,14 @@ struct node
 };
 
 
-struct node *head = NULL;
+struct node *root = NULL;
 int isEmpty = 1;
 
 
 int insert();
-int delete();
 int display();
-int largest(struct node *root);
-int deletion(struct node *root, int value);
+void deletion();
+
 
 void main()
 {
@@ -32,9 +31,10 @@ void main()
                 break;
             case 1:
                 insert();
+                display();
                 break;
 	    case 2:
-		delete();
+		deletion();
 		break;
             case 5:
                 return;
@@ -59,15 +59,15 @@ int insert()
     newnode->left = NULL;
     newnode->right = NULL;
 
-    // Insert as root of the tree, if no element is present
+    // Insert as root of the tree, if tree is empty
     if (isEmpty) {
-        head = newnode;
+        root = newnode;
         isEmpty = 0;
         return 0;
     }
 
     // Reach the appropriate position to insert
-    temp = head;
+    temp = root;
     while (temp != NULL) {
         if (temp->data > value) {
             if (temp->left == NULL) {
@@ -88,102 +88,65 @@ int insert()
 }
 
 
-// Delete a node with a particular value
-int delete()
-{
-	int value, left;
-	printf("Enter the node to delete: ");
-	scanf("%d", &value);
-
-	// Find the node to delete: BST Search
-	struct node *temp, *parent;
-	temp = head;
-	while (temp != NULL) {
-	        if (temp->data > value) {
-			if (temp->left != NULL) {
-				left = 1;	
-				parent = temp;
-		        	temp = temp->left;
-		       	}
-        	} else if (temp->data < value) {
-        		if (temp->right != NULL) {
-        			left = 0;
-				parent = temp;
-				temp = temp->right;
-        		}
-		} else {
-			// If the node has no children, simply delete
-			if (temp->left == NULL && temp->right == NULL) {
-				if (left)
-					parent->left = NULL;
-				else
-					parent->right = NULL;
-				free(temp);
-			}
-			// If the node has one child, replace the node with its child
-			else if (temp->left == NULL || temp->right == NULL) {
-				if (temp->left != NULL) {
-					if (left)
-						parent->left = temp->left;
-					else
-						parent->right = temp->left;
-				} else {
-					if (left)
-						parent->left = temp->right;
-					else
-						parent->right = temp->right;
-				}
-				free(temp);
-			}
-			// If the node has two children, replace the node with its inorder predecesor
-			else {
-				struct node *predecessor;
-				predecessor = temp->left;
-				while (1) {
-					if (predecessor->right != NULL)
-						predecessor = predecessor->right;
-				}
-				if (left)
-					return 1;
-				else 
-					return 1;	
-			}
-			return 0;
-		}
-	}
-	// If no such value is present in the tree
-	printf("Cannot find the node!\n");
-	return 1;
-}
-
-
-int deletion(struct node *root, int value) {
-	if (root == NULL) {
-		printf("Not found!\n");
-		return 1;
-	}
-	
-	if (value < root->data) {
-		deletion(root->left, value);
-	} else if (value > root->data) {
-		deletion(root->right, value);
-	}
-	// https://www.javatpoint.com/deletion-in-binary-search-tree
-}
-
-
-// Get the largest node in a tree
-int largest(struct node *root) {
-	while (root->right != NULL) {
-		root = root->right;
+// Return the smallest node in a tree
+struct node *find_min(struct node *root) {
+	while (root->left != NULL) {
+		root = root->left;
 	}
 	return root;
 }
 
+// Delete a node from a tree and return the root
+struct node *delete(struct node *root, int value) {
+	if (root == NULL) {
+		printf("Not found!\n");
+		return root;
+	}
+	
+	// Find the node, while keeping track of the path taken to reach it
+	struct node *temp;
+	if (value < root->data) {
+		root->left = delete(root->left, value);
+	} else if (value > root->data) {
+		root->right = delete(root->right, value);
+	} else {
+	// Reached the node to delete	
+		// If only one child
+		if (root->left == NULL) {
+			temp = root->right;
+			free(root);
+			return temp;
+		} else if (root->right == NULL) {
+			// (This is where the deletion of the inorder successor happens)
+			temp = root->left;
+			free(root);
+			return temp;
+		}	
+		// IF THE NODE HAS TWO CHILDREN
+		// Replace the data in the node with the data of its inorder successor
+		root->data = find_min(root->right)->data;
+		// Delete the inorder successor ,also maintaining the structure of the tree
+		root->right = delete(root->right, root->data);
+	}
+	return root;
+}
 
-// Perform all three traversals
+// Driver function that performs deletion
+void deletion() {
+	int value;
+	printf("Enter the node to delete: ");
+	scanf("%d", &value);
+	root = delete(root, value);
+	// If the tree is now empty
+	if (root == NULL)
+		isEmpty = 1;
+	display();
+}
+
+
+// Perform all three traversals to display the tree
 int display(){
-    if (head == NULL) {
+    if (root == NULL) {
         printf("Tree is empty!\n");
         return 1;
     }
@@ -228,12 +191,12 @@ int display(){
 
     // Function calls
     printf("Preorder: ");
-    preOrder(head);
-    printf("\nInorder: ");
-    inOrder(head);
-    printf("\nPostorder: ");
-    postOrder(head);
-    printf("\n");
+    preOrder(root);
+    printf("NULL\nInorder: ");
+    inOrder(root);
+    printf("NULL\nPostorder: ");
+    postOrder(root);
+    printf("NULL\n");
     return 0;
 }
 
