@@ -59,6 +59,7 @@ void main()
         }
         printf("{%d, %d} = %d\n", u, v, min);
         cost += min;
+		e++;
     }
     printf("Minimum Cost: %d\n", cost);
 }
