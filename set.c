@@ -1,7 +1,4 @@
-// Represent two sets using "Bit Vector", then find their union and intersection.
-
 #include <stdio.h>
-//#include <stdlib.h>
 
 
 int isPresent(int arr[], int size, int value);
