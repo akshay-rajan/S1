@@ -43,6 +43,10 @@ void main()
     int source;
     printf("Enter the starting node: ");
     scanf("%d", &source);
+    if (source < 0 || source >= n) {
+        printf("Invalid!\n");
+        return;
+    }
     printf("DFS -> ");
     DFS(A, n, V, source);
     printf("\n");

@@ -32,10 +32,18 @@ void main()
     }
 
     // BFS
+    int source;
+    printf("Enter the starting node: ");
+    scanf("%d", &source);
+    if (source < 0 || source >= n) {
+        printf("Invalid!\n");
+        return;
+    }
+    printf("BFS -> ");
 
-    // Enqueue the source (here, 0) and mark it as visited
-    enqueue(0);
-    V[0] = 1;
+    // Enqueue the source and mark it as visited
+    enqueue(source);
+    V[source] = 1;
 
     // Repeat until the queue is empty
     while (front <= rear) {
@@ -53,6 +61,7 @@ void main()
     }
     printf("\n");
 }
+
 
 void enqueue(int value) {
 	if (rear == n - 1)
