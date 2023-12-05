@@ -1,5 +1,21 @@
 #include <stdio.h>
 
+#define MAX_NODES 100
+
+
+void DFS(int graph[MAX_NODES][MAX_NODES], int n, int visited[], int source) {
+    printf("%d ", source);
+    visited[source] = 1;
+    // For each node adjacent to u
+    for (int i = 0; i < n; i++) {
+        if (graph[source][i] != 0) {
+            // If the node is not already visited
+            if (visited[i] == 0)
+                DFS(graph, n, visited, i);
+        }
+    }
+}
+
 void main()
 {
     int n;
@@ -22,22 +38,12 @@ void main()
         }
     }
 
-    // Perform DFS starting from a node 'u' 
+    // DFS 
     // (A Stack works in the background of the recursive algorithm)
-    void DFS(int u) {
-        printf("%d ", u);
-        V[u] = 1;
-        // For each node adjacent to u
-        for (int i = 0; i < n; i++) {
-            if (A[u][i] != 0) {
-                // If the node is not already visited, perform DFS on it
-                if (V[i] == 0)
-                    DFS(i);
-            }
-        }
-    }
-
-    printf("Performing DFS starting from the first vertex: \n");
-    DFS(0);
+    int source;
+    printf("Enter the starting node: ");
+    scanf("%d", &source);
+    printf("DFS -> ");
+    DFS(A, n, V, source);
     printf("\n");
 }
