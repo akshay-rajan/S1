@@ -14,7 +14,6 @@ void main()
     int n2 = n * n;
     int toSort[n2];
     int sorted[n2];
-    int min = INT_MAX;
     int cost = 0;
     for (int i = 0; i < n; i++) {
         for (int j = 0; j < n; j++) {
@@ -42,7 +41,75 @@ void main()
     }
 
     // Construct the MST, avoiding cycles (DFS)
-    // Find the edge corresponding to a value in sorted by finding it in toSort and decoding its previous position    
 
+    // Visited Array
+    int V[n];
+    for (int i = 0; i < n; i++) {
+        V[i] = 0;
+    }
+
+    // DFS Function
+    void DFS(int u, int A[n][n]) {
+        V[u] = 1;
+        for (int i = 0; i < n; i++) {
+            if (A[u][i] != INT_MAX && V[i] != 1) {
+                DFS(i, A);
+            }
+        }
+    };
+
+    // MST
+    int mst[n][n];
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++) {
+            mst[i][j] = INT_MAX;
+        }
+    }
+    for (int i = 0; i < n2; i++) {
+        for (int j = 0; j < n2; j++) {
+            // Finding where each value in the sorted array was, in the adjacency matrix
+            if (sorted[i] == toSort[j]) {
+                int row = j / n;
+                int col = j % n;
+                mst[row][col] = sorted[j];
+                mst[col][row] = sorted[i];
+                // if (A[row][col] != INT_MAX)
+                //     printf("{%d, %d} = %d\n", row, col, A[row][col]);
+                toSort[j] = INT_MAX;
+                break;
+            }
+        }
+        // Removing cycles from the mst
+        for (int k = 0; k < n; k++) {
+            V[k] = 0;
+        }
+        DFS(0, mst);
+        int cycle = 0;
+        for (int k = 0; k < n; k++) {
+            if (V[k] == 0) {
+                cycle = 1;
+                break;
+            }
+        }
+        if (cycle) {
+            int row = (i + 1) / n;
+            int col = (i + 1) % n;
+            mst[row][col] = INT_MAX;
+            mst[col][row] = INT_MAX;
+        }
+    }
+
+    // Print the MST
+    printf("Minimum Spanning Tree: \n");
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++) {
+            if (mst[i][j] == INT_MAX) {
+                printf("0 ");
+                continue;
+            }
+            printf("%d ", mst[i][j]);
+        }
+        printf("\n");
+    }
 }
 
