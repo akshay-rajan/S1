@@ -1,4 +1,5 @@
 import os
+import shutil
 
 def copy_files(source, destination):
     """Copy or replace files from one folder to another"""

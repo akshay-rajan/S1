@@ -1,19 +1,20 @@
 <body>
-	<h1>Welcome</h1>
+	<h1>Welcome!</h1>
 </body>
 
 <?php
 	$username = $_POST['username'];
 	$password = $_POST['password'];
 	
-	$conn = mysqli_connect('localhost', 'root', '', 'login');
+	// $conn = mysqli_connect('localhost', 'root', '', 'registration');
+	$conn = mysqli_connect('localhost', '', '', 'registration');
 	if(!$conn)
 	{
 		echo "Cannot connect";
 	}
 	else
 	{
-		if ($_POST['sub'])
+		if ($_POST['submit'])
 		{
 			$q = "SELECT * FROM users WHERE email='$username' AND password='$password'";
 			$query = mysqli_query($conn, $q);

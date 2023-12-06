@@ -1,4 +1,4 @@
-<h1>Marks</h1>
+<h1>Student Registration</h1>
 <table style="position: fixed;right: 0px;top:15px;" cellpadding=5>
 	<tr>
 		<td><a href="home.php" target="home">Home</a></td>
