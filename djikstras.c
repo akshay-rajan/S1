@@ -12,12 +12,12 @@ void main()
     printf("Enter the number of nodes: ");
     scanf("%d", &n);
 
-    // Source Array
-    int V[n];
+    // Source Array: To keep track of nodes taken as the source
+    int S[n];
     for (int i = 0; i < n; i++)
-        V[i] = 0;
+        S[i] = 0;
 
-    // Distance Array
+    // Distance Array: Distance from the source to each node
     int distance[n];
     for (int i = 0; i < n; i++) {
         distance[i] = INT_MAX;
@@ -34,30 +34,37 @@ void main()
         }
     }
 
-    
-    // Start with node 0 as source
-    int source = 0;    
+    // Djikstra's Algorithm
 
-    // Update the distance of this node to 0
+    int source;    
+    printf("Enter the starting node: \n");
+    scanf("%d", &source);
+    if (source < 0 || source >= n) {
+        printf("Invalid!\n");
+        return;
+    }
+
+    // Update the distance of the source to 0
     distance[source] = 0;
-
     int source_count = 1;
 
-    // Update the distance of all nodes adjacent to this node based on the relaxation formula
-    while (source_count < n) {
-        V[source] = 1;
+    // For each node as the source
+    while (source_count <= n) {
+        // Mark the node as 'taken'
+        S[source] = 1;
+        // For each node adjacent to the source, update its distance
         for (int i = 0; i < n; i++) {
             if (A[source][i] != INT_MAX) {
                 // Relaxation Formula: If d(u) + c(u, v) < d(v), then d(v) = d(u) + c(u, v)
                 if (distance[source] + A[source][i] < distance[i])
                     distance[i] = distance[source] + A[source][i];
-                    printf("distance[%d]: %d\n", i, distance[i]);
             }
         }
-        // PICK THE NEXT SOURCE: Next minimum in the distance array not picked as source
+        // Pick the next source
         int min = INT_MAX;
         for (int i = 0; i < n; i++) {
-            if (distance[i] < min) {
+            // Minimum value in the distance array not already picked as source
+            if (distance[i] < min && !S[i]) {
                 min = distance[i];
                 source = i;
             }
@@ -65,12 +72,9 @@ void main()
         source_count++;
     }
 
-    // Print the Distance Array
+    // Print the Distances
+    printf("Node\t Distance\n");
     for (int i = 0; i < n; i++) {
-        if (distance[i] == INT_MAX)
-            printf("%d: ~ ", i);
-        else
-            printf("%d: %d ", i, distance[i]);
+        printf("%d\t %d \n", i, distance[i]);
     }
-    printf("\n");
 }
