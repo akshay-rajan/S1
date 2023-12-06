@@ -4,7 +4,7 @@
 
 #define MAX_NODES 100
 
-int DFS(int node, int n, int graph[][MAX_NODES], int visited[], int parent);
+int DFS(int node, int n, int graph[][MAX_NODES], int visited[], int recStack[]);
 
 
 void main() 
@@ -47,37 +47,57 @@ void main()
     // Construct the MST, avoiding cycles (DFS)
 
     // MST
-    int mst[n][n];
-    for (int i = 0; i < n; i++) {
-        for (int j = 0; j < n; j++) {
-            // Initially, set all entries to 0
-            mst[i][j] = 0;
-        }
-    }
+    int mst[MAX_NODES][MAX_NODES] = {0};
     for (int i = 0; i < n2; i++) {
         for (int j = 0; j < n2; j++) {
             // Finding where each value in the sorted array was, in the adjacency matrix
             if (sorted[i] == toSort[j]) {
                 int row = j / n;
                 int col = j % n;
-                // If the edge does not exist
-                if (A[row][col] == INT_MAX)
+                
+                // Check if the edge exist
+                if (A[row][col] == INT_MAX) {
                     mst[row][col] = 0;
-                else
-                    mst[row][col] = sorted[i];
+                    break;
+                }
+                mst[row][col] = sorted[i];
 
                 // Make sure there are no cycles using DFS
-                int V[n];
-                for (int i = 0; i < n; i++) {
-                    V[i] = 0;
-                }
-                if (DFS(0, n, mst, V, -1)) {
+                int V[MAX_NODES] = {0};
+                int parents[MAX_NODES] = {0};
+
+                if (DFS(row, n, mst, V, parents)) {
                     // Cycle found
-                    printf("Cycle found!\n");
+                    printf("Cycle found at %d!\n", i);
                     mst[row][col] = 0;
-                }                
+                    break;
+
+                }
                 toSort[j] = INT_MAX;
-                break;
+                // -------------DEBUG----------------
+                printf("\nInserted '%d' at mst[%d][%d]\n", mst[row][col], row, col);
+                printf("Minimum Spanning Tree: \n");
+                for (int i = 0; i < n; i++) {
+                    for (int j = 0; j < n; j++) {
+                        printf("%d ", mst[i][j]);
+                    }
+                    printf("\n");
+                }
+                printf("ToSort: ");
+                for (int i = 0; i < n2; i++) {
+                    if (toSort[i] == INT_MAX)
+                        printf("~ ");
+                    else
+                        printf("%d ", toSort[i]);
+                } 
+                printf("\nSorted: ");
+                for (int i = 0; i < n2; i++) {
+                    if (sorted[i] == INT_MAX)
+                        printf("~ ");
+                    else
+                        printf("%d ", sorted[i]);
+                }
+                // -------------DEBUG----------------
             }
         }
     }
@@ -91,22 +111,22 @@ void main()
     }
 }
 
-
 // DFS Function: To detect Cycle in a graph
-int DFS(int node, int n, int graph[][MAX_NODES], int visited[], int parent) {
-    visited[node] = 1;
+int DFS(int node, int n, int graph[][MAX_NODES], int visited[], int recStack[]) {
+    if (visited[node] == 0) {
+        visited[node] = 1;
+        recStack[node] = 1;
 
-    for (int i = 0; i < n; ++i) {
-        if (graph[node][i] != 0) {
-            if (!visited[i]) {
-                if (DFS(i, n, graph, visited, node)) {
+        for (int i = 0; i < n; ++i) {
+            if (graph[node][i] != 0) {
+                if (!visited[i] && DFS(i, n, graph, visited, recStack)) {
                     return 1; // Cycle detected
+                } else if (recStack[i]) {
+                    return 1; // Back edge detected, indicating a cycle
                 }
-            } else if (i != parent) {
-                // If the neighbor is already visited and not the parent, a cycle is detected
-                return 1;
             }
         }
     }
+    recStack[node] = 0; // Remove the node from the recursion stack
     return 0; // No cycle detected
 }
