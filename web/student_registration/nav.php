@@ -4,6 +4,7 @@
 		<td><a href="home.php" target="home">Home</a></td>
 		<td><a href="register.php" target="home">Register</a></td>
 		<td><a href="login.php" target="home">Login</a></td>
+		<td><a href="marks.php" target="home">Marks</a></td>
 	</tr>
 </table>
 

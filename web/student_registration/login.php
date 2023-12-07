@@ -27,7 +27,6 @@
 		$email=$_POST['email'];
 		$password=$_POST['password'];
 		$repassword=$_POST['repassword'];
-
 		if($password!=$repassword)
 		{
 			echo "Passwords do not match";
@@ -35,7 +34,6 @@
 		else
 		{
 			$conn = mysqli_connect('localhost', 'root', '', 'registration');
-			//$conn = mysqli_connect('localhost', '', '', 'registration');
 			if(!$conn)
 			{
 				echo "Cannot connect";
