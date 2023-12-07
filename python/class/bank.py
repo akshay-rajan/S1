@@ -19,10 +19,12 @@ account_type = input("Enter the account type: ")
 
 member = Account(account_no, name, account_type, 0)
 
-transaction = int(input("Enter 1 to deposit, 2 to withdraw: "))
-if transaction == 1:
-	member.deposit(int(input("Enter the amount to deposit: ")))
-elif transaction == 2:
-	member.withdraw(int(input("Enter the amount to withdraw: ")))
+while True:
+	print("Name:")
+	transaction = int(input("Enter 1 to deposit, 2 to withdraw: "))
+	if transaction == 1:
+		member.deposit(int(input("Enter the amount to deposit: ")))
+	elif transaction == 2:
+		member.withdraw(int(input("Enter the amount to withdraw: ")))
 
 
