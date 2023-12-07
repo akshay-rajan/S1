@@ -17,6 +17,9 @@ class Account:
 		self.bal -= amount
 		print(f"Withdrawed Rs.{amount} successfully!")
 
+	def display(self):
+		print(f"Name:\t\t{self.name}\nAccount No:\t{self.acc_no}\nAccount Type:\t{self.ac_type}\nBalance:\t{self.bal}")
+
 account_no = int(input("Enter the account no: "))
 name = input("Enter the name: ")
 account_type = input("Enter the account type: ")
@@ -24,7 +27,7 @@ account_type = input("Enter the account type: ")
 member = Account(account_no, name, account_type, 0)
 
 while True:
-	print(f"Name: {member.name}\nAccount No.: {member.acc_no}\nAccount type: {member.ac_type}\nBalance: {member.bal}")
+	member.display()
 	transaction = int(input("Enter 1 to deposit, 2 to withdraw: "))
 	if transaction == 1:
 		member.deposit(int(input("Enter the amount to deposit: ")))
