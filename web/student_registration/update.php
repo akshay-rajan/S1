@@ -27,6 +27,9 @@
                     echo "
                         Series 1: <input type='text' name='series1' value='{$row['series1']}'><br>
                         Series 2: <input type='text' name='series2' value='{$row['series2']}'><br>
+                        Assignment 1: <input type='text' name='assignment1' value='{$row['assignment1]}'><br>
+                        Assignment 2: <input type='text' name='assignment2' value='{$row['assignment2]}'><br>
+                        Attendance : <input type='text' name='attendance' value='{$row['attendance']}'><br>
                         <input type='submit' value='Update Marks' name='update'>
                     ";
                 }
