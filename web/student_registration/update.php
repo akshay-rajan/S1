@@ -46,13 +46,30 @@
     $ktu_id = $_POST['ktu_id'];
     $series1 = $_POST['series1'];
     $series2 = $_POST['series2'];
+    $assignment1 = $_POST['assignment1'];
+    $assignment2 = $_POST['assignment2'];
+    $attendance = $_POST['attendance'];
     
     if ($_POST['add']) {
         // Add marks to the table
-        $sql = "INSERT INTO marks VALUES ()";
-        
+        $sql = "INSERT INTO marks VALUES ('$ktu_id', $series1, $series2, $assignment1, $assignment2, $attendance)";
+        $result = mysqli_query($conn,$sql);
+
+		if ($result) {
+			echo "Marks added successfully";
+		}
+		else {
+			echo "Cannot add marks";
+		}
     } else if ($_POST['update']) {
         // Update marks
-        $sql = "UPDATE TABLE SET series1 = '' WHERE ktu_id = ''";
+        $sql = "UPDATE TABLE SET series1 = $series1 AND series2 = $series2 AND assignment1 = $assignment1 AND assignment2 = $assignment2 AND attendance = $attendance WHERE ktu_id = '$ktu_id'";
+        $result = mysqli_query($conn,$sql);
+		if ($result) {
+			echo "Marks updated successfully";
+		}
+		else {
+			echo "Cannot update marks";
+		}
     }
 ?>
