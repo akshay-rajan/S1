@@ -43,6 +43,10 @@
     ?>
 </form>
 <?php 
+    $ktu_id = $_POST['ktu_id'];
+    $series1 = $_POST['series1'];
+    $series2 = $_POST['series2'];
+    
     if ($_POST['add']) {
         // Add marks to the table
         $sql = "INSERT INTO marks VALUES ()";
