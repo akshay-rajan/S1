@@ -3,6 +3,7 @@
 </body>
 
 <?php
+	session_start();
 	$ktuid = $_POST['ktuid'];
 	$password = $_POST['password'];
 	
@@ -19,9 +20,10 @@
 				$q = "SELECT * FROM users WHERE ktu_id='$ktuid' AND password='$password'";
 				$query = mysqli_query($conn, $q);
 					if (mysqli_num_rows($query) > 0) {
+						$_SESSION['ktu_id'] = $ktuid;
 				    	$row = mysqli_fetch_assoc($query);
 				     	echo "
-							<table border=1 align='center'>
+							<table border=1 align='center' width='60%'>
 								<tr>
 									<td>KTU ID</td>
 									<td>{$row['ktu_id']}</td>	

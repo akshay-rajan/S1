@@ -1,5 +1,5 @@
 <form action="" method="POST">
-    Select a student: <select name="ktuid">
+    Select a student: <select name="ktu_id">
         <option value="none" selected disabled>SELECT</option>
         <?php 
             $conn = mysqli_connect('localhost', 'root', '', 'registration');
@@ -33,7 +33,7 @@
             $row = mysqli_fetch_assoc($res);
             if (mysqli_num_rows($res) > 0) {
                 echo "
-                    <table>
+                    <table border=1>
                         <tr>
                             <th>KTU ID</th>
                             <td>{$row['ktu_id']}</td>
@@ -67,7 +67,7 @@
         }
         echo "
             <form method='post' action='update.php'>
-                <input type='hidden' value='{$row['ktu_id']}' name='ktu_id'>
+                <input type='hidden' value='{$ktu_id}' name='ktu_id'>
                 <input name='add-update' type='submit' value='Add or Update Marks'>
             </form>
         ";

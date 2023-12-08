@@ -63,7 +63,7 @@
 		}
     } else if ($_POST['update']) {
         // Update marks
-        $sql = "UPDATE TABLE SET series1 = $series1 AND series2 = $series2 AND assignment1 = $assignment1 AND assignment2 = $assignment2 AND attendance = $attendance WHERE ktu_id = '$ktu_id'";
+        $sql = "UPDATE marks SET series1 = $series1, series2 = $series2, assignment1 = $assignment1, assignment2 = $assignment2, attendance = $attendance WHERE ktu_id = '$ktu_id'";
         $result = mysqli_query($conn,$sql);
 		if ($result) {
 			echo "Marks updated successfully";
