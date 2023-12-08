@@ -14,6 +14,7 @@
                 if (mysqli_num_rows($result) == 0) {
                     // Fresh entry of marks
                     echo "
+                        <input type='hidden' name='ktu_id' value='{$ktu_id}'>
                         Series 1: <input type='text' name='series1'><br>
                         Series 2: <input type='text' name='series2'><br>
                         Assignment 1: <input type='text' name='assignment1'><br>
@@ -25,6 +26,7 @@
                 } else {
                     // Marks already entered, requires updation
                     echo "
+                        <input type='hidden' name='ktu_id' value='{$ktu_id}'>
                         Series 1: <input type='text' name='series1' value='{$row['series1']}'><br>
                         Series 2: <input type='text' name='series2' value='{$row['series2']}'><br>
                         Assignment 1: <input type='text' name='assignment1' value='{$row['assignment1]}'><br>
