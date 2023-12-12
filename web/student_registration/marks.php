@@ -30,37 +30,27 @@
         $q = "SELECT * FROM marks WHERE ktu_id='$ktu_id'";
         $res = mysqli_query($conn, $q);
         if ($res) {
-            $row = mysqli_fetch_assoc($res);
             if (mysqli_num_rows($res) > 0) {
-                echo "
-                    <table border=1>
-                        <tr>
-                            <th>KTU ID</th>
-                            <td>{$row['ktu_id']}</td>
-                        </tr>
-                        <tr>
-                            <th>Series 1</th>
-                            <td>{$row['series1']}</td>
-                        </tr>
-                        <tr>
-                            <th>Series 2</th>
-                            <td>{$row['series2']}</td>
-                        </tr>
-                        <tr>
-                            <th>Assignment 1</th>
-                            <td>{$row['assignment1']}</td>
-                        </tr>
-                        <tr>
-                            <th>Assignment 2</th>
-                            <td>{$row['assignment2']}</td>
-                        </tr>
-                        <tr>
-                            <th>Attendance</th>
-                            <td>{$row['attendance']}</td>
-                        </tr>
-                    </table>
-
-                ";
+				echo "<table border=1>
+						<tr>
+							<th>Subject</th>
+				            <th>Series 1</th>
+							<th>Series 2</th>
+	                        <th>Assignment 1</th>
+	                        <th>Assignment 2</th>
+	                        <th>Attendance</th>
+						</tr>";
+				while ($row = mysqli_fetch_assoc($res)) {
+		            echo "<tr>
+		                        <td>{$row['subject']}</td>
+		                        <td>{$row['series1']}</td>
+		                        <td>{$row['series2']}</td>
+		                        <td>{$row['assignment1']}</td>
+		                        <td>{$row['assignment2']}</td>
+		                        <td>{$row['attendance']}</td>
+		                    </tr>";
+				}
+				echo "</table>";
             } else {
                 echo "No marks added!";
             }

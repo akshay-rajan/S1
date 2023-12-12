@@ -6,9 +6,9 @@
     } else {
 
         // Fetch the student's name and internal mark using JOIN
-        $ktu_id = $_POST['ktu_id'];
+        $sub = $_POST['subject'];
 
-        $sql = "SELECT * FROM users JOIN marks ON users.ktu_id = marks.ktu_id WHERE users.ktu_id = '$ktu_id'";
+        $sql = "SELECT * FROM users JOIN marks ON users.ktu_id = marks.ktu_id WHERE marks.subject = '$sub'";
         $result = mysqli_query($conn, $sql);
         if (!$result) {
             echo "Cannot search!";
@@ -45,7 +45,7 @@
                 ";
 
             } else {
-                echo "No Student Found!";
+                echo "No Marks Found!";
             }
         }
 

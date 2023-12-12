@@ -15,6 +15,7 @@
                     // Fresh entry of marks
                     echo "
                         <input type='hidden' name='ktu_id' value='{$ktu_id}'>
+                        Subject: <input type='text' name='subject'><br>
                         Series 1: <input type='text' name='series1'><br>
                         Series 2: <input type='text' name='series2'><br>
                         Assignment 1: <input type='text' name='assignment1'><br>
@@ -44,6 +45,7 @@
 </form>
 <?php 
     $ktu_id = $_POST['ktu_id'];
+    $subject = $_POST['subject'];
     $series1 = $_POST['series1'];
     $series2 = $_POST['series2'];
     $assignment1 = $_POST['assignment1'];
@@ -52,7 +54,7 @@
     
     if ($_POST['add']) {
         // Add marks to the table
-        $sql = "INSERT INTO marks VALUES ('$ktu_id', $series1, $series2, $assignment1, $assignment2, $attendance)";
+        $sql = "INSERT INTO marks VALUES ('$ktu_id','$subject', $series1, $series2, $assignment1, $assignment2, $attendance)";
         $result = mysqli_query($conn,$sql);
 
 		if ($result) {

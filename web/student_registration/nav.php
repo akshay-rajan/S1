@@ -8,7 +8,7 @@
 		?>
 		<td>
 			<form action="search.php" method="POST" target="home">
-				<input type="text" name="ktu_id" placeholder="Search Using KTU ID">
+				<input type="text" name="subject" placeholder="Search a subject">
 				<input type="submit" name="search" value="Search"> 
 			</form>
 		</td>
