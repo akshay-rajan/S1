@@ -1,3 +1,5 @@
+// ONLY WORKING FOR DIRECTED GRAPH NOW!
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <limits.h>
@@ -68,7 +70,7 @@ void main()
 
                 if (DFS(row, n, mst, V, parents)) {
                     // Cycle found
-                    printf("Cycle found at %d!\n", i);
+                    printf("Cycle found at row: %d, col: %d!\n", row, col);
                     mst[row][col] = 0;
                     break;
 
