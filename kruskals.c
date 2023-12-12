@@ -11,9 +11,11 @@ int DFS(int node, int n, int graph[][MAX_NODES], int visited[], int recStack[]);
 
 void main() 
 {
-    int n;
+    int n, directed;
     printf("Enter the number of nodes: ");
     scanf("%d", &n);
+	printf("Enter 0 for undirected, 1 for directed: ");
+	scanf("%d", &directed);
 
     // Read the Adjacency matrix, also creating a flattened version of it for sorting
     int A[MAX_NODES][MAX_NODES], u, v;
@@ -76,6 +78,7 @@ void main()
 
                 }
                 toSort[j] = INT_MAX;
+				cost += mst[row][col];
                 // -------------DEBUG----------------
                 printf("\nInserted '%d' at mst[%d][%d]\n", mst[row][col], row, col);
                 printf("Minimum Spanning Tree: \n");
@@ -111,9 +114,11 @@ void main()
         }
         printf("\n");
     }
+	printf("Minimum Cost: %d\n", cost);
 }
 
-// DFS Function: To detect Cycle in a graph
+
+// DFS Function: To detect Cycle in a Graph
 int DFS(int node, int n, int graph[][MAX_NODES], int visited[], int recStack[]) {
     if (visited[node] == 0) {
         visited[node] = 1;
