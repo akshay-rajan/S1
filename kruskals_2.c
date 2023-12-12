@@ -5,17 +5,17 @@
 #define MAX_NODES 100
 
 
-// DFS Function: To detect Cycle in a graph
-int DFS(int node, int n, int graph[][MAX_NODES], int visited[], int recStack[]) {
+// DFS function for both graphs
+int DFS(int node, int n, int graph[][MAX_NODES], int visited[], int recStack[], int parent) {
     if (visited[node] == 0) {
         visited[node] = 1;
         recStack[node] = 1;
 
         for (int i = 0; i < n; ++i) {
             if (graph[node][i] != 0) {
-                if (!visited[i] && DFS(i, n, graph, visited, recStack)) {
+                if (!visited[i] && DFS(i, n, graph, visited, recStack, node)) {
                     return 1; // Cycle detected
-                } else if (recStack[i]) {
+                } else if (recStack[i] && i != parent) {
                     return 1; // Back edge detected, indicating a cycle
                 }
             }
@@ -25,13 +25,20 @@ int DFS(int node, int n, int graph[][MAX_NODES], int visited[], int recStack[]) 
     return 0; // No cycle detected
 }
 
+
 int main() {
     // Example graph (adjacency matrix)
     int graph[MAX_NODES][MAX_NODES] = {
-          {0, 5, 2, 0},
+        {0, 0, 2, 7},
         {0, 0, 1, 0},
-        {2, 0, 0, 4},
+        {2, 1, 0, 4},
         {0, 0, 4, 0}
+    };
+    int graph2[MAX_NODES][MAX_NODES] = {
+        {0, 5, 2, 7},
+        {5, 0, 1, 0},
+        {2, 1, 0, 4},
+        {7, 0, 4, 0}
     };
 
     int n = 4; // Number of nodes
@@ -39,7 +46,7 @@ int main() {
     int visited[MAX_NODES] = {0}; // Initialize visited array
      int recStack[MAX_NODES] = {0}; // Initialize recursion stack
 
-    if (DFS(0, n, graph, visited, recStack)) {
+    if (DFS(3, n, graph, visited, recStack, -1)) {
         printf("Cycle detected!\n");
     } else {
         printf("No cycle detected.\n");

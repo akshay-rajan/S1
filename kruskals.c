@@ -1,4 +1,4 @@
-// ONLY WORKING FOR DIRECTED GRAPH NOW!
+// ONLY WORKS FOR DIRECTED GRAPHS
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -6,16 +6,14 @@
 
 #define MAX_NODES 100
 
-int DFS(int node, int n, int graph[][MAX_NODES], int visited[], int recStack[]);
+int DFS(int node, int n, int graph[][MAX_NODES], int visited[], int recStack[], int parent);
 
 
 void main() 
 {
-    int n, directed;
+    int n, isDirected;
     printf("Enter the number of nodes: ");
     scanf("%d", &n);
-	printf("Enter 0 for undirected, 1 for directed: ");
-	scanf("%d", &directed);
 
     // Read the Adjacency matrix, also creating a flattened version of it for sorting
     int A[MAX_NODES][MAX_NODES], u, v;
@@ -48,9 +46,8 @@ void main()
         }
     }
 
-    // Construct the MST, avoiding cycles (DFS)
-
-    // MST
+    // Construct the MST, avoiding cycles
+    printf("The edges in the MST and their costs: \n");
     int mst[MAX_NODES][MAX_NODES] = {0};
     for (int i = 0; i < n2; i++) {
         for (int j = 0; j < n2; j++) {
@@ -64,49 +61,31 @@ void main()
                     mst[row][col] = 0;
                     break;
                 }
+
+                // Inserting into the MST
                 mst[row][col] = sorted[i];
 
-                // Make sure there are no cycles using DFS
+                // Marking the flat array to ignore this cost for further iterations
+                toSort[j] = INT_MAX;
+
+                // Checking for cycles
                 int V[MAX_NODES] = {0};
                 int parents[MAX_NODES] = {0};
-
-                if (DFS(row, n, mst, V, parents)) {
-                    // Cycle found
-                    printf("Cycle found at row: %d, col: %d!\n", row, col);
+                if (DFS(row, n, mst, V, parents, -1)) {
+                    printf("Cycle detected at {%d, %d}\n", row, col);
                     mst[row][col] = 0;
                     break;
-
-                }
-                toSort[j] = INT_MAX;
-				cost += mst[row][col];
-                // -------------DEBUG----------------
-                printf("\nInserted '%d' at mst[%d][%d]\n", mst[row][col], row, col);
-                printf("Minimum Spanning Tree: \n");
-                for (int i = 0; i < n; i++) {
-                    for (int j = 0; j < n; j++) {
-                        printf("%d ", mst[i][j]);
-                    }
-                    printf("\n");
-                }
-                printf("ToSort: ");
-                for (int i = 0; i < n2; i++) {
-                    if (toSort[i] == INT_MAX)
-                        printf("~ ");
-                    else
-                        printf("%d ", toSort[i]);
                 } 
-                printf("\nSorted: ");
-                for (int i = 0; i < n2; i++) {
-                    if (sorted[i] == INT_MAX)
-                        printf("~ ");
-                    else
-                        printf("%d ", sorted[i]);
-                }
-                // -------------DEBUG----------------
+                // Make sure we are only counting an edge once (in case of undirected graphs)
+                if (!mst[col][row])
+                    cost += mst[row][col];
+
+                printf("{%d, %d} = %d\n", row, col, mst[row][col]);           
             }
         }
     }
-    // Print the MST
+    
+    // Print the MST and Minimum Cost
     printf("Minimum Spanning Tree: \n");
     for (int i = 0; i < n; i++) {
         for (int j = 0; j < n; j++) {
@@ -119,16 +98,16 @@ void main()
 
 
 // DFS Function: To detect Cycle in a Graph
-int DFS(int node, int n, int graph[][MAX_NODES], int visited[], int recStack[]) {
+int DFS(int node, int n, int graph[][MAX_NODES], int visited[], int recStack[], int parent) {
     if (visited[node] == 0) {
         visited[node] = 1;
         recStack[node] = 1;
 
         for (int i = 0; i < n; ++i) {
             if (graph[node][i] != 0) {
-                if (!visited[i] && DFS(i, n, graph, visited, recStack)) {
+                if (!visited[i] && DFS(i, n, graph, visited, recStack, node)) {
                     return 1; // Cycle detected
-                } else if (recStack[i]) {
+                } else if (recStack[i] && i != parent) {
                     return 1; // Back edge detected, indicating a cycle
                 }
             }
