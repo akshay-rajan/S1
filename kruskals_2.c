@@ -46,7 +46,7 @@ int main() {
     int visited[MAX_NODES] = {0}; // Initialize visited array
      int recStack[MAX_NODES] = {0}; // Initialize recursion stack
 
-    if (DFS(3, n, graph, visited, recStack, -1)) {
+    if (DFS(0, n, graph, visited, recStack, -1)) {
         printf("Cycle detected!\n");
     } else {
         printf("No cycle detected.\n");
