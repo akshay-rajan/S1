@@ -5,7 +5,7 @@
 #define MAX_NODES 100
 
 
-int isTraversed(int array[], int n);
+int isSpanningTree(int n, int graph[][MAX_NODES]);
 int DFS(int node, int n, int graph[][MAX_NODES], int visited[], int recStack[], int parent);
 
 
@@ -92,8 +92,8 @@ void main()
                     printf("{%d, %d} = %d\n", row, col, mst[row][col]);
                 }
 
-                // If the construction of the MST is complete---NEED LOGIC TO MAKE SURE THE GRAPH IS CONNECTED BEFORE EXITING
-                if (isTraversed(visitedArray, n)) {
+                // If the construction of the MST is complete
+                if (isSpanningTree(n, mst)) {
                     // Print the MST and Minimum Cost
                     printf("Minimum Spanning Tree: \n");
                     for (int i = 0; i < n; i++) {
@@ -108,13 +108,27 @@ void main()
             }
         }
     }
+    printf("Minimum Spanning Tree: \n");
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++) {
+            printf("%d ", mst[i][j]);
+        }
+        printf("\n");
+    }
+    printf("Minimum Cost: %d\n", cost);
 }
 
 
-// Check if all elements in an array is set to 1
-int isTraversed(int array[], int n) {
+// Check if all elements are visited and the graph is connected
+int isSpanningTree(int n, int graph[][MAX_NODES]) {
+    
+    // Perform DFS starting from 0
+    int visited[MAX_NODES] = {0};
+    int recStack[MAX_NODES] = {0};
+    DFS(0, n, graph, visited, recStack, -1);
     for (int i = 0; i < n; i++) {
-        if (array[i] == 0)
+        if (!visited[i])
+            // Not connected
             return 0;
     }
     return 1;
