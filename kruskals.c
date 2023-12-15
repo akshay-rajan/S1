@@ -15,17 +15,18 @@ void main()
     printf("Enter the number of nodes: ");
     scanf("%d", &n);
 
-    // Read the Adjacency matrix, also creating a flattened version of it for sorting
+    // Read the Adjacency matrix, also creating flattened versions of it for sorting
     int A[MAX_NODES][MAX_NODES], u, v;
     int n2 = n * n;
     int toSort[n2];
     int sorted[n2];
     int cost = 0;
+    printf("Enter the adjacency matrix: \n");
     for (int i = 0; i < n; i++) {
         for (int j = 0; j < n; j++) {
             printf("A[%d][%d]: ", i, j);
             scanf("%d", &A[i][j]);
-            // If there is no edge between two nodes, assign a big value to it to ignore it
+            // If there is no edge between two nodes, assign a big value to it
             if (A[i][j] == 0)
                 A[i][j] = INT_MAX;
 
@@ -46,10 +47,9 @@ void main()
         }
     }
 
-    int visitedArray[MAX_NODES] = {0};
 
     // Construct the MST
-    printf("The edges in the MST are: \n");
+    printf("The edges in the Minimum Spanning Tree are: \n");
     int mst[MAX_NODES][MAX_NODES] = {0};
     for (int i = 0; i < n2; i++) {
         for (int j = 0; j < n2; j++) {
@@ -70,8 +70,7 @@ void main()
                 // Marking the flat array to ignore this cost for further iterations
                 toSort[j] = INT_MAX;
 
-                // ----------------------CHECKING FOR CYCLES--------------------------
-                // Perform DFS from every vertex, since the graph may not be connected
+                // CHECKING FOR CYCLES (1)
                 int isCyclic = 0;
                 for (int k = 0; k < n; k++) {
                     int V[MAX_NODES] = {0};
@@ -85,35 +84,19 @@ void main()
                 if (isCyclic)
                     break;
 
-                // For each unique edge inserted**
+                // Print each unique edge inserted and increment the cost (2)
                 if (!mst[col][row]) {
-                    visitedArray[row] = visitedArray[col] = 1;
                     cost += mst[row][col];
                     printf("{%d, %d} = %d\n", row, col, mst[row][col]);
                 }
 
                 // If the construction of the MST is complete
                 if (isSpanningTree(n, mst)) {
-                    // Print the MST and Minimum Cost
-                    printf("Minimum Spanning Tree: \n");
-                    for (int i = 0; i < n; i++) {
-                        for (int j = 0; j < n; j++) {
-                            printf("%d ", mst[i][j]);
-                        }
-                        printf("\n");
-                    }
                     printf("Minimum Cost: %d\n", cost);
                     return;
                 }
             }
         }
-    }
-    printf("Minimum Spanning Tree: \n");
-    for (int i = 0; i < n; i++) {
-        for (int j = 0; j < n; j++) {
-            printf("%d ", mst[i][j]);
-        }
-        printf("\n");
     }
     printf("Minimum Cost: %d\n", cost);
 }
@@ -127,8 +110,8 @@ int isSpanningTree(int n, int graph[][MAX_NODES]) {
     int recStack[MAX_NODES] = {0};
     DFS(0, n, graph, visited, recStack, -1);
     for (int i = 0; i < n; i++) {
+        // If a node is unvisited, the graph is not connected
         if (!visited[i])
-            // Not connected
             return 0;
     }
     return 1;
@@ -139,7 +122,7 @@ int isSpanningTree(int n, int graph[][MAX_NODES]) {
 int DFS(int node, int n, int graph[][MAX_NODES], int visited[], int recStack[], int parent) {
     if (visited[node] == 0) {
         visited[node] = 1;
-        // recStack is used to keep track of nodes in the current path of searching
+        // recStack is used to keep track of nodes in the current path of traversal
         recStack[node] = 1;
 
         for (int i = 0; i < n; ++i) {
@@ -147,7 +130,7 @@ int DFS(int node, int n, int graph[][MAX_NODES], int visited[], int recStack[], 
                 // Recursively calling the function on each unvisited node
                 if (!visited[i] && DFS(i, n, graph, visited, recStack, node)) {
                     return 1;
-                // If the node is already visited, and the node is not the parent of the current node**
+                // If the node is already visited, and the node is not the parent of the current node (2)
                 } else if (recStack[i] && i != parent) {
                     return 1;
                 }
@@ -156,10 +139,11 @@ int DFS(int node, int n, int graph[][MAX_NODES], int visited[], int recStack[], 
     }
     // Remove the node from the recursion stack
     recStack[node] = 0;
-    // No cycle detected
     return 0;
 }
 
-// ** For undirected graphs, edge {a, b} is the same as {b, a}, hence if we are on b, and see that a is already visited,
-// this does not imply that a -> b -> a is a cycle.
 
+
+// (1) We perform DFS from every vertex, since the graph may not be connected
+// (2) For undirected graphs, edge {a, b} is the same as {b, a}, hence if we are on b, and see that a is already visited,
+//     this does not imply that a -> b -> a is a cycle.
