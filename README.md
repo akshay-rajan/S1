@@ -1,6 +1,6 @@
 ## Data Structures Lab
 
-### Lab Cycle 1
+#### Lab Cycle 1
 1. [Array](https://github.com/akshay-rajan/S1/blob/main/ads/array.c)
 2. [Stack](https://github.com/akshay-rajan/S1/blob/main/ads/stack.c)
 3. [Queue](https://github.com/akshay-rajan/S1/blob/main/ads/queue.c)
@@ -10,7 +10,7 @@
 7. [Circular Linked List](https://github.com/akshay-rajan/S1/blob/main/ads/circular_ll.c)
 8. [Set using Bit String](https://github.com/akshay-rajan/S1/blob/main/ads/set.c)
 
-### Lab Cycle 2
+#### Lab Cycle 2
 1. [Binary Search Tree](https://github.com/akshay-rajan/S1/blob/main/ads/bst.c)
 2. [Prim's Algorithm](https://github.com/akshay-rajan/S1/blob/main/ads/prims.c)
 3. [Kruskal's Algorithm](https://github.com/akshay-rajan/S1/blob/main/ads/kruskals.c)
