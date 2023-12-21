@@ -1,22 +1,52 @@
-<h1>Student Registration</h1>
-<table style="position: fixed;right: 0px;top:15px;" cellpadding=5>
+<head>
+	<style>
+		button {
+			width: 70px;
+			height: 35px;
+			background-color: #F5F5F5;
+			margin: 0px;
+		}
+		form input[type="text"] {
+			height: 35px;
+			background-color: #F5F5F5;
+		}
+		form input[type="text"], form input[type="submit"], button {
+			height: 35px;
+			margin: 0px;
+			border-radius: 10px;
+		}
+		form input[type="text"] {
+			margin-top: 17px;
+		}
+		form input[type="submit"] {
+			background-color: #FC5185;
+		}
+	</style>
+</head>
+<body style="background-color: #3FC1C9;">
+	<div style="margin: 25px;">
+		<h1>Student Registration</h1>
+	</div>
+	<table style="position: fixed;right: 0px;top:15px; margin-right: 5px;" cellpadding=5>
 	<tr>
-		<?php 
-			session_start();
-			if ($_SESSION['ktu_id'])
-			echo "<td>Logged In: {$_SESSION['ktu_id']}</td>";
-		?>
+		<td>
+			<?php 
+				session_start();
+				if ($_SESSION['ktu_id'])
+				echo "<td>Logged In:<br>{$_SESSION['ktu_id']}</td>";
+			?>
+		</td>
 		<td>
 			<form action="search.php" method="POST" target="home">
 				<input type="text" name="subject" placeholder="Search a subject">
 				<input type="submit" name="search" value="Search"> 
 			</form>
 		</td>
-		<td><a href="home.php" target="home">Home</a></td>
-		<td><a href="register.php" target="home">Register</a></td>
-		<td><a href="login.php" target="home">Login</a></td>
-		<td><a href="logout.php" target="home">Logout</a></td>
-		<td><a href="marks.php" target="home">Marks</a></td>
+		<td><button><a href="home.php" target="home">Home</a></button></td>
+		<td><button><a href="register.php" target="home">Register</a></button></td>
+		<td><button><a href="login.php" target="home">Login</a></button></td>
+		<td><button><a href="logout.php" target="home">Logout</a></button></td>
+		<td><button><a href="marks.php" target="home">Marks</a></button></td>
 	</tr>
-</table>
-
+	</table>
+</body>

@@ -1,3 +1,14 @@
+<head>
+	<style>
+		.welcome {
+			margin: 25px;
+			color: #FC5185;
+		}
+	</style>
+</head>
+
+<!-- <body style="background-color: #F5F5F5; color: #364F6B;"> -->
+<body style="background-color: #F5F5F5;">
 <?php 	
 	session_start();
 	$conn = mysqli_connect('localhost', 'root', '', 'registration');
@@ -50,10 +61,10 @@
 						</tr>
 					</table>";
 			} else {
-				echo "<h1>Welcome!</h1>";
+				echo "<div class='welcome'><h1>Welcome!</h1></div>";
 			}	
 		} else {
-			echo "<h1>Welcome!</h1>";
+			echo "<div class='welcome'><h1>Welcome!</h1></div>";
 		}
 	}
 ?>
@@ -144,3 +155,4 @@
 	}
 	mysqli_close($conn);
 ?>
+</body>
