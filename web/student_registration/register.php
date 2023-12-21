@@ -1,28 +1,94 @@
 <html>
 	<head>
-		<title>Register</title>
+		<style>
+			body {
+				background-color: #F5F5F5;
+				margin: 20px;
+				display: flex;
+				justify-content: center;
+				text-align: center;
+			}
+			h1 {
+				background-color: #FC5185;
+				color: #f5f5f5;
+			}
+			table {
+				width: 100%;
+				margin: auto;
+				text-align: left;
+			}
+			th, td {
+				padding: 4px;
+			}
+			form input[type="submit"] {
+				margin: auto;
+				text-align: center;
+				background-color: #FC5185;
+                border-radius: 5px;
+                border-color: #364F6B;
+				width: 100%;
+				height: 30px;
+			}
+			form select {
+				width: 100%;
+			}
+		</style>
 	</head>
 	<body>
+		<div>
 		<h1>REGISTER</h1>
 		<form action="login.php" method="post">
-			KTU ID: <input type="text" name="ktuid"><br> 
-			NAME: <input type="text" name="name"><br>
-			AGE: <input type="text" name="age"><br>
-			GENDER: <select name="gender">
-						<option value="none" selected disabled>Select</option>
-						<option value="MALE">Male</option>
-						<option value="FEMALE">Female</option>
-					</select></br>
-			PHONE NO: <input type="text" name="phone"><br>
-			SEMESTER: <input type="text" name="sem"><br>
-			ROLL NO: <input type="text" name="rollno"><br>
-			E-MAIL: <input type="text" name="email"><br>
-			PASSWORD: <input type="password" name="password"><br>
-			RE-TYPE PASSWORD: <input type="password" name="repassword">
-			<input name="register" type="submit" value="Register">
+			<table>
+				<tr>
+					<th>KTU ID</th>
+					<td><input type="text" name="ktuid"><td>
+				</tr>
+				<tr>
+					<th>Name</th>
+					<td><input type="text" name="name"></td>
+				</tr>
+				<tr>
+					<th>Age</th>
+					<td><input type="text" name="age"></td>
+				</tr>
+				<tr>
+					<th>Gender</th>
+					<td><select name="gender">
+							<option value="none" selected disabled>Select</option>
+							<option value="MALE">Male</option>
+							<option value="FEMALE">Female</option>
+						</select></td>
+				</tr>
+				<tr>
+					<th>Phone Number</th>
+					<td><input type="text" name="phone"></td>
+				</tr>
+				<tr>
+					<th>Semester</th>
+					<td><input type="text" name="sem"></td>
+				</tr>	
+				<tr>
+					<th>Roll Number</th>
+					<td><input type="text" name="rollno"></td>
+				</tr>
+				<tr>
+					<th>E-Mail</th>
+					<td><input type="text" name="email"></td>
+				</tr>
+				<tr>
+					<th>Password</th>
+					<td><input type="password" name="password"></td>
+				</tr>
+				<tr>
+					<th>Re-Type Password</th>
+					<td><input type="password" name="repassword"></td>
+				</tr>
+				<tr>
+					<td colspan="2"><input name="register" type="submit" value="Register"></td>
+				</tr>
+			</table>
 		</form>
-		<div>
-			Already have an account? <a href="login.php">Login</a>
+		Already have an account? <a href="login.php">Login</a>
 		</div>
 	</body>
 </html>

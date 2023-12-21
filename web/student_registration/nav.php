@@ -19,7 +19,8 @@
 			margin-top: 17px;
 		}
 		form input[type="submit"] {
-			background-color: #FC5185;
+			background-color: #364F6B;
+			color: #F5F5F5;
 		}
 	</style>
 </head>
@@ -33,7 +34,7 @@
 			<?php 
 				session_start();
 				if ($_SESSION['ktu_id'])
-				echo "<td>Logged In:<br>{$_SESSION['ktu_id']}</td>";
+				echo "Logged in: {$_SESSION['ktu_id']}";
 			?>
 		</td>
 		<td>
@@ -44,8 +45,14 @@
 		</td>
 		<td><button><a href="home.php" target="home">Home</a></button></td>
 		<td><button><a href="register.php" target="home">Register</a></button></td>
-		<td><button><a href="login.php" target="home">Login</a></button></td>
-		<td><button><a href="logout.php" target="home">Logout</a></button></td>
+		<td>
+			<?php
+				if (!$_SESSION['ktu_id'])
+					echo "<button><a href='login.php' target='home'>Login</a></button>";
+				else 
+					echo "<button><a href='logout.php' target='home'>Logout</a></button>";
+			?>
+		</td>
 		<td><button><a href="marks.php" target="home">Marks</a></button></td>
 	</tr>
 	</table>

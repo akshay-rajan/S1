@@ -1,20 +1,63 @@
 <html>
 	<head>
-		<title>Login</title>
+		<style>
+			body {
+				background-color: #F5F5F5;
+				margin: 50px;
+				display: flex;
+				justify-content: center;
+				text-align: center;
+			}
+			h1 {
+				background-color: #FC5185;
+				color: #f5f5f5;
+			}
+			table {
+				width: 100%;
+				margin: auto;
+				text-align: left;
+			}
+			td, th {
+				padding: 5px;
+			}
+			form input[type="submit"] {
+				margin: auto;
+				text-align: center;
+				background-color: #FC5185;
+                border-radius: 5px;
+                border-color: #364F6B;
+				width: 100%;
+				height: 30px;
+			}
+			form input[type="text"], input[type="password"] {
+				width: 100%;
+			}
+			.container {
+				width: 30%;
+			}
+		</style>
 	</head>
 	<body>
-		<h1>LOGIN</h1>
-		<form action="home.php" method="post">
-			KTU ID: <input type="text" name="ktuid"><br>
-			PASSWORD: <input type="password" name="password"><br>
-			<input type="submit" name="login" value="Login">
-		</form>
-		<div>
-			Don't have an account? <a href="register.php">Register</a>
-		</div>
-	</body>
-</html>
-
+		<div class="container">
+			<h1>LOGIN</h1>
+			<form action="home.php" method="post">
+				<table>
+					<tr>
+						<th>KTU ID</th>
+						<td><input type="text" name="ktuid"></td>
+					</tr>	
+					<tr>
+						<th>Password</th>
+						<td><input type="password" name="password"></td>
+					</tr>
+					<tr>
+						<td colspan="2"><input type="submit" name="login" value="Login"></td>
+					</tr>
+				</table>
+			</form>
+			<div>
+				Don't have an account? <a href="register.php">Register</a>
+			</div>
 <?php
 	if ($_POST['register']) {
 		$ktuid = $_POST['ktuid'];
@@ -29,7 +72,7 @@
 		$repassword=$_POST['repassword'];
 		if($password!=$repassword)
 		{
-			echo "Passwords do not match";
+			echo "<div><h2>Passwords do not match!</h2></div>";
 		}
 		else
 		{
@@ -43,9 +86,9 @@
 				$sql = "INSERT INTO users VALUES ('$ktuid', '$name', $age, '$gender', '$phone', $sem, $rollno, '$email', '$password')";
 				$result = mysqli_query($conn, $sql);
 				if ($result) {
-					echo "<h2>Registered!</h2>";
+					echo "<div><h2>Registered!</h2></div>";
 				} else {
-					echo "<h2>Cannot register!</h2>";
+					echo "<div><h2>Cannot register!</h2></div>";
 				}
 				mysqli_close($conn);
 			}
@@ -53,3 +96,6 @@
 
 	}
 ?>
+		</div>
+	</body>
+</html>

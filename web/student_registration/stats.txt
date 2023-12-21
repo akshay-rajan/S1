@@ -1,5 +1,15 @@
-frames
-nav
+frames -- done
+nav -- done
+home -- done
+register -- done
+login -- done
+logout -- done
+get marks -- done
+update marks -- done
+search marks -- done
+print --
 
-login 
-logout
+F5F5F5
+FC5185
+364F6B
+3FC1C9
