@@ -1,0 +1,50 @@
+<html>
+    <head>
+        <title>JavaScript</title>
+        <style>
+            body {
+                margin: 100px;
+                text-align: center;
+            }
+            .button {
+                width: 50%;
+                height: 40px;
+            }
+        </style>
+    </head>
+    <body>
+        <div>
+            <h1>Change Background Color of the page randomly using JavaScript</h1>
+            <div><button class="button">Change</button></div>
+            <pre style="text-align: left">
+document.querySelector('.button').addEventListener('click', () => {
+    document.querySelector('body').style.backgroundColor = randomColor();
+});
+
+function randomColor() {
+    hexa = '1234567890ABCDEF';
+    let color = '#';
+    for (let i = 0; i < 6; i++) {
+        color += hexa[Math.floor(Math.random() * 16)];
+    }
+    return color;
+}
+            </pre>
+        </div>
+
+        <script>
+            document.querySelector('.button').addEventListener('click', () => {
+                document.querySelector('body').style.backgroundColor = randomColor();
+            });
+
+            function randomColor() {
+                hexa = '1234567890ABCDEF';
+                let color = '#';
+                for (let i = 0; i < 6; i++) {
+                    color += hexa[Math.floor(Math.random() * 16)];
+                }
+                return color;
+            }
+        </script>
+    </body>
+</html>
