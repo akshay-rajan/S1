@@ -1,0 +1,180 @@
+<html>
+    <head>
+        <title>Javascript Functions</title>
+        <style>
+            body {
+                font-family: Verdana, Geneva, Tahoma, sans-serif;
+                margin: 20px;
+                padding: 10px;
+                display: flex;
+
+            }
+            h1 {
+                background-color: #1B262C;
+                color: white;
+                text-align: center;
+                height: auto;
+                font-size: 60px;
+            }
+            h2 {
+                height: auto;
+                font-size: 35px;
+                margin-top: auto;
+                background-color: #3282B8;
+                color: white;
+            }
+            #string, #math {
+                margin: 30px;
+                display: none;
+            }
+            .buttons {
+                width: 100%;
+                height: 50px;
+                margin: 20px;
+                display: flex;
+                text-align: center;
+            }
+            .stringbutton, .mathbutton {
+                border-radius: 10px;
+                margin-right: 20px;
+                width: 80%;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <h1>JavaScript</h1>
+            <div>
+                JavaScript, often abbreviated as JS, is a programming language and core technology of the World Wide Web, alongside HTML and CSS. In JavaScript, the String and Math objects provide a variety of functions for working with strings and performing mathematical operations, respectively. Let's explore the functions in each of these objects in detail.
+            </div>
+            <div class="buttons">
+                <button class="stringbutton" onclick="showString()">String</button>
+                <button class="mathbutton" onclick="showMath()">Math</button>
+            </div>
+            <div id="string">
+                <h2>String Object</h2>
+                The String object is used to manipulate sequences of characters in JavaScript. Here are some commonly used functions:
+                <ol>
+                    <li>charAt(index)</li>
+                    - Returns the character at the specified index in a string.
+
+                    <pre>
+                        let str = "Hello";
+                        console.log(str.charAt(0)); // Outputs: "H"
+                    </pre>
+
+                    <li>concat(str1, str2, ...)</li>
+                    - Combines two or more strings and returns a new string.
+
+                    <pre>
+                        let str1 = "Hello";
+                        let str2 = " World";
+                        let result = str1.concat(str2);
+                        console.log(result); // Outputs: "Hello World"
+                    </pre>
+
+                    <li>indexOf(substring)</li>
+                    - Returns the index of the first occurrence of a specified substring.
+
+                    <pre>
+                        let str = "Hello World";
+                        console.log(str.indexOf("World")); // Outputs: 6
+                    </pre>
+
+                    <li>substring(startIndex, endIndex)</li>
+                    - Returns a substring based on the specified start and end indices.
+
+                    <pre>
+                        let str = "Hello World";
+                        console.log(str.substring(6, 11)); // Outputs: "World"
+                    </pre>
+
+                    <li>toUpperCase() / toLowerCase()</li>
+                    - Converts a string to uppercase or lowercase.
+
+                    <pre>
+                        let str = "Hello";
+                        console.log(str.toUpperCase()); // Outputs: "HELLO"
+                        console.log(str.toLowerCase()); // Outputs: "hello"
+                    </pre>
+
+                    <li>split(separator)</li>
+                    - Splits a string into an array of substrings based on a specified separator.
+
+                    <pre>
+                        let str = "apple,orange,banana";
+                        let fruits = str.split(",");
+                        console.log(fruits); // Outputs: ["apple", "orange", "banana"]
+                    </pre>
+                </ol>
+            </div>
+
+            <div id="math">
+                <h2>Math Object</h2>
+                The Math object provides mathematical functions and constants in JavaScript. Here are some commonly used functions:
+            
+                <ol>
+                    <li>abs(x)</li>
+                    - Returns the absolute value of a number.
+            
+                    <pre>
+                        console.log(Math.abs(-5)); // Outputs: 5
+                    </pre>
+            
+                    <li>ceil(x) / floor(x)</li>
+                    - Rounds a number up (ceil) or down (floor) to the nearest integer.
+            
+                    <pre>
+                        console.log(Math.ceil(4.3)); // Outputs: 5
+                        console.log(Math.floor(4.9)); // Outputs: 4
+                    </pre>
+            
+                    <li>max(x, y, ...) / min(x, y, ...)</li>
+                    - Returns the maximum or minimum value from a set of numbers.
+            
+                    <pre>
+                        console.log(Math.max(10, 5, 8)); // Outputs: 10
+                        console.log(Math.min(10, 5, 8)); // Outputs: 5
+                    </pre>
+            
+                    <li>random()</li>
+                    - Returns a random floating-point number between 0 (inclusive) and 1 (exclusive).
+            
+                    <pre>
+                        console.log(Math.random()); // Outputs: a random number between 0 and 1
+                    </pre>
+            
+                    <li>sqrt(x)</li>
+                    - Returns the square root of a number.
+            
+                    <pre>
+                        console.log(Math.sqrt(25)); // Outputs: 5
+                    </pre>
+            
+                    <li>pow(x, y)</li>
+                    - Returns the result of raising x to the power of y.
+            
+                    <pre>
+                        console.log(Math.pow(2, 3)); // Outputs: 8
+                    </pre>
+                </ol>
+            </div>            
+        </div>
+        <script>
+            function showMath() {
+                let mathDiv = document.querySelector('#math');
+                let stringDiv = document.querySelector('#string');
+
+                stringDiv.style.display = 'none';
+                mathDiv.style.display = 'block';
+            }
+            function showString() {
+                let mathDiv = document.querySelector('#math');
+                let stringDiv = document.querySelector('#string');
+
+                mathDiv.style.display = 'none';
+                stringDiv.style.display = 'block'; 
+            }
+        </script>
+    </body>
+</html>
