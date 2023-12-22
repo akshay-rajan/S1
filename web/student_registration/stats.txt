@@ -1,13 +1,8 @@
-frames -- done
-nav -- done
-home -- done
-register -- done
+form validation
+---------------
 login -- done
-logout -- done
-get marks -- done
-update marks -- done
-search marks -- done
-print --
+register -- done
+marks updation -- pending
 
 F5F5F5
 FC5185

@@ -2,6 +2,7 @@
 	<head>
 		<style>
 			body {
+				font-family: Arial, Helvetica, sans-serif;
 				background-color: #F5F5F5;
 				margin: 50px;
 				display: flex;
@@ -40,15 +41,15 @@
 	<body>
 		<div class="container">
 			<h1>LOGIN</h1>
-			<form action="home.php" method="post">
+			<form action="home.php" method="post" onsubmit="return validateLogin()">
 				<table>
 					<tr>
 						<th>KTU ID</th>
-						<td><input type="text" name="ktuid"></td>
+						<td><input type="text" name="ktuid" id="ktuid"></td>
 					</tr>	
 					<tr>
 						<th>Password</th>
-						<td><input type="password" name="password"></td>
+						<td><input type="password" name="password" id="password"></td>
 					</tr>
 					<tr>
 						<td colspan="2"><input type="submit" name="login" value="Login"></td>
@@ -97,5 +98,18 @@
 	}
 ?>
 		</div>
+		<script>
+			function validateLogin() {
+				let id = document.getElementById('ktuid').value;
+				let password = document.getElementById('password').value;
+				
+				let idFormat = /TVE\d{2}\MCA-200\d$/;
+				let idValid = idFormat.test(id);
+				if (idValid || id == 'teacher')
+					return true;
+				alert("Invalid ID!");
+				return false;
+			}
+		</script>
 	</body>
 </html>

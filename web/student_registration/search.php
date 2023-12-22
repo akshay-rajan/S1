@@ -2,6 +2,7 @@
     <head>
         <style>
             body {
+                font-family: Arial, Helvetica, sans-serif;
                 background-color: #F5F5F5;
                 margin: 50px;
                 display: flex;
@@ -20,6 +21,7 @@
                 padding: 5px;
             }
             h1 {
+                font-size: 30px;
                 background-color: #FC5185;
                 color: #f5f5f5;
             }

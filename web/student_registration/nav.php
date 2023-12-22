@@ -22,6 +22,12 @@
 			background-color: #364F6B;
 			color: #F5F5F5;
 		}
+		body {
+			font-family: Arial, Helvetica, sans-serif;
+		}
+		h1 {
+			font-size: 40px;
+		}
 	</style>
 </head>
 <body style="background-color: #3FC1C9;">

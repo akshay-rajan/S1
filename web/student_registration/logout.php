@@ -2,6 +2,7 @@
     <head>
         <style>
             body {
+                font-family: Arial, Helvetica, sans-serif;
                 background-color: #F5F5F5;
                 margin: 50px;
                 display: flex;
@@ -9,6 +10,7 @@
                 text-align: center;
             }
             h1 {
+                font-size: 40px;
                 color: #364F6B;
             }
         </style>
