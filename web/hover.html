@@ -1,0 +1,61 @@
+<html>
+    <head>
+        <title>JavaScript Event Handling</title>
+        <style>
+            body {
+                display: flex;
+                margin: 20px;
+                padding: 20px;
+            }
+            #img1, #img2 {
+                width: 100%;
+                height: 300px;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="first">
+            <img id="img1" src="https://firstagency.com/wp-content/uploads/2021/03/FIRST-rebrand-thumbnail.png" alt="firstImage">
+            <div class="text1">
+                A hover effect is when an element changes its appearance 
+                when the mouse pointer moves over it.
+                For example, the element can change its color, size, position, or shape. To see the hover effect in action, hover over the image above and 
+                watch what happens.
+            </div>
+        </div>
+        <div class="second">
+            <img id="img2" src="https://logos.flamingtext.com/Word-Logos/second-design-sketch-name.png" alt="secondImg">
+            <div class="text2">
+                When you hover over the image, the JavaScript Event Listener responds to your action by changing the image and text properties,
+                setting the older one to 'none' and the new objects to 'block'.
+            </div>
+        </div>
+        <script>
+
+            document.addEventListener('DOMContentLoaded', () => {
+                let img1 = document.getElementById('img1');
+                let img2 = document.getElementById('img2');
+                let text1 = document.querySelector('.text1');
+                let text2 = document.querySelector('.text2');
+                
+                // Hide the second image and text
+                img2.style.display = 'none';
+                text2.style.display = 'none';
+
+                img1.addEventListener('mouseover', () => {
+                    img1.style.display = 'none';
+                    text1.style.display = 'none';
+                    img2.style.display = 'block';
+                    text2.style.display = 'block';
+                });
+                img2.addEventListener('mouseout', () => {
+                    img1.style.display = 'block';
+                    text1.style.display = 'block';
+                    img2.style.display = 'none';
+                    text2.style.display = 'none';
+                });
+            });
+
+        </script>
+    </body>
+</html>
