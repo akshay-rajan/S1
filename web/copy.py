@@ -16,7 +16,7 @@ def copy_files(source, destination):
 
 
 choice = int(input("Enter 1 for Personal, 2 for College: "))
-direction = int(input("Enter 1 to copy from 'web' to 'var', 2 to copy from 'var' to 'web'"))
+direction = int(input("Enter 1 to copy from 'web' to 'var', 2 to copy from 'var' to 'web': "))
 
 if direction == 1:
     if choice == 1:
