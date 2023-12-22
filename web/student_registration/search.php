@@ -10,14 +10,14 @@
     			text-align: center;
             }
             table {
-                border-color: #364F6B;
-                border-width: 3;
+                border-collapse: collapse;
+                border: 2px solid #364F6B;
                 width: 100%;
                 margin: auto;
                 text-align: left;
             }
             td, th {
-                border-color: #364F6B;
+                border: 1px solid #FC5185;
                 padding: 5px;
             }
             h1 {

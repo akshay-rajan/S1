@@ -2,7 +2,9 @@ form validation
 ---------------
 login -- done
 register -- done
-marks updation -- pending
+marks updation -- done
+
+table / single border only done
 
 F5F5F5
 FC5185

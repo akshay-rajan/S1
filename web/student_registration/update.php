@@ -52,7 +52,7 @@
         <div class="container">
             <h1>Update Marks</h1>
             <h3>Student: <?php echo $ktu_id ?></h3>
-            <form action="" method="POST">
+            <form action="" method="POST" onsubmit="return validateForm()">
                 <?php
                     session_start();
                     $conn = mysqli_connect('localhost', 'root', '', 'registration');
@@ -66,27 +66,27 @@
                 <table>
                     <tr>
                         <th>Subject</th>
-                        <td><input type='text' name='subject'></td>
+                        <td><input type='text' name='subject' id='sub'></td>
                     </tr>
                     <tr>
                         <th>Series 1</th>
-                        <td><input type='text' name='series1'></td>
+                        <td><input type='text' name='series1' id='s1'></td>
                     </tr>
                     <tr>
                         <th>Series 2</th>
-                        <td><input type='text' name='series2'></td>
+                        <td><input type='text' name='series2' id='s2'></td>
                     </tr>
                     <tr>
                         <th>Assignment 1</th>
-                        <td><input type='text' name='assignment1'></td>
+                        <td><input type='text' name='assignment1' id='ass1'></td>
                     </tr>
                     <tr>
                         <th>Assignment 2</th>
-                        <td><input type='text' name='assignment2'></td>
+                        <td><input type='text' name='assignment2' id='ass2'></td>
                     </tr>
                     <tr>
                         <th>Attendance</th>
-                        <td><input type='text' name='attendance'></td>
+                        <td><input type='text' name='attendance' id='att'></td>
                     <tr>
                         <td colspan="2"><input type='submit' value='Update Marks' name='update'></td>
                     </tr>
@@ -130,5 +130,48 @@
             <a href="marks.php"><button id="back">Back</button></a>
         </div>
         </div>
+
+        <script>
+            function validateSubject() {
+				let sub = document.getElementById('sub').value;
+				if (/^[a-zA-Z]+$/.test(sub)) {
+					return true;
+				}
+				alert("Subject Invalid!");
+				return false;
+			}
+            function validateSeries() {
+                let s1 = document.getElementById('s1').value;
+                let s2 = document.getElementById('s2').value;
+                if (/^(?:[0-9]|[1-4][0-9]|50)$/.test(s1) && /^(?:[0-9]|[1-4][0-9]|50)$/.test(s2)) {
+					return true;
+				}
+                alert("Series Exam Marks must be from 0 to 50!");
+                return false;
+            }
+            function validateAssignment() {
+                let ass1 = document.getElementById('ass1').value;
+                let ass2 = document.getElementById('ass2').value;
+                if (/^(?:[0-9]|1[0-2])$/.test(ass1) && /^(?:[0-9]|1[0-2])$/.test(ass2)) {
+					return true;
+				}
+                alert("Assignment Marks must be from 0 to 12!");
+                return false;
+            }
+            function validateAttendance() {
+                let attendance = document.getElementById('att').value;
+                if (/^(?:[0-9]|[1-9][0-9]|100)$/.test(attendance)) {
+					return true;
+				}
+                alert("Enter a valid attendance percentage!");
+                return false;
+            }
+
+            function validateForm() {
+                if (validateSubject() && validateSeries() && validateAssignment() && validateAttendance())
+                    return true;
+                return false;
+            }
+        </script>
     </body>
 </html>

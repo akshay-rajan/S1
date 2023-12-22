@@ -12,19 +12,23 @@
 			text-align: center;
 		}
 		table {
-			border-color: #364F6B;
+			border: 2px solid #364F6B;
+			border-collapse: collapse;
 			width: 100%;
 			margin: auto;
 			text-align: left;
 		}
 		td, th {
-			border-color: #364F6B;
+			border: 1px solid #FC5185;
 			padding: 5px;
 		}
 		h2 {
 			font-size: 30px;
 			background-color: #FC5185;
 			color: #f5f5f5;
+		}
+		h1 {
+			font-size: 50px;
 		}
 		.container {
 			width: 80%;

@@ -32,13 +32,14 @@
                 margin-top: 15px;
             }
             table {
-                border-color: #364F6B;
+                border-collapse: collapse;
+                border: 2px solid #364F6B;
                 width: 100%;
                 margin: auto;
                 text-align: left;
     		}
             td, th {
-                border-color: #364F6B;
+                border: 1px solid #FC5185;
                 padding: 5px;
             }
         </style>

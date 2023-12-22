@@ -19,7 +19,10 @@
         <?php
             session_start();
             session_destroy();
-            echo "<h1>Logged Out Successfully!</h1>";
         ?>
+        <div>
+            <h1>Logged Out Successfully!</h1>
+            <a href="login.php">Login</a> or <a href="register.php">Register</a>
+        </div>
     </body>
 </html>
