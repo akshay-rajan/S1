@@ -1,7 +1,7 @@
 ## Data Structures Lab
 
 #### Lab Cycle 1
-1. [Array](https://github.com/akshay-rajan/S1/blob/main/ads/array.c)
+1. [Array](ads/array.c)
 2. [Stack](https://github.com/akshay-rajan/S1/blob/main/ads/stack.c)
 3. [Queue](https://github.com/akshay-rajan/S1/blob/main/ads/queue.c)
 4. [Circular Queue](https://github.com/akshay-rajan/S1/blob/main/ads/circularqueue.c)
