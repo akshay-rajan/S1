@@ -51,7 +51,6 @@
 		if ($query) {
 			$_SESSION['ktu_id'] = $ktuid;
 		} else {
-			echo $q;
 			echo "<div>User not found!</div>";
 		}
 	}
