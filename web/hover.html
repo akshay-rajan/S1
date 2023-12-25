@@ -33,26 +33,19 @@
         <script>
 
             document.addEventListener('DOMContentLoaded', () => {
-                let img1 = document.getElementById('img1');
-                let img2 = document.getElementById('img2');
-                let text1 = document.querySelector('.text1');
-                let text2 = document.querySelector('.text2');
+                let div1 = document.querySelector('.first');
+                let div2 = document.querySelector('.second');
                 
                 // Hide the second image and text
-                img2.style.display = 'none';
-                text2.style.display = 'none';
+                div2.style.display = 'none';
 
                 img1.addEventListener('mouseover', () => {
-                    img1.style.display = 'none';
-                    text1.style.display = 'none';
-                    img2.style.display = 'block';
-                    text2.style.display = 'block';
+                    div1.style.display = 'none';
+                    div2.style.display = 'block';
                 });
                 img2.addEventListener('mouseout', () => {
-                    img1.style.display = 'block';
-                    text1.style.display = 'block';
-                    img2.style.display = 'none';
-                    text2.style.display = 'none';
+                    div1.style.display = 'block';
+                    div2.style.display = 'none';
                 });
             });
 
