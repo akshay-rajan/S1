@@ -94,7 +94,7 @@
             </form>
         <?php 
             // Add or Update Marks
-            if ($_POST['update']) {
+            if (isset($_POST['update'])) {
                 $ktu_id = $_POST['ktu_id'];
                 $subject = $_POST['subject'];
                 $series1 = $_POST['series1'];

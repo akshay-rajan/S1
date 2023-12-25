@@ -75,7 +75,7 @@
     <?php 
 
         // Fetch marks from the database
-        if ($_POST['getmarks']) {
+        if (isset($_POST['getmarks'])) {
             $ktu_id = $_POST['ktu_id'];
             $q = "SELECT * FROM marks WHERE ktu_id='$ktu_id'";
             $res = mysqli_query($conn, $q);

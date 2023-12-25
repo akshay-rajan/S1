@@ -60,7 +60,7 @@
 				Don't have an account? <a href="register.php">Register</a>
 			</div>
 <?php
-	if ($_POST['register']) {
+	if (isset($_POST['register'])) {
 		$ktuid = $_POST['ktuid'];
 		$name=$_POST['name'];
 		$age=$_POST['age'];

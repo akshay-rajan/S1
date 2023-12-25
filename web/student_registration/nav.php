@@ -39,7 +39,7 @@
 		<td>
 			<?php 
 				session_start();
-				if ($_SESSION['ktu_id'])
+				if (isset($_SESSION['ktu_id']))
 				echo "Logged in: {$_SESSION['ktu_id']}";
 			?>
 		</td>
@@ -53,7 +53,7 @@
 		<td><button><a href="register.php" target="home">Register</a></button></td>
 		<td>
 			<?php
-				if (!$_SESSION['ktu_id'])
+				if (!isset($_SESSION['ktu_id']))
 					echo "<button><a href='login.php' target='home'>Login</a></button>";
 				else 
 					echo "<button><a href='logout.php' target='home'>Logout</a></button>";

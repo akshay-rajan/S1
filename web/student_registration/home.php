@@ -43,14 +43,15 @@
 	if(!$conn)
 	{
 		echo "Cannot connect";
-	} else if ($_POST['login']) {
+	} else if (isset($_POST['login'])) {
 		$ktuid = $_POST['ktuid'];
 		$password = $_POST['password'];
 		$q = "SELECT * FROM users WHERE ktu_id='$ktuid' AND password='$password'";
 		$query = mysqli_query($conn, $q);
-		if (mysqli_num_rows($query) > 0) {
+		if ($query) {
 			$_SESSION['ktu_id'] = $ktuid;
 		} else {
+			echo $q;
 			echo "<div>User not found!</div>";
 		}
 	}
@@ -60,7 +61,7 @@
 	<div class="container">
 <?php 
 	// DISPLAY DETAILS
-	if ($_SESSION['ktu_id']) {
+	if (isset($_SESSION['ktu_id'])) {
 		$ktu_id = $_SESSION['ktu_id'];
 		if ($ktu_id != 'teacher') {
 			// Personal Details

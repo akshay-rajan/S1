@@ -46,7 +46,7 @@
 				</tr>
 				<tr>
 					<th>Name</th>
-					<td><input type="text" name="name" id="name"></td>
+					<td><input type="text" name="name" id="name" required></td>
 				</tr>
 				<tr>
 					<th>Age</th>
@@ -106,7 +106,7 @@
 			}
 			function validateName() {
 				let name = document.getElementById('name').value;
-				if (/^[a-zA-Z]+$/.test(name) && (name.length > 3)) {
+				if (/^[a-zA-Z\s]+$/.test(name) && name.length > 3) {
 					return true;
 				}
 				alert("Name invalid!");
@@ -146,7 +146,7 @@
 			}
 			function validateRoll() {
 				let roll = document.getElementById('rollno').value;
-				if (/^[1-60]$/.test(roll)) {
+				if (/^(?:[1-9]|[1-5]\d|60)$/.test(roll)) {
 					return true;
 				}
 				alert("Invalid Roll Number!");
