@@ -35,7 +35,7 @@
 8. [Login Form](web/login)
 9. [JavaScript Functions](web/js_fns.html)
 10. [JavaScript: Change Background Color](web/bgcolor.html)
-11. Form Validation
+11. [Form Validation](web/student_registration/register.php)
 12. [JavaScript: Change Image on Hover](web/hover.html)
 13. [Student Registration](web/student_registration)
 
@@ -45,7 +45,7 @@
 
 ## Programming Lab
 
-#### CO1
+#### [CO1](python/co1/)
 1. Area and Perimeter of a Circle
 2. Swap 2 Numbers
 3. Largest of 3 numbers
@@ -63,24 +63,24 @@
 15. (C01 - 19) Find gcd of 2 numbers
 16. (C01 - 20) From a list, create a list removing all even numbers
 
-#### CO2
+#### [CO2](python/co2/)
 17. (C02 - 1) Factorial using functions (fn)
 18. (C02 - 2) Generate Fibonacci series of N terms (fn)
 19. (C02 - 6) Count the number of characters (character frequency) in a string. (fn)
 20. (C02 - 7) Add ‘ing’ at the end of a given string. If it already ends with ‘ing’, then add ‘ly’ (fn)
 21. (C02 - 9) Construct the pattern using nested loop (fn)
 
-#### CO3
+#### [CO3](python/co3/)
 22. (C03 - 2) Create a package graphics with modules rectangle, circle and sub-package 3D-graphics with modules cuboid and sphere. Include methods to find area and perimeter of respective figures in each module. Write programs that finds area and perimeter of figures by different importing statements. (Include selective import of modules and import * statements) 
 
-#### CO4
+#### [CO4](python/co4)
 23. (C04 - 2) Create a Bank account with members account number, name, type of account and balance.  
 Write constructor and methods to deposit at the bank and withdraw an amount from the bank.
 24. (C04 - 4) Create a class Time with private attributes hour, minute and second. Overload ‘+’ operator to
 find sum of 2 time.
 25. (C04 - 5) Create a class Publisher (name). Derive class Book from Publisher with attributes title  and author. Derive class Python from Book with attributes price and no_of_pages. Write  a program that displays information about a Python book. Use base class constructor invocation and method overriding
 
-#### CO5
+#### [CO5](python/co5/)
 26. (C05 - 2) Python program to copy odd lines of one file to other
 27. (C05 - 3) Write a Python program to read each row from a given csv file and print a list of strings.
 28. (C05 - 4) Write a Python program to read specific columns of a given CSV file and print the content of the columns.
