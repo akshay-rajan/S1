@@ -68,25 +68,7 @@
 18. (C02 - 2) Generate Fibonacci series of N terms (fn)
 19. (C02 - 6) Count the number of characters (character frequency) in a string. (fn)
 20. (C02 - 7) Add ‘ing’ at the end of a given string. If it already ends with ‘ing’, then add ‘ly’ (fn)
-21. (C02 - 9) Construct following pattern using nested loop (fn)
-                            
-                            *
-
-                            * *
-
-                            * * *
-
-                            * * * *
-
-                            * * * * *
-
-                            * * * *
-
-                            * * *
-
-                            * *
-
-                            *
+21. (C02 - 9) Construct the pattern using nested loop (fn)
 
 #### CO3
 22. (C03 - 2) Create a package graphics with modules rectangle, circle and sub-package 3D-graphics with modules cuboid and sphere. Include methods to find area and perimeter of respective figures in each module. Write programs that finds area and perimeter of figures by different importing statements. (Include selective import of modules and import * statements) 
