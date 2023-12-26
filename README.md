@@ -69,14 +69,23 @@
 19. (C02 - 6) Count the number of characters (character frequency) in a string. (fn)
 20. (C02 - 7) Add ‘ing’ at the end of a given string. If it already ends with ‘ing’, then add ‘ly’ (fn)
 21. (C02 - 9) Construct following pattern using nested loop (fn)
+                            
                             *
+
                             * *
+
                             * * *
+
                             * * * *
+
                             * * * * *
+
                             * * * *
+
                             * * *
+
                             * *
+
                             *
 
 #### CO3
