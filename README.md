@@ -22,16 +22,16 @@
 
 ## Web Programming Lab
 
-1. Resume
-2. Internal Links
-3. Job Application
-4. Frameset
-5. CSS
-6. Registration Form
-7. Factorial
-8. Login Form
-9. JavaScript Functionss
-10. JavaScript: Change Background Color
+1. [Resume](web/resume)
+2. [Internal Links](web/links.html)
+3. [Job Application](web/forms.html)
+4. [Frameset](web/css)
+5. [CSS](web/css)
+6. [Registration Form](web/job_application)
+7. [Factorial](web/factorial)
+8. [Login Form](web/login)
+9. [JavaScript Functions](web/js_fns.html)
+10. [JavaScript: Change Background Color](web/bgcolor.html)
 11. Form Validation
-12. JavaScript: Change Image on Hover
-13. Student Registration
+12. [JavaScript: Change Image on Hover](web/hover.html)
+13. [Student Registration](web/student_registration)
