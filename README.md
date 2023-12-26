@@ -18,3 +18,20 @@
 5. [Topological Sorting](ads/topologicalsort.c)
 6. [DFS](ads/dfs.c)
 7. [BFS](ads/bfs.c)
+
+
+## Web Programming Lab
+
+1. Resume
+2. Internal Links
+3. Job Application
+4. Frameset
+5. CSS
+6. Registration Form
+7. Factorial
+8. Login Form
+9. JavaScript Functionss
+10. JavaScript: Change Background Color
+11. Form Validation
+12. JavaScript: Change Image on Hover
+13. Student Registration
