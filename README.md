@@ -20,6 +20,9 @@
 7. [BFS](ads/bfs.c)
 
 
+---
+
+
 ## Web Programming Lab
 
 1. [Resume](web/resume)
@@ -35,6 +38,9 @@
 11. Form Validation
 12. [JavaScript: Change Image on Hover](web/hover.html)
 13. [Student Registration](web/student_registration)
+
+
+---
 
 
 ## Programming Lab
