@@ -64,11 +64,11 @@
 16. [(20) From a list, create a list removing all even numbers](python/co1/q20_list-even.py)
 
 #### [CO2](python/co2/)
-17. [(1) Factorial using functions](python/co2/co2_q1_fact.py)
-18. [(2) Generate Fibonacci series of N terms](python/co2/co2_q2_fib.py)
+17. [(1) Factorial using function](python/co2/co2_q1_fact.py)
+18. [(2) Fibonacci series of N terms](python/co2/co2_q2_fib.py)
 19. [(6) Character frequency in a string](python/co2/q6_charfreq.py)
-20. (7) Add ‘ing’ at the end of a given string. If it already ends with ‘ing’, then add ‘ly’ (fn)
-21. (9) Construct the pattern using nested loop (fn)
+20. [(7) Add ‘ing’ at the end of a given string. If it already ends with ‘ing’, then add ‘ly’](python/co2/q7_ing.py)
+21. [(9) Construct the pattern using nested loop](python/co2/q9_pattern.py)
 
 #### [CO3](python/co3/)
 22. [Create a package graphics with modules rectangle, circle and sub-package 3D-graphics with modules cuboid and sphere. Include methods to find area and perimeter of respective figures in each module. Write programs that finds area and perimeter of figures by different importing statements. (Include selective import of modules and import * statements)](python/co3/packages/)
@@ -80,6 +80,6 @@
 
 #### [CO5](python/co5/)
 26. [(2) Python program to copy odd lines of one file to other](python/co5/odd.py)
-27. (3) Write a Python program to read each row from a given csv file and print a list of strings.
-28. (4) Write a Python program to read specific columns of a given CSV file and print the content of the columns.
-29. (5) Write a Python program to write a Python dictionary to a csv file. After writing the CSV file read the CSV file and display the content. 
+27. [(3) Write a Python program to read each row from a given csv file and print it as a list of strings](python/co5/readcsv.py)
+28. [(4) Write a Python program to read specific columns of a given CSV file and print the content of the columns](python/co5/csv_col_pandas.py)
+29. [(5) Write a Python program to write a Python dictionary to a csv file. After writing the CSV file read the CSV file and display the content](python/co5/dict_to_csv.py)
