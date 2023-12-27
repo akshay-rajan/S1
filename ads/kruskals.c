@@ -16,7 +16,7 @@ void main()
     scanf("%d", &n);
 
     // Read the Adjacency matrix, also creating flattened versions of it for sorting
-    int A[MAX_NODES][MAX_NODES], u, v;
+    int A[MAX_NODES][MAX_NODES];
     int n2 = n * n;
     int toSort[n2];
     int sorted[n2];
@@ -125,7 +125,7 @@ int DFS(int node, int n, int graph[][MAX_NODES], int visited[], int recStack[], 
         // recStack is used to keep track of nodes in the current path of traversal
         recStack[node] = 1;
 
-        for (int i = 0; i < n; ++i) {
+        for (int i = 0; i < n; i++) {
             if (graph[node][i] != 0) {
                 // Recursively calling the function on each unvisited node
                 if (!visited[i] && DFS(i, n, graph, visited, recStack, node)) {
