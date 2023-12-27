@@ -57,7 +57,7 @@
 9. [Number of words](python/co1/words.py)
 10. [(9) Create a string from given string where first and last characters exchanged](python/co1/q9_string_exchange.py)
 11. [(13) Create a list of colors from comma-separated color names entered by user. Display first and last colors](python/co1/q13_colors.py)
-12. [(16) Create a single string separated with space from two strings by swapping the character at position 1](python\co1\q16_string_concat.py)
+12. [(16) Create a single string separated with space from two strings by swapping the character at position 1](python/co1/q16_string_concat.py)
 13. [(17) Sort dictionary in ascending and descending order](python/co1/q17_dict_sort.py)
 14. [(18) Merge two dictionaries](python/co1/q18_dict_merge.py)
 15. [(19) GCD of 2 numbers](python/co1/q19_gcd_euclidean.py)
