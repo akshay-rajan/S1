@@ -61,12 +61,12 @@
 13. [(17) Sort dictionary in ascending and descending order](python/co1/q17_dict_sort.py)
 14. [(18) Merge two dictionaries](python/co1/q18_dict_merge.py)
 15. [(19) GCD of 2 numbers](python/co1/q19_gcd_euclidean.py)
-16. (20) From a list, create a list removing all even numbers
+16. [(20) From a list, create a list removing all even numbers](python/co1/q20_list-even.py)
 
 #### [CO2](python/co2/)
 17. [(1) Factorial using functions](python/co2/co2_q1_fact.py)
 18. [(2) Generate Fibonacci series of N terms](python/co2/co2_q2_fib.py)
-19. (6) Count the number of characters (character frequency) in a string
+19. [(6) Character frequency in a string](python/co2/q6_charfreq.py)
 20. (7) Add ‘ing’ at the end of a given string. If it already ends with ‘ing’, then add ‘ly’ (fn)
 21. (9) Construct the pattern using nested loop (fn)
 
