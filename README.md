@@ -65,7 +65,7 @@
 
 #### [CO2](python/co2/)
 17. [(1) Factorial using function](python/co2/q1_fact_rec.py)
-18. [(2) Fibonacci series of N terms](python/co2/co2_q2_fib.py)
+18. [(2) Fibonacci series of N terms](python/co2/q2_fib_rec.py)
 19. [(6) Character frequency in a string](python/co2/q6_charfreq.py)
 20. [(7) Add ‘ing’ at the end of a given string. If it already ends with ‘ing’, then add ‘ly’](python/co2/q7_ing.py)
 21. [(9) Construct the pattern using nested loop](python/co2/q9_pattern.py)
