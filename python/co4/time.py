@@ -7,15 +7,13 @@ class Time:
     def __add__(self, other):
         s = self.__second + other.__second
         m = self.__minute + other.__minute
-        h = self.__hour + other.__hour
+        h = (self.__hour + other.__hour) % 24
         if s >= 60:
             s %= 60
             m += 1
         if m >= 60:
             m %= 60
             h += 1
-        if h >= 24:
-            h %= 24
         
         return Time(h, m, s)
 
