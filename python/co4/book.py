@@ -6,10 +6,10 @@ class Publisher:
         print(f"Publisher: {self.name}")
 
 class Book(Publisher):
-    def __init__(self, title, author):
+    def __init__(self, name, title, author):
         
         # Base class constructor invocation
-        super().__init__(name="H&C")
+        super().__init__(name)
         self.title = title
         self.author = author
     
@@ -19,13 +19,13 @@ class Book(Publisher):
     
             
 class Python(Book):
-    def __init__(self, price, no_of_pages):
-        super().__init__(title="Python", author="Galileo")
+    def __init__(self, name, title, author,  price, no_of_pages):
+        super().__init__(name, title, author)
         self.price = price
         self.no_of_pages = no_of_pages
     
     def display(self):
-        print(f"Python, Written by {self.author}, Published by {self.name}\nPrice: ${self.price}\n{self.no_of_pages} pages")
+        print(f"{self.title}, Written by {self.author}, Published by {self.name}\nPrice: ${self.price}\n{self.no_of_pages} pages")
 
-book = Python(price=29.99, no_of_pages="249")
+book = Python(name="Yuu", title="foo", author="Joe", price=29.99, no_of_pages="249")
 book.display()
