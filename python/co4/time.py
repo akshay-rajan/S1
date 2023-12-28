@@ -19,11 +19,12 @@ class Time:
         
         return Time(h, m, s)
 
-    def display(self):
-        print(f"{self.__hour:02d}:{self.__minute:02d}:{self.__second:02d}")
+    def __str__(self):
+        return f"{self.__hour:02d}:{self.__minute:02d}:{self.__second:02d}"
+    
 
 t1 = Time(12, 42, 37)
 t2 = Time(12, 22, 59)
 t = t1 + t2
-t.display()
+print(t)
 
