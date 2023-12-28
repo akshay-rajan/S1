@@ -15,7 +15,8 @@ class Book(Publisher):
     
     # Method overriding
     def display(self):
-        print(f"{self.name}, Written by {self.author}, Published by {self.name}")
+        print(f"{self.title}, written by {self.author}")
+        super().display()
     
             
 class Python(Book):
@@ -25,7 +26,8 @@ class Python(Book):
         self.no_of_pages = no_of_pages
     
     def display(self):
-        print(f"{self.title}, Written by {self.author}, Published by {self.name}\nPrice: ${self.price}\n{self.no_of_pages} pages")
+        super().display()
+        print(f"Price: ${self.price}\n{self.no_of_pages} pages")
 
-book = Python(name="Yuu", title="foo", author="Joe", price=29.99, no_of_pages="249")
+book = Python(name="CET", title="Programming", author="Joe", price=29.99, no_of_pages=249)
 book.display()
