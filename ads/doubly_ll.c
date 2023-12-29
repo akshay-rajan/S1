@@ -81,10 +81,7 @@ void ins_anypos() {
 }
 int insertion()
 {
-	int type;
 	newnode = (struct node *) malloc(sizeof(struct node));
-	printf("Enter 0 for insertion at the beginning, 1 for insertion at the end or 2 for insertion at any position: ");
-	scanf("%d", &type);
 	printf("Element: ");
 	scanf("%d", &newnode->data);
 	
@@ -98,6 +95,10 @@ int insertion()
 		display(head);
 		return 0;
 	}
+
+	int type;
+	printf("Enter 0 for insertion at the beginning, 1 for insertion at the end or 2 for insertion at any position: ");
+	scanf("%d", &type);
 
 	switch (type) {
 		case 0:
@@ -157,12 +158,9 @@ void del_anypos() {
 int deletion()
 {
 	if (head == NULL) {
+		printf("The linked list is empty!\n");
 		return 1;
 	}
-
-	int type;
-	printf("Enter 0 for deletion at the beginning, 1 for deletion at the end or 2 for deletion at any position: ");
-	scanf("%d", &type);
 	
 	// If only one node remaining
 	if (size == 1) {
@@ -175,6 +173,10 @@ int deletion()
 		return 0;
 	}
 	
+	int type;
+	printf("Enter 0 for deletion at the beginning, 1 for deletion at the end or 2 for deletion at any position: ");
+	scanf("%d", &type);
+
 	switch (type) {
 		case 0:
 			del_beginning();
