@@ -60,24 +60,20 @@ void ins_anypos() {
 	int position;
 	printf("Position: ");
 	scanf("%d", &position);
-	if (position <= 1 || position >= size) {
+	if (position <= 1 || position > size) {
 		printf("Invalid!\n");
 		return;
 	}
-	struct node *temp, *temp1;
 	temp = head;
-	int i = 1;
+	int i = 2;
 	while (i < position) {
-		if (temp->next != NULL) {
-			temp1 = temp;
-			temp = temp->next;
-		}
+		temp = temp->next;
 		i++;
 	}
-	newnode->next = temp;
-	temp->prev = newnode;
-	temp1->next = newnode;
-	newnode->prev = temp1;
+	newnode->next = temp->next;
+	temp->next->prev = newnode;
+	temp->next = newnode;
+	newnode->prev = temp;
 }
 int insertion()
 {
@@ -136,24 +132,21 @@ void del_anypos() {
 	int position;
 	printf("Position: ");
 	scanf("%d", &position);
-	if (position <= 1 || position >= size || size < 3) {
+	if (position < 1 || position > size) {
 		printf("Invalid!\n");
 		return;
 	}
-	struct node *temp, *temp1, *temp2;
 	temp = head;
 	int i = 1;
 	while (i < position) {
 		if (temp->next != NULL) {
-			temp1 = temp;
 			temp = temp->next;
-			temp2 = temp->next;
 		}
 		i++;
 	}
 	delnode = temp;
-	temp1->next = temp2;
-	temp2->prev = temp1;
+	temp->prev->next = temp->next;
+	temp->next->prev = temp->prev;
 }
 int deletion()
 {
