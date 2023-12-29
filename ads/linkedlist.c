@@ -138,11 +138,12 @@ int deletion()
 {
 	temp = head;
 	if (size <= 1) {
-		if (size == 1)
+		if (size == 1) {
 			del_beginning();
-		else 
+			size--;
+		} else { 
 			printf("The list is empty!\n");
-		size--;
+		}
 		display(head);
 		return 0;
 	}
