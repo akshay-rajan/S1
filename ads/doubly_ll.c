@@ -83,10 +83,8 @@ int insertion()
 	
 	// If empty
 	if (head == NULL) {
-		newnode->next = NULL;
-		newnode->prev = NULL;
-		head = newnode;
-		tail = newnode;
+		newnode->next = newnode->prev = NULL;
+		head = tail = newnode;
 		size++;
 		display(head);
 		return 0;
