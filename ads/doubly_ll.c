@@ -12,6 +12,7 @@ struct node {
 int size = 0;
 struct node *head = NULL;
 struct node *tail = NULL;
+struct node *newnode, *delnode, *temp;
 
 
 int insertion();
@@ -42,10 +43,45 @@ void main()
 }
 
 
+// Insertion
+void ins_beginning() {
+	newnode->next = head;
+	head->prev = newnode;
+	head = newnode;
+	newnode->prev = NULL;
+}
+void ins_end() {
+	newnode->prev = tail;
+	tail->next = newnode;
+	tail = newnode;
+	newnode->next = NULL;
+}
+void ins_anypos() {
+	int position;
+	printf("Position: ");
+	scanf("%d", &position);
+	if (position <= 1 || position >= size) {
+		printf("Invalid!\n");
+		return;
+	}
+	struct node *temp, *temp1;
+	temp = head;
+	int i = 1;
+	while (i < position) {
+		if (temp->next != NULL) {
+			temp1 = temp;
+			temp = temp->next;
+		}
+		i++;
+	}
+	newnode->next = temp;
+	temp->prev = newnode;
+	temp1->next = newnode;
+	newnode->prev = temp1;
+}
 int insertion()
 {
 	int type;
-	struct node *newnode;
 	newnode = (struct node *) malloc(sizeof(struct node));
 	printf("Enter 0 for insertion at the beginning, 1 for insertion at the end or 2 for insertion at any position: ");
 	scanf("%d", &type);
@@ -63,57 +99,15 @@ int insertion()
 		return 0;
 	}
 
-	// Insertion at the beginning	
-	void beginning() {
-		newnode->next = head;
-		head->prev = newnode;
-		head = newnode;
-		newnode->prev = NULL;
-	}
-
-
-	// Insertion at the end
-	void end() {
-		newnode->prev = tail;
-		tail->next = newnode;
-		tail = newnode;
-		newnode->next = NULL;
-	}
-
-	// Insertion at any position
-	void anypos() {
-		int position;
-		printf("Position: ");
-		scanf("%d", &position);
-		if (position <= 1 || position >= size) {
-			printf("Invalid!\n");
-			return;
-		}
-		struct node *temp, *temp1;
-		temp = head;
-		int i = 1;
-		while (i < position) {
-			if (temp->next != NULL) {
-				temp1 = temp;
-				temp = temp->next;
-			}
-			i++;
-		}
-		newnode->next = temp;
-		temp->prev = newnode;
-		temp1->next = newnode;
-		newnode->prev = temp1;
-	}
-
 	switch (type) {
 		case 0:
-			beginning();
+			ins_beginning();
 			break;
 		case 1:
-			end();
+			ins_end();
 			break;
 		case 2:
-			anypos();
+			ins_anypos();
 			break;
 		default:
 			return 0;
@@ -124,6 +118,42 @@ int insertion()
 }
 
 
+// Deletion
+void del_beginning() {
+	delnode = head;
+	temp = head->next;
+	head = temp;
+	temp->prev = NULL;
+}
+void del_end() {
+	delnode = tail;
+	temp = tail->prev;
+	tail = temp;
+	temp->next = NULL;
+}
+void del_anypos() {
+	int position;
+	printf("Position: ");
+	scanf("%d", &position);
+	if (position <= 1 || position >= size || size < 3) {
+		printf("Invalid!\n");
+		return;
+	}
+	struct node *temp, *temp1, *temp2;
+	temp = head;
+	int i = 1;
+	while (i < position) {
+		if (temp->next != NULL) {
+			temp1 = temp;
+			temp = temp->next;
+			temp2 = temp->next;
+		}
+		i++;
+	}
+	delnode = temp;
+	temp1->next = temp2;
+	temp2->prev = temp1;
+}
 int deletion()
 {
 	if (head == NULL) {
@@ -131,7 +161,6 @@ int deletion()
 	}
 
 	int type;
-	struct node *delnode, *temp;
 	printf("Enter 0 for deletion at the beginning, 1 for deletion at the end or 2 for deletion at any position: ");
 	scanf("%d", &type);
 	
@@ -146,56 +175,15 @@ int deletion()
 		return 0;
 	}
 	
-	// Deletion at the beginning
-	void beginning() {
-		delnode = head;
-		temp = head->next;
-		head = temp;
-		temp->prev = NULL;
-	}
-	
-	// Deletion at the end
-	void end() {
-		delnode = tail;
-		temp = tail->prev;
-		tail = temp;
-		temp->next = NULL;
-	}
-
-	// Deletion at any position
-	void anypos() {
-		int position;
-		printf("Position: ");
-		scanf("%d", &position);
-		if (position <= 1 || position >= size || size < 3) {
-			printf("Invalid!\n");
-			return;
-		}
-		struct node *temp, *temp1, *temp2;
-		temp = head;
-		int i = 1;
-		while (i < position) {
-			if (temp->next != NULL) {
-				temp1 = temp;
-				temp = temp->next;
-				temp2 = temp->next;
-			}
-			i++;
-		}
-		delnode = temp;
-		temp1->next = temp2;
-		temp2->prev = temp1;
-	}
-	
 	switch (type) {
 		case 0:
-			beginning();
+			del_beginning();
 			break;
 		case 1:
-			end();
+			del_end();
 			break;
 		case 2:
-			anypos();
+			del_anypos();
 			break;
 	}
 	free(delnode);
@@ -205,40 +193,35 @@ int deletion()
 }
 
 
-// Display the doubly linked list
+// Display
+void headtotail(struct node * ptr) {
+	if (ptr == head)
+		printf("Head ->");
+	if (ptr == NULL) {
+		printf("<- Tail\n");
+		return;
+	}
+	printf("<- %d -> ", ptr->data);
+
+	headtotail(ptr->next);		
+}
+void tailtohead(struct node *ptr) {
+	if (ptr == tail)
+		printf("Tail ->");
+	if (ptr == NULL) {
+		printf("<- Head\n");
+		return;
+	}
+	printf("<- %d -> ", ptr->data);
+
+	tailtohead(ptr->prev);
+}
 void display()
 {
 	if (size == 0) {
 		printf("The linked list is empty!\n");
 		return;
-	}
-	
-	// From head to tail
-	void headtotail(struct node * ptr) {
-		if (ptr == head)
-			printf("Head ->");
-		if (ptr == NULL) {
-			printf("<- Tail\n");
-			return;
-		}
-		printf("<- %d -> ", ptr->data);
-
-		headtotail(ptr->next);		
-	}
-
-	// From tail to head
-	void tailtohead(struct node *ptr) {
-		if (ptr == tail)
-			printf("Tail ->");
-		if (ptr == NULL) {
-			printf("<- Head\n");
-			return;
-		}
-		printf("<- %d -> ", ptr->data);
-
-		tailtohead(ptr->prev);
-	}
-	
+	}	
 	headtotail(head);
 	tailtohead(tail);
 }
