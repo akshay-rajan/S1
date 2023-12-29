@@ -45,14 +45,12 @@ void main() {
 // Insertion
 void ins_beginning() {
 	newnode->next = head;
-	temp = head;
 	while (temp->next != head)
 		temp = temp->next;
 	temp->next = newnode;
 	head = newnode;
 }
 void ins_end() {
-	temp = head;
 	while (temp->next != head)
 		temp = temp->next;
 	temp->next = newnode;
@@ -67,7 +65,6 @@ void ins_anypos() {
 		return;
 	}
 	int i = 2;
-	temp = head;
 	while (i < position) {
 		temp = temp->next;
 		i++;
@@ -92,6 +89,7 @@ void insertion() {
 	int type;
 	printf("Enter 0 for insertion at the beginning, 1 for insertion at the end or 2 for insertion at any position: ");
 	scanf("%d", &type);
+	temp = head;
 	switch (type) {
 		case 0:
 			ins_beginning();
