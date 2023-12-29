@@ -10,7 +10,7 @@ struct node {
 
 int size = 0, flag = 0;
 struct node *head = NULL;
-void display(struct node *ptr);
+struct node *newnode, *delnode, *temp;
 
 
 void insertion();
@@ -42,8 +42,40 @@ void main() {
 }
 
 
+// Insertion
+void ins_beginning() {
+	newnode->next = head;
+	temp = head;
+	while (temp->next != head)
+		temp = temp->next;
+	temp->next = newnode;
+	head = newnode;
+}
+void ins_end() {
+	temp = head;
+	while (temp->next != head)
+		temp = temp->next;
+	temp->next = newnode;
+	newnode->next = head;
+}
+void ins_anypos() {
+	int position;
+	printf("Enter the position to insert into: ");
+	scanf("%d", &position);
+	if (position <= 1 || position >= size) {
+		printf("Invalid position!\n");
+		return;
+	}
+	int i = 2;
+	temp = head;
+	while (i < position) {
+		temp = temp->next;
+		i++;
+	}
+	newnode->next = temp->next;
+	temp->next = newnode;
+}		
 void insertion() {
-	struct node *newnode, *temp;
 	newnode = (struct node *) malloc(sizeof(struct node));
 	printf("Element: ");
 	scanf("%d", &newnode->data);
@@ -57,56 +89,18 @@ void insertion() {
 		return;
 	}
 
-	// Insertion at the beginning
-	void beginning() {
-		newnode->next = head;
-		temp = head;
-		while (temp->next != head)
-			temp = temp->next;
-		temp->next = newnode;
-		head = newnode;
-	}
-
-	// Insertion at the end
-	void end() {
-		temp = head;
-		while (temp->next != head)
-			temp = temp->next;
-		temp->next = newnode;
-		newnode->next = head;
-	}
-
-	// Insertion at any position
-	void anypos() {
-		int position;
-		printf("Enter the position to insert into: ");
-		scanf("%d", &position);
-		if (position <= 1 || position >= size) {
-			printf("Invalid position!\n");
-			return;
-		}
-		int i = 2;
-		temp = head;
-		while (i < position) {
-			temp = temp->next;
-			i++;
-		}
-		newnode->next = temp->next;
-		temp->next = newnode;
-	}		
-
 	int type;
 	printf("Enter 0 for insertion at the beginning, 1 for insertion at the end or 2 for insertion at any position: ");
 	scanf("%d", &type);
 	switch (type) {
 		case 0:
-			beginning();
+			ins_beginning();
 			break;
 		case 1:
-			end();
+			ins_end();
 			break;
 		case 2:
-			anypos();
+			ins_anypos();
 			break;
 	}
 	size++;
@@ -114,64 +108,58 @@ void insertion() {
 }
 
 
+// Deletion
+void del_beginning() {
+	delnode = head;
+	while (temp->next != head)
+		temp = temp->next;
+	head = head->next;
+	temp->next = head;
+	free(delnode);
+	size--;
+}
+void del_end() {
+	while (temp->next->next != head)
+		temp = temp->next;
+	delnode = temp->next;
+	temp->next = head;
+	free(delnode);
+	size--;
+}
+void del_anypos() {
+	int position;
+	printf("Position: ");
+	scanf("%d", &position);
+	if (position >= size || position <= 1) {
+		printf("Invalid!\n");
+		return;
+	}
+
+	int i = 2;
+	while (i < position) {
+		temp = temp->next;
+		i++;
+	}	
+
+	delnode = temp->next;
+	temp->next = delnode->next;
+	free(delnode);
+	size--;
+}
 void deletion() {
-	struct node *temp, *delnode;
 	temp = head;
 
 	if (head == NULL)
 		return;
 
-	// If only one node left in the list
+	// If only one node left
 	if (head->next == head) {
 		head = NULL;
 		free(temp);
 		display(head);
 		return;
 	}
-
-	// Deletion from the beginning
-	void beginning() {
-		delnode = head;
-		while (temp->next != head)
-			temp = temp->next;
-		head = head->next;
-		temp->next = head;
-		free(delnode);
-		size--;
-	}
-
-	// Deletion from the end
-	void end() {
-		while (temp->next->next != head)
-			temp = temp->next;
-		delnode = temp->next;
-		temp->next = head;
-		free(delnode);
-		size--;
-	}
-
-	// Deletion from a particular position
-	void anypos() {
-		int position;
-		printf("Position: ");
-		scanf("%d", &position);
-		if (position >= size || position <= 1) {
-			printf("Invalid!\n");
-			return;
-		}
-
-		int i = 2;
-		while (i < position) {
-			temp = temp->next;
-			i++;
-		}	
-
-		delnode = temp->next;
-		temp->next = delnode->next;
-		free(delnode);
-		size--;
-	}
-
+	
 	int type;
 	printf("Enter 0 to delete from the beginning, 1 to delete from the end, 2 to delete from any positon: ");
 	scanf("%d", &type);
@@ -190,6 +178,7 @@ void deletion() {
 }
 
 
+// Display
 void display(struct node *ptr) {
 
 	// If empty
@@ -197,13 +186,11 @@ void display(struct node *ptr) {
 		printf("NULL\n");
 		return;
 	}
-	
 	// If the whole list has been traversed
 	if (ptr->next == head) {
 		printf("%d\n", ptr->data);
 		return;		
 	}
-	
 	printf("%d -> ", ptr->data);
 	
 	display(ptr->next);
