@@ -142,6 +142,7 @@ int deletion()
 			del_beginning();
 		else 
 			printf("The list is empty!\n");
+		size--;
 		display(head);
 		return 0;
 	}
@@ -159,6 +160,7 @@ int deletion()
 			del_anypos();
 			break;
 	}
+	size--;
 	display(head);
 	return 0;
 }
