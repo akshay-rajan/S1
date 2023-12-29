@@ -188,35 +188,29 @@ int deletion()
 
 // Display
 void headtotail(struct node * ptr) {
-	if (ptr == head)
-		printf("Head ->");
-	if (ptr == NULL) {
-		printf("<- Tail\n");
+	if (ptr == NULL)
 		return;
-	}
 	printf("<- %d -> ", ptr->data);
 
 	headtotail(ptr->next);		
 }
 void tailtohead(struct node *ptr) {
-	if (ptr == tail)
-		printf("Tail ->");
-	if (ptr == NULL) {
-		printf("<- Head\n");
+	if (ptr == NULL)
 		return;
-	}
 	printf("<- %d -> ", ptr->data);
 
 	tailtohead(ptr->prev);
 }
-void display()
-{
+void display() {
 	if (size == 0) {
 		printf("The linked list is empty!\n");
 		return;
-	}	
+	}
+	printf("Head ->");
 	headtotail(head);
+	printf("<- Tail\nTail ->");
 	tailtohead(tail);
+	printf("<- Head\n");
 }
 
 
