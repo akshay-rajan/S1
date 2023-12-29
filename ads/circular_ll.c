@@ -73,6 +73,7 @@ void ins_anypos() {
 	temp->next = newnode;
 }		
 void insertion() {
+	temp = head;
 	newnode = (struct node *) malloc(sizeof(struct node));
 	printf("Element: ");
 	scanf("%d", &newnode->data);
@@ -89,7 +90,6 @@ void insertion() {
 	int type;
 	printf("Enter 0 for insertion at the beginning, 1 for insertion at the end or 2 for insertion at any position: ");
 	scanf("%d", &type);
-	temp = head;
 	switch (type) {
 		case 0:
 			ins_beginning();
@@ -163,13 +163,13 @@ void deletion() {
 	scanf("%d", &type);
 	switch (type) {
 		case 0:
-			beginning();
+			del_beginning();
 			break;
 		case 1:
-			end();
+			del_end();
 			break;
 		case 2:
-			anypos();
+			del_anypos();
 			break;
 	}
 	display(head);
