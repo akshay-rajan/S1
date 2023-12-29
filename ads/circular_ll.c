@@ -113,14 +113,12 @@ void del_beginning() {
 		temp = temp->next;
 	head = head->next;
 	temp->next = head;
-	free(delnode);
 }
 void del_end() {
 	while (temp->next->next != head)
 		temp = temp->next;
 	delnode = temp->next;
 	temp->next = head;
-	free(delnode);
 }
 void del_anypos() {
 	int position;
@@ -139,7 +137,6 @@ void del_anypos() {
 
 	delnode = temp->next;
 	temp->next = delnode->next;
-	free(delnode);
 }
 void deletion() {
 	temp = head;
@@ -170,6 +167,7 @@ void deletion() {
 			break;
 	}
 	display(head);
+	free(delnode);
 	size--;
 }
 
