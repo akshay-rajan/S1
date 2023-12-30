@@ -16,10 +16,8 @@ void main()
     scanf("%d", &n);
 
     // Read the Adjacency matrix, also creating flattened versions of it for sorting
-    int A[MAX_NODES][MAX_NODES];
     int n2 = n * n;
-    int toSort[n2];
-    int sorted[n2];
+    int A[MAX_NODES][MAX_NODES], beforeSort[n2], sorted[n2];
     int cost = 0;
     printf("Enter the adjacency matrix: \n");
     for (int i = 0; i < n; i++) {
@@ -31,8 +29,7 @@ void main()
                 A[i][j] = INT_MAX;
 
             // Insert the value in the 1D arrays
-            toSort[(n * i) + j] = A[i][j];
-            sorted[(n * i) + j] = A[i][j];
+            beforeSort[(n * i) + j] = sorted[(n * i) + j] = A[i][j];
         }
     }
 
@@ -54,7 +51,7 @@ void main()
     for (int i = 0; i < n2; i++) {
         for (int j = 0; j < n2; j++) {
             // Finding where each value in the sorted array was, in the adjacency matrix
-            if (sorted[i] == toSort[j]) {
+            if (sorted[i] == beforeSort[j]) {
                 int row = j / n;
                 int col = j % n;
                 
@@ -68,7 +65,7 @@ void main()
                 mst[row][col] = sorted[i];
 
                 // Marking the flat array to ignore this cost for further iterations
-                toSort[j] = INT_MAX;
+                beforeSort[j] = INT_MAX;
 
                 // CHECKING FOR CYCLES (1)
                 int isCyclic = 0;
@@ -120,7 +117,7 @@ int isSpanningTree(int n, int graph[][MAX_NODES]) {
 
 // DFS Function: To detect Cycle in a Graph
 int DFS(int node, int n, int graph[][MAX_NODES], int visited[], int recStack[], int parent) {
-    if (visited[node] == 0) {
+    if (!visited[node]) {
         visited[node] = 1;
         // recStack is used to keep track of nodes in the current path of traversal
         recStack[node] = 1;
