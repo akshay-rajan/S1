@@ -9,13 +9,11 @@ struct node
     struct node *right;
 };
 
-
 struct node *root = NULL;
-int isEmpty = 1;
 
 
-int insert();
 int display();
+void insertion();
 void deletion();
 
 
@@ -27,15 +25,14 @@ void main()
         scanf("%d", &choice);
         switch(choice) {
             case 0:
-		display();
+		        display();
                 break;
             case 1:
-                insert();
-                display();
+                insertion();
                 break;
-	    case 2:
-		deletion();
-		break;
+            case 2:
+                deletion();
+                break;
             case 5:
                 return;
             default:
@@ -45,46 +42,27 @@ void main()
 }
 
 
-// Insert a node into the tree
-int insert()
-{
-    int value;
-    struct node *newnode, *temp;
-    printf("Element: ");
-    scanf("%d", &value);
-
-    // Creation of new node
-    newnode = (struct node *) malloc(sizeof(struct node));
-    newnode->data = value;
-    newnode->left = NULL;
-    newnode->right = NULL;
-
-    // Insert as root of the tree, if tree is empty
-    if (isEmpty) {
+// Insert a node into the tree and return the root
+struct node *insert(struct node *root, struct node *newnode) {
+    if (root == NULL) {
         root = newnode;
-        isEmpty = 0;
-        return 0;
+    } else if (root->data > newnode->data) {
+        root->left = insert(root->left, newnode);
+    } else {
+        root->right = insert(root->right, newnode);
     }
-
-    // Reach the appropriate position to insert
-    temp = root;
-    while (temp != NULL) {
-        if (temp->data > value) {
-            if (temp->left == NULL) {
-                temp->left = newnode;
-                return 0;
-            }
-            temp = temp->left;
-        }
-        else {
-            if (temp->right == NULL) {
-                temp->right = newnode;
-                return 0;
-            }
-            temp = temp->right;
-        }
-    }
-    return 0;
+    return root;
+}
+void insertion()
+{
+    struct node *newnode;
+    newnode = (struct node *) malloc(sizeof(struct node));
+    printf("Element: ");
+    scanf("%d", &newnode->data);
+    newnode->left = newnode->right = NULL;
+    root = insert(root, newnode);
+    display();
+    return;
 }
 
 
@@ -137,59 +115,47 @@ void deletion() {
 	printf("Enter the node to delete: ");
 	scanf("%d", &value);
 	root = delete(root, value);
-	// If the tree is now empty
-	if (root == NULL)
-		isEmpty = 1;
 	display();
 }
 
 
 // Perform all three traversals to display the tree
+// Root->Left->Right
+void preOrder(struct node *root)
+{
+    if (root == NULL)
+        return;
+
+    printf("%d -> ", root->data);
+    preOrder(root->left);
+    preOrder(root->right);
+}
+// Left->Root->Right
+void inOrder(struct node *root)
+{
+    if (root == NULL)
+        return;
+
+    inOrder(root->left);
+    printf("%d -> ", root->data);
+    inOrder(root->right);
+}
+// Left->Right->Root
+void postOrder(struct node *root)
+{
+    if (root == NULL)
+        return;
+
+    postOrder(root->left);
+    postOrder(root->right);
+    printf("%d -> ", root->data);   
+}
 int display(){
     if (root == NULL) {
         printf("Tree is empty!\n");
         return 1;
     }
 
-    // Traverse through the elements in the order: Root->Left->Right
-    int preOrder(struct node *root)
-    {
-        if (root == NULL)
-            return 1;
-
-        printf("%d -> ", root->data);
-        
-        // Recursively traverse through the left and right sub trees
-        preOrder(root->left);
-        preOrder(root->right);
-    }
-
-    // Traverse through the elements in the order: Left->Root->Right
-    int inOrder(struct node *root)
-    {
-        if (root == NULL)
-            return 1;
-
-        inOrder(root->left);
-
-        printf("%d -> ", root->data);
-        
-        inOrder(root->right);
-    }
-
-    // Traverse through the elements in the order: Left->Right->Root
-    int postOrder(struct node *root)
-    {
-        if (root == NULL)
-            return 1;
-
-        postOrder(root->left);
-        postOrder(root->right);
-
-        printf("%d -> ", root->data);   
-    }
-
-    // Function calls
     printf("Preorder: ");
     preOrder(root);
     printf("NULL\nInorder: ");
