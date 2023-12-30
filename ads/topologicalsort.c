@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include <stdlib.h>
+#include <string.h>
 #include <limits.h>
 
 #define MAX_NODES 100
@@ -24,9 +24,7 @@ void main() {
 
     // Visited Array
     int V[n];
-    for (int i = 0; i < n; i++) {
-        V[i] = 0;
-    }
+    memset(V, 0, sizeof(V));
 
     // Topological Sorting
     int count = 0;
