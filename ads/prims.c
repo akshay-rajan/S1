@@ -1,7 +1,7 @@
 // To find the Minimum Cost Spanning Tree of a graph
 
 #include <stdio.h>
-#include <stdlib.h>
+#include <string.h>
 #include <limits.h>
 
 void main()
@@ -12,9 +12,7 @@ void main()
 
     // Visited Array
     int V[n];
-    for (int i = 0; i < n; i++) {
-        V[i] = 0;
-    }
+    memset(V, 0, sizeof(V));
 
     // Read the Adjacency matrix
     int A[n][n], u, v;
