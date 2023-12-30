@@ -35,8 +35,7 @@ void main()
     }
     
     int e = 1;
-    V[u] = 1;
-    V[v] = 1;
+    V[u] = V[v] = 1;
     cost += min;
     printf("{%d, %d} = %d\n", u, v, min);
 
