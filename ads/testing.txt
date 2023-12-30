@@ -1,0 +1,30 @@
+int A[6][6] = {
+    {INT_MAX,4,5,INT_MAX,INT_MAX,INT_MAX},
+    {4,INT_MAX,11,9,7,INT_MAX},
+    {5,11,INT_MAX,INT_MAX,3,INT_MAX},
+    {INT_MAX,9,INT_MAX,INT_MAX,13,2},
+    {INT_MAX,7,3,13,INT_MAX,6},
+    {INT_MAX,INT_MAX,INT_MAX,2,6,INT_MAX}
+};
+Node     Distance
+0        0
+1        4
+2        5
+3        13
+4        8
+5        14
+
+int A[4][4] = {
+    {INT_MAX,5,2,7},
+    {5,INT_MAX,1,INT_MAX},
+    {2,1,INT_MAX,4},
+    {7,INT_MAX,4,INT_MAX}
+};
+Min cost: 7
+int A[4][4] = {
+    {INT_MAX,2,INT_MAX,INT_MAX},
+    {INT_MAX,INT_MAX,4,INT_MAX},
+    {5,INT_MAX,INT_MAX,INT_MAX},
+    {INT_MAX,INT_MAX,3,INT_MAX}
+};
+Min cost: 9

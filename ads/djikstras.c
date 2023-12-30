@@ -1,9 +1,8 @@
 // Single Source Shortest Path Algorithm
 
 #include <stdio.h>
-#include <stdlib.h>
+#include <string.h>
 #include <limits.h>
-
 
 
 void main()
@@ -14,8 +13,7 @@ void main()
 
     // Source Array: To keep track of nodes taken as the source
     int S[n];
-    for (int i = 0; i < n; i++)
-        S[i] = 0;
+    memset(S, 0, sizeof(S));
 
     // Distance Array: Distance from the source to each node
     int distance[n];
@@ -35,7 +33,6 @@ void main()
     }
 
     // Djikstra's Algorithm
-
     int source;    
     printf("Enter the starting node: \n");
     scanf("%d", &source);
