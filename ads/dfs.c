@@ -7,7 +7,7 @@
 void DFS(int graph[MAX_NODES][MAX_NODES], int n, int visited[], int source) {
     printf("%d ", source);
     visited[source] = 1;
-    // For each node adjacent to u
+    // For each node adjacent to the source
     for (int i = 0; i < n; i++) {
         if (graph[source][i] != 0) {
             // If the node is not already visited
