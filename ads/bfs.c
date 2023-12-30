@@ -2,8 +2,10 @@
 #include <stdlib.h>
 #include <limits.h>
 
+#define MAX_NODES 100
+
 int n;
-int queue[100];
+int queue[MAX_NODES];
 int front = -1, rear = -1;
 
 
@@ -11,7 +13,27 @@ void enqueue(int value);
 int dequeue();
 
 
-void main() 
+void BFS(int graph[][MAX_NODES], int n, int visited[], int source) {
+    enqueue(source);
+    visited[source] = 1;
+    
+    // Repeat until the queue is empty
+    while (front <= rear) {
+        // Perform dequeue and print the removed node
+        int node = dequeue();
+        printf("%d ", node);
+        // For all adjacent nodes of the deleted node that are unvisited
+        for (int i = 0; i < n; i++) {
+            if (graph[node][i] != 0 && !visited[i]) {
+                // Enqueue it and mark it as visited
+                enqueue(i);
+                visited[i] = 1;
+            }
+        }
+    }
+}
+
+void main()
 {
     printf("Enter the number of nodes: ");
     scanf("%d", &n);
@@ -23,7 +45,7 @@ void main()
     }
 
     // Adjacency matrix
-    int A[n][n];
+    int A[MAX_NODES][MAX_NODES];
     for (int i = 0; i < n; i++) {
         for (int j = 0; j < n; j++) {
             printf("A[%d][%d]: ", i, j);
@@ -40,25 +62,7 @@ void main()
         return;
     }
     printf("BFS -> ");
-
-    // Enqueue the source and mark it as visited
-    enqueue(source);
-    V[source] = 1;
-
-    // Repeat until the queue is empty
-    while (front <= rear) {
-        // Perform dequeue and print the removed node
-        int node = dequeue();
-        printf("%d ", node);
-        // For all adjacent nodes of the deleted node that are unvisited
-        for (int i = 0; i < n; i++) {
-            if (A[node][i] != 0 && !V[i]) {
-                // Enqueue it and mark it as visited
-                enqueue(i);
-                V[i] = 1;
-            }
-        }
-    }
+    BFS(A, n, V, source);
     printf("\n");
 }
 

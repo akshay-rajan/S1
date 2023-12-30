@@ -1,18 +1,17 @@
 #include <stdio.h>
-#include <string.h>
 
 #define MAX_NODES 100
 
 
-void DFS(int graph[MAX_NODES][MAX_NODES], int n, int visited[], int source) {
+void DFS(int n, int graph[n][n], int visited[], int source) {
     printf("%d ", source);
     visited[source] = 1;
-    // For each node adjacent to the source
+    // For each node adjacent to u
     for (int i = 0; i < n; i++) {
         if (graph[source][i] != 0) {
             // If the node is not already visited
-            if (visited[i] == 0)
-                DFS(graph, n, visited, i);
+            if (!visited[i])
+                DFS(n, graph, visited, i);
         }
     }
 }
@@ -25,7 +24,9 @@ void main()
 
     // Visited Array
     int V[n];
-    memset(V, 0, sizeof(V));
+    for (int i = 0; i < n; i++) {
+        V[i] = 0;
+    }
 
     // Adjacency matrix
     int A[n][n];
@@ -47,6 +48,6 @@ void main()
         return;
     }
     printf("DFS -> ");
-    DFS(A, n, V, source);
+    DFS(n ,A , V, source);
     printf("\n");
 }
