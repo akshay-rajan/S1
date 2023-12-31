@@ -1,5 +1,4 @@
 #include <stdio.h>
-#include <stdlib.h>
 
 #define size 5
 
@@ -16,10 +15,8 @@ int front = -1;
 int rear = -1;
 
 
-void main()
-{
-	while (1)
-	{
+void main() {
+	while (1) {
 		int choice;
 		printf("Enter 0 to display, 1 to enqueue, 2 to dequeue, 5 to exit: ");
 		scanf("%d", &choice);
@@ -34,35 +31,28 @@ void main()
 				dequeue();
 				break;
 			case 5:
-				exit(0);
+				return;
 			default:
 				break;
 		}
 	}
-	
 }
 
 
-void display()
-{
-    if (IsEmpty())
-    {
+void display() {
+    if (IsEmpty()) {
         printf("Queue is empty!\n");
         return;
     }
 
 	for (int i = front; i != rear; i = (i + 1) % size)
-	{
 		printf("%d ", queue[i]);
-	}
 	printf("%d\n", queue[rear]);
 }
 
 
-int enqueue()
-{
-	if (IsFull())
-	{
+int enqueue() {
+	if (IsFull()) {
 		printf("Overflow!\n");
 		return 1;
 	}
@@ -72,69 +62,47 @@ int enqueue()
 	scanf("%d", &value);
 	
 	// If empty
-	if (front == -1 && rear == -1)
-	{
-		front = 0;
-		rear = 0;
-	}
-	// If rear is at the initial point and front not there
-	else if (rear == size - 1 && front != 0)
-	{
-		rear = 0;
-	}
-	// If rear has not completed a cycle
-	else
-	{
+	if (IsEmpty()) {
+		front = rear = 0;
+	} else {
 		rear = (rear + 1) % size;
 	}
-	
-	
+
 	queue[rear] = value;
     display();
 	return value;
 }
 
 
-int dequeue()
-{
-	if (IsEmpty())
-	{
+int dequeue() {
+	if (IsEmpty()) {
 		printf("Underflow!\n");
 		return 1;
 	}
 	int value = queue[front];
 	
 	// If only one element remains
-	if (front == rear)
-	{
-		front = -1;
-		rear = -1;
-	}
-	// If front is at the end of the queue
-	else if (front == size - 1)
-	{
-		front = 0;
+	if (front == rear) {
+		front = rear = -1;
 	}
 	// Otherwise, increment front
-	else
-	{
-		front++;
+	else {
+		front = (front + 1) % size;
 	}
+
     display();
 	return value;
 }
 
 
-int IsFull()
-{
+int IsFull() {
 	if ((rear + 1) % size == front)
 		return 1;
 	return 0;
 }
 
-int IsEmpty()
-{
-	if (front == -1 && rear == -1)
+int IsEmpty() {
+	if (front == -1)
 		return 1;
 	return 0;
 }
