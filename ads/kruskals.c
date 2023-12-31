@@ -5,7 +5,6 @@
 #define MAX_NODES 100
 
 
-int isSpanningTree(int n, int graph[][MAX_NODES]);
 int DFS(int node, int n, int graph[][MAX_NODES], int visited[], int recStack[], int parent);
 
 
@@ -48,6 +47,7 @@ void main()
     // Construct the MST
     printf("The edges in the Minimum Spanning Tree are: \n");
     int mst[MAX_NODES][MAX_NODES] = {0};
+    int edge_count = 0;
     for (int i = 0; i < n2; i++) {
         for (int j = 0; j < n2; j++) {
             // Finding where each value in the sorted array was, in the adjacency matrix
@@ -85,33 +85,18 @@ void main()
                 if (!mst[col][row]) {
                     cost += mst[row][col];
                     printf("{%d, %d} = %d\n", row, col, mst[row][col]);
-                }
+                    edge_count++;
 
-                // If the construction of the MST is complete
-                if (isSpanningTree(n, mst)) {
-                    printf("Minimum Cost: %d\n", cost);
-                    return;
+                    // If n - 1 edges are added, the mst is complete
+                    if (edge_count == n - 1) {
+                        printf("Minimum Cost: %d\n", cost);
+                        return;
+                    }
                 }
             }
         }
     }
     printf("Minimum Cost: %d\n", cost);
-}
-
-
-// Check if all elements are visited and the graph is connected
-int isSpanningTree(int n, int graph[][MAX_NODES]) {
-    
-    // Perform DFS starting from 0
-    int visited[MAX_NODES] = {0};
-    int recStack[MAX_NODES] = {0};
-    DFS(0, n, graph, visited, recStack, -1);
-    for (int i = 0; i < n; i++) {
-        // If a node is unvisited, the graph is not connected
-        if (!visited[i])
-            return 0;
-    }
-    return 1;
 }
 
 
@@ -138,7 +123,6 @@ int DFS(int node, int n, int graph[][MAX_NODES], int visited[], int recStack[], 
     recStack[node] = 0;
     return 0;
 }
-
 
 
 // (1) We perform DFS from every vertex, since the graph may not be connected
