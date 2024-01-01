@@ -1,12 +1,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-
 struct node {
 	int data;
 	struct node *next;
 };
-
 
 int size = 0;
 struct node *head = NULL;
@@ -16,13 +14,13 @@ struct node *newnode, *temp, *temp1, *delnode;
 void display(struct node *ptr);
 int insertion();
 int deletion();
+void reverse();
 
 
-void main()
-{
+void main() {
 	int choice;
 	while (1) {
-		printf("Enter 0 to display, 1 to insert, 2 to delete, 5 to exit: ");
+		printf("Enter 0-> display, 1-> insert, 2-> delete, 3->reverse, 5-> exit: ");
 		scanf("%d", &choice);
 		switch (choice) {
 			case 0:
@@ -33,6 +31,9 @@ void main()
 				break;
 			case 2:
 				deletion();
+				break;
+			case 3:
+				reverse();
 				break;
 			case 5:
 				return;
@@ -58,8 +59,15 @@ void ins_anypos() {
 	int position;
 	printf("Position: ");
 	scanf("%d", &position);
-	if (position <= 1 || position > size - 1) {
+	if (position < 1 || position > size + 1) {
 		printf("Invalid!\n");
+		return;
+	}
+	if (position == 1) {
+		ins_beginning();
+		return;
+	} else if (position == size + 1) {
+		ins_end();
 		return;
 	}
 	int i = 2;
@@ -71,8 +79,7 @@ void ins_anypos() {
 	newnode->next = temp->next;
 	temp->next = newnode;
 }
-int insertion()
-{
+int insertion() {
 	newnode = (struct node *) malloc(sizeof(struct node));
 	temp = head;
 	printf("Element: ");
@@ -85,7 +92,7 @@ int insertion()
 		return 0;
 	}
 	int type;
-	printf("Enter 0 for insertion at the beginning, 1 for insertion at the end or 2 for insertion at any position: ");
+	printf("Enter 0-> insertion at the beginning, 1-> insertion at the end, 2-> insertion at any position: ");
 	scanf("%d", &type);
 	switch (type) {
 		case 0:
@@ -102,7 +109,6 @@ int insertion()
 	display(head);
 	return 0;
 }
-
 
 // Deletion
 void del_beginning() {
@@ -125,6 +131,14 @@ void del_anypos() {
 		printf("Invalid!\n");
 		return;
 	}
+	if (position == 1) {
+		del_beginning();
+		return;
+	} else if (position == size) {
+		del_end();
+		return;
+	}
+	
 	int i = 2;
 	while (i < position) {
 		temp = temp->next;
@@ -134,8 +148,7 @@ void del_anypos() {
 	temp->next = delnode->next;
 	free(delnode);
 }
-int deletion()
-{
+int deletion() {
 	temp = head;
 	if (size <= 1) {
 		if (size == 1) {
@@ -148,7 +161,7 @@ int deletion()
 		return 0;
 	}
 	int type;
-	printf("Enter 0 to delete from the beginning, 1 to delete from the end, 2 to delete from any positon: ");
+	printf("Enter 0-> delete from the beginning, 1-> delete from the end, 2-> delete from any positon: ");
 	scanf("%d", &type);
 	switch (type) {
 		case 0:
@@ -167,6 +180,22 @@ int deletion()
 }
 
 
+// Reverse the order of nodes in the linked list
+void reverse() {
+	struct node *previous, *current, *next;
+	previous = next = NULL;
+	current = head;
+	while (current != NULL) {
+		next = current->next;
+		current->next = previous;
+		previous = current;
+		current = next;
+	}
+	head = previous;
+	display(head);
+}
+
+
 // Display the linked list
 void display(struct node *ptr)
 {
@@ -176,7 +205,6 @@ void display(struct node *ptr)
 	}
 	printf("%d -> ", ptr->data);
 
-	// Recursion
 	display(ptr->next);
 }
 
