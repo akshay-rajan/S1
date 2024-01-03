@@ -30,8 +30,8 @@
         </style>
     </head>
     <body>
-        <h1>Add Book</h1
-
+        <h1>Add Book</h1>
+        <form action="" method='post'>
         <?php
             session_start();    
             $conn = mysqli_connect('localhost', 'root', '', 'library');
@@ -47,8 +47,6 @@
                     if (mysqli_num_rows($result) > 0) {
                         $_SESSION['username'] = $username;
                         echo "
-                        
-                        <form action='' method='post'>
                         Title  :        <input type='text' name='title'><br>
                         Author:       <input type='text' name='author'><br>
                         No. of copies:
@@ -58,15 +56,14 @@
                                     echo "<option value='{$i}'>{$i}</option>";
                                 }
                         echo "</select><br>
-                        <input type='submit' value='Add' name='add'>
-                    </form>";
+                        <input type='submit' value='Add' name='add'>";
                     } else {
                         echo "<h2>User not found!</h2>";
                     }
                 }
             }
         ?>
-
+        </form>
         <?php 
             if (isset($_POST["add"])) {
                 $name = $_POST['title'];
