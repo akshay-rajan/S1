@@ -1,0 +1,131 @@
+<html>
+    <head>
+        <title>Calendar</title>
+        <style>
+            body {
+                margin: 20px;
+                display: flex;
+            }
+            table {
+                width: 100%;
+                height: 100%;
+            }
+            tr, th {
+                border-color: blueviolet;
+                width: 100%;
+                height: 100%;
+            }
+            .calendar {
+                background-color: aqua;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <div class="input">
+                Year:<input type="text" id="year">
+                <input type="submit" value="Generate Calendar" id="getCal">
+            </div>
+            <div class="page">
+                <div class="month">
+                    <!-- Calendar goes here -->
+                </div>
+                <div class="buttons">
+                    <button class="prev">Previous</button>
+                    <button class="next">Next</button>
+                </div>
+            </div>
+        </div>
+    </body>
+    <script>
+        
+        let monthNumber = 0;
+
+        function generateCalendar(year) {
+            // For each month
+            for (let month = 0; month < 12; month++) {
+                // Find the first day of the week
+                let firstDay = new Date(year, month, 1).getDay(); 
+                // Find the number of days in the month
+                let daysInMonth = 32 - new Date(year, month, 32).getDate();
+
+                // Create Calendar Month
+                let calendar = document.createElement('table');
+                calendar.id = 'calendar-' + (month + 1);
+                calendar.classList.add('calendar');
+
+                // Insert the month name
+                let monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+                let monthName = document.createElement('td');
+                monthName.colSpan = "7";
+                monthName.textContent = monthNames[month];
+                let titleRow = document.createElement('tr').appendChild(monthName);
+                calendar.appendChild(titleRow);
+
+                // Insert the 'days' row
+                let days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+                let headerRow = document.createElement('tr');
+                for (let i = 0; i < 7; i++) {
+                    let cell = document.createElement('td');
+                    cell.textContent = days[i];
+                    headerRow.appendChild(cell);
+                }
+                calendar.setAttribute('border', '1');
+                calendar.appendChild(headerRow);
+
+                // Insert the dates
+                let dateCount = 1;
+                // Create rows for each week
+                for (let i = 0; i < 6; i++) { 
+                    let weekRow = document.createElement('tr');
+                    // Create cells for each day
+                    for (let j = 0; j < 7; j++) { 
+                        let dayCell = document.createElement('td');
+                        if (i === 0 && j < firstDay) {
+                            dayCell.textContent = '';
+                        } else if (dateCount > daysInMonth) {
+                            break;
+                        } else {
+                            dayCell.textContent = dateCount;
+                            dateCount++;
+                        }
+                        weekRow.appendChild(dayCell);
+                    }
+                    calendar.appendChild(weekRow);
+                }
+                // Append the calendar to a div
+                let months = document.querySelector('.month');
+                months.appendChild(calendar);
+                monthNumber = 1;
+            }
+        }
+
+        function showMonth(month) {
+            // Hide every month except the current month
+            for (i = 1; i <= 12; i++) {
+                if (i === month)
+                    continue;
+                document.querySelector(`#calendar-${i}`).style.display = 'none';
+            }
+            document.querySelector(`#calendar-${month}`).style.display = 'block';
+        }
+
+        document.querySelector('#getCal').addEventListener('click', () => {
+            generateCalendar(document.querySelector('#year').value);
+            showMonth(monthNumber);
+        });
+        document.querySelector('.prev').addEventListener('click', () => {
+            monthNumber--;
+            if (monthNumber == 0)
+                monthNumber = 12;
+            showMonth(monthNumber);
+        });
+        document.querySelector('.next').addEventListener('click', () => {
+            monthNumber++;
+            if (monthNumber == 13)
+                monthNumber = 1;
+            showMonth(monthNumber);
+        });
+
+    </script>
+</html>
