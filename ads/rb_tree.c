@@ -142,16 +142,15 @@ void insert(struct node *z) {
 
 
 // Replace the subtree u with subtree v
-void rb_transplant(struct node *u, struct node *v) {
-    if (u->parent == NULL) 
-        root = v;
-    else if (u == u->parent->left)
-        u->parent->left = v;
-    else 
-        u->parent->right = v;
-    v->parent = u->parent;
-}
-
+// void rb_transplant(struct node *u, struct node *v) {
+//     if (u->parent == NULL) 
+//         root = v;
+//     else if (u == u->parent->left)
+//         u->parent->left = v;
+//     else 
+//         u->parent->right = v;
+//     v->parent = u->parent;
+// }
 
 // Balance the RB Tree after deletion
 void delete_fixup(struct node *x) {
@@ -204,10 +203,6 @@ void deletion() {
 	root = delete(root, value);
 }
 
-// -------------------------
-
-
-
 
 // Display
 void preOrder(struct node *root) {
@@ -250,6 +245,7 @@ void display() {
     printf("\n");
 }
 
+
 void main() {
     while (1) {
         int choice;
@@ -272,5 +268,4 @@ void main() {
             return;
         }
     }    
-    return;
 }
