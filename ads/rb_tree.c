@@ -141,6 +141,74 @@ void insert(struct node *z) {
 }
 
 
+// Replace the subtree u with subtree v
+void rb_transplant(struct node *u, struct node *v) {
+    if (u->parent == NULL) 
+        root = v;
+    else if (u == u->parent->left)
+        u->parent->left = v;
+    else 
+        u->parent->right = v;
+    v->parent = u->parent;
+}
+
+
+// Balance the RB Tree after deletion
+void delete_fixup(struct node *x) {
+
+    return;
+}
+// Return the minimum node in a Tree
+struct node *find_min(struct node *root) {
+	while (root->left != NULL) {
+		root = root->left;
+	}
+	return root;
+}
+// BST Deletion with Color Replacement
+struct node *delete(struct node *root, int value) {
+	if (root == NULL) {
+		printf("Not found!\n");
+		return root;
+	}
+	struct node *temp;
+	if (value < root->data) {
+		root->left = delete(root->left, value);
+	} else if (value > root->data) {
+		root->right = delete(root->right, value);
+	} else {
+		if (root->left == NULL) {
+			temp = root->right;
+            delete_fixup(temp);
+			free(root);
+            
+			return temp;
+		} else if (root->right == NULL) {
+			temp = root->left;
+            delete_fixup(temp);
+			free(root);
+			return temp;
+		}	
+        struct node *successor = find_min(root->right);
+		root->data = successor->data;
+        root->color = successor->color;
+		root->right = delete(root->right, root->data);
+        delete_fixup(successor->right);
+	}
+	return root;
+}
+void deletion() {
+	int value;
+	printf("Node: ");
+	scanf("%d", &value);
+	root = delete(root, value);
+}
+
+// -------------------------
+
+
+
+
 // Display
 void preOrder(struct node *root) {
     if (root == NULL) 
@@ -185,7 +253,7 @@ void display() {
 void main() {
     while (1) {
         int choice;
-        printf("Enter 1: Display, 2: Insert --- ");
+        printf("Enter 1: Display, 2: Insert, 3: Delete --- ");
         scanf("%d", &choice);
         switch (choice) {
         case 1:
@@ -193,6 +261,10 @@ void main() {
             break;
         case 2:
             insert(createNode());
+            display();
+            break;
+        case 3:
+            deletion();
             display();
             break;
         
