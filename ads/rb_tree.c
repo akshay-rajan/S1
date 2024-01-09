@@ -67,12 +67,12 @@ struct node *createNode() {
 // Balance the Red Black Tree after Insertion
 void insert_fixup(struct node *z) {
     // Only when the parent of the node inserted is red
-    if (z->parent->color == red) {
+    if (z->parent != NULL && z->parent->color == red) {
         // If the parent is a left child
-        if (z->parent == z->parent->parent->left) {
+        if (z->parent->parent != NULL && z->parent == z->parent->parent->left) {
             struct node *uncle = z->parent->parent->right;
             // If the uncle is red, recolor the parent and uncle
-            if (uncle->color == red) {
+            if (uncle != NULL && uncle->color == red) {
                 z->parent->color = uncle->color = black;
                 // Recolor the grandparent 
                 z->parent->parent->color = red;
@@ -82,7 +82,7 @@ void insert_fixup(struct node *z) {
             // If the uncle is black, rotate and recolor
             else {
                 // If the node is the right child, do left rotation
-                if (z = z->parent->right) {
+                if (z->parent->right != NULL && z == z->parent->right) {
                     // Rotate the parent to the right to transform this case to the next case
                     z = z->parent;
                     left_rotate(z);
@@ -97,13 +97,13 @@ void insert_fixup(struct node *z) {
         // If the parent is a right child, do the cases above with "right" and "left" interchanged
         else {
             struct node *uncle = z->parent->parent->left;
-            if (uncle->color == red) {
+            if (uncle != NULL && uncle->color == red) {
                 z->parent->color = uncle->color = black;
                 z->parent->parent->color = red;
                 z = z->parent->parent;
             }
             else {
-                if (z = z->parent->left) {
+                if (z->parent != NULL && z == z->parent->left) {
                     z = z->parent;
                     right_rotate(z);
                 }
@@ -113,7 +113,6 @@ void insert_fixup(struct node *z) {
             }
         }
     }
-    printf("Hey\n");
     root->color = black;
 }
 // BST Insertion
@@ -191,7 +190,7 @@ void main() {
             break;
         
         default:
-            break;
+            return;
         }
     }    
     return;
