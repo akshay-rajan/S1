@@ -12,9 +12,6 @@ struct node *root = NULL;
 const int red = 1, black = 0;
 
 
-// void insert_fixup(struct node *z);
-
-
 // Rotations
 void left_rotate(struct node *x) {
     struct node *y = x->right;
@@ -155,23 +152,33 @@ void preOrder(struct node *root) {
     preOrder(root->left);
     preOrder(root->right);
 }
-// void inOrder(struct node *root) {
-//     if (root == NULL) 
-//         return;
-//     inOrder(root->left);
-//     printf("%d ", root->data);
-//     inOrder(root->right);
-// }
-// void postOrder(struct node *root) {
-//     if (root == NULL) 
-//         return;
-//     postOrder(root->left);
-//     postOrder(root->right);
-//     printf("%d ", root->data);
-// }
+void inOrder(struct node *root) {
+    if (root == NULL) 
+        return;
+    inOrder(root->left);
+    if (root->color == red)
+        printf("%dR ", root->data);
+    else 
+        printf("%dB ", root->data);
+    inOrder(root->right);
+}
+void postOrder(struct node *root) {
+    if (root == NULL) 
+        return;
+    postOrder(root->left);
+    postOrder(root->right);
+    if (root->color == red)
+        printf("%dR ", root->data);
+    else 
+        printf("%dB ", root->data);
+}
 void display() {
     printf("PreOrder: ");
     preOrder(root);
+    printf("\nInOrder: ");
+    inOrder(root);
+    printf("\nPostOrder: ");
+    postOrder(root);
     printf("\n");
 }
 
