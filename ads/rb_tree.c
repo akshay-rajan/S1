@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-
 struct node {
     int data;
     int color;
@@ -140,21 +139,74 @@ void insert(struct node *z) {
     insert_fixup(z);
 }
 
-
-// Replace the subtree u with subtree v
-// void rb_transplant(struct node *u, struct node *v) {
-//     if (u->parent == NULL) 
-//         root = v;
-//     else if (u == u->parent->left)
-//         u->parent->left = v;
-//     else 
-//         u->parent->right = v;
-//     v->parent = u->parent;
-// }
-
 // Balance the RB Tree after deletion
 void delete_fixup(struct node *x) {
-
+    // If the node is black
+    while (x != root && x->color == black) {
+        // If the node is a left child
+        if (x == x->parent->left) {
+            struct node *sibling = x->parent->right;
+            // If the sibling is red
+            if (sibling->color == red) {
+                // Swap colors of parent and sibling
+                x->parent->color = red;
+                sibling->color = black;
+                // Rotate parent towards DB
+                left_rotate(x->parent);
+                sibling = x->parent->right;
+            }
+            // If the sibling is black and both its children are black
+            if (sibling->left->color == black && sibling->right->color == black) {
+                // Make the sibling red
+                sibling->color = red;
+                // Add extra black to the parent (repeat)
+                x = x->parent;
+            }
+            else {
+                // If the sibling is black and its rear child is red
+                if (sibling->right->color == black) {
+                    // Swap the color of sibling and rear child
+                    sibling->left->color = black;
+                    // Rotate the sibling opposite to DB
+                    right_rotate(sibling);
+                    sibling = x->parent->right;
+                }
+                // If the sibling is black and the far child is red
+                sibling->color = sibling->parent->color;
+                // Swap the color of the parent and the far child
+                sibling->right->color = black;
+                x->parent->color = black;
+                // Rotate parent towards DB
+                left_rotate(x->parent);
+                x = root;
+            }
+        // If the node is a right child
+        } else {
+            struct node *sibling = x->parent->left;
+            if (sibling->color == red) {
+                x->parent->color = red;
+                sibling->color = black;
+                right_rotate(x->parent);
+                sibling = x->parent->left;
+            }
+            if (sibling->left->color == black && sibling->right->color == black) {
+                sibling->color = red;
+                x = x->parent;
+            } else {
+                if (sibling->left->color == black) {
+                    sibling->right->color = black;
+                    left_rotate(sibling);
+                    sibling = x->parent->left;
+                }
+                sibling->color = sibling->parent->color;
+                sibling->left->color = black;
+                x->parent->color = black;
+                right_rotate(x->parent);
+                x = root;
+            }            
+        }
+        x->color = black;
+    }
     return;
 }
 // Return the minimum node in a Tree
