@@ -230,22 +230,24 @@ struct node *delete(struct node *root, int value) {
 	} else {
 		if (root->left == NULL) {
 			temp = root->right;
-            delete_fixup(temp);
 			free(root);
-            
+            delete_fixup(temp);
 			return temp;
 		} else if (root->right == NULL) {
 			temp = root->left;
-            delete_fixup(temp);
 			free(root);
+            delete_fixup(temp);
 			return temp;
-		}	
-        struct node *successor = find_min(root->right);
-		root->data = successor->data;
-        root->color = successor->color;
-		root->right = delete(root->right, root->data);
-        delete_fixup(successor->right);
+		} else {
+            struct node *successor = find_min(root->right);
+            root->data = successor->data;
+            root->color = successor->color;
+            root->right = delete(root->right, root->data);
+            temp = successor->right;
+        }
+        // delete_fixup(successor->right);
 	}
+    delete_fixup(temp);
 	return root;
 }
 void deletion() {
