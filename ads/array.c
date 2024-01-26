@@ -1,145 +1,201 @@
 #include <stdio.h>
-#include <stdlib.h>
 
-int array[100];
+#define size 100
+
+int array[size];
 int n;
 
-
 void display();
-int insertion();
-int deletion();
+void createArray();
+void insertion();
+void deletion();
 int search();
-int sort();
+int bubbleSort();
 
 
-void main()
-{
-	// Read the array
-	printf("Enter the size of the array: ");
-	scanf("%d", &n);
-	printf("Enter the elements: \n");
-	for (int i = 0; i < n; i++)
-		scanf("%d", &array[i]);
-	
-	while (1) {
-		int choice;
-		printf("Enter 0 to display, 1 to insert, 2 to delete, 3 to search, 4 to sort or 5 to exit: ");
-		scanf("%d", &choice);
-		switch (choice) {
-			case 0:
-				display();
-				break;
-			case 1:
-				insertion();
-				break;
-			case 2:
-				deletion();
-				break;
-			case 3:
-				search();
-				break;
-			case 4:
-				sort();
-				break;
-			case 5:
-				exit(0);
-			default:
-				break;
-		}
-	}
-	
+void main() {
+    createArray();    
+    while (1) {
+        int choice;
+        printf("Enter 1 to Create, 2 to Insert, 3 to Delete, 4 to Display, 5 to Search, 6 to Sort, 7 to exit: ");
+        scanf("%d", &choice);
+        switch (choice) {
+        case 1:
+            createArray();
+            break;
+        case 2:
+            insertion();
+            break;
+        case 3:
+            deletion();
+            break;
+        case 4:
+            display();
+            break;
+        case 5:
+            search();
+            break;
+        case 6:
+            bubbleSort();
+            break;
+        case 7:
+            return;
+        default:
+            break;
+        }
+    }
+    
 }
 
 
-// Traverse through the array
-void display()
-{
-	for (int i = 0; i < n; i++)
-		printf("%d ", array[i]);
-	printf("\n");
+// DISPLAY
+void display() {
+    if (n == 0) {
+        printf("Array is Empty!\n");
+        return;
+    }
+    for (int i = 0; i < n; i++)
+        printf("%d ", array[i]);
+    printf("\n");
 }
 
 
-// Insert an element at a particular postion
-int insertion()
-{
-	int position, element;
-	printf("Position: ");
-	scanf("%d", &position);
-
-	if (position > n + 1)
-		return 1;
-
-	printf("Element: ");
-	scanf("%d", &element);
-
-	n++;
-	for (int i = n - 1; i > position - 1; i--)
-	{
-		array[i] = array[i - 1];
-	}
-	array[position - 1] = element;
-	return element;
+// CREATION
+void createArray() {
+    printf("Enter the size of the array: ");
+    scanf("%d", &n);
+    printf("Enter the elements: \n");
+    for (int i = 0; i < n; i++)
+        scanf("%d", &array[i]);
 }
 
 
-// Delete an element from a particular position
-int deletion()
-{
-	if (n == 0)
-		return 1;
-	int position;
-	printf("Position: ");
-	scanf("%d", &position);
+// INSERTION
+void insertionAtBeginning(int element) {
+    // Shift all elements to the right
+    for (int i = n; i > 0; i--)
+        array[i] = array[i - 1];
+    array[0] = element;
+    n++;
+}
+void insertionAtEnd(int element) {
+    array[n] = element;
+    n++;
+}
+void insertionAtAnyPos(int element) {
+    int pos;
+    printf("Position: ");
+    scanf("%d", &pos);
+    if (pos > n) {
+        printf("Invalid Position!\n");
+        return;
+    }
+    n++;
+    // Shift all elements from the position to insert to the end, to right
+    for (int i = n; i > pos; i--)
+        array[i] = array[i - 1];
+    array[pos] = element;
+}
+void insertion() {
+    int choice, element;
+    printf("Element: ");
+    scanf("%d", &element);
+    printf("Enter 1 for Beginning, 2 for End, 3 for Any Position: ");
+    scanf("%d", &choice);
+    switch (choice) {
+    case 1:
+        insertionAtBeginning(element);
+        break;
+    case 2:
+        insertionAtEnd(element);
+        break;
+    case 3:
+        insertionAtAnyPos(element);
+        break;
+    default:
+        break;
+    }
+    display();
+}
 
-	if (position > n)
-		return 1;
 
-	int element = array[position - 1];
-	for (int i = position - 1; i < n; i++)
-	{
-		array[i] = array[i + 1];
-	}
-	n--;
-	return element;
+// DELETION
+void deletionAtBeginning() {
+    // Shift all elements to left
+    for (int i = 0; i < n; i++)
+        array[i] = array[i + 1];
+    n--;
+}
+void deletionAtEnd() {
+    n--;
+}
+void deletionAtAnyPos() {
+    int pos;
+    printf("Position: ");
+    scanf("%d", &pos);
+    if (pos > n - 1) {
+        printf("Invalid Position!\n");
+        return;
+    }
+    // Shift all elements from the position to insert to the end, to left
+    for (int i = pos; i < n; i++)
+        array[i] = array[i + 1];
+    n--;
+}
+void deletion() {
+    if (n == 0) {
+        printf("Array is Empty!\n");
+        return;
+    }
+    int choice;
+    printf("Enter 1 for Beginning, 2 for End, 3 for Any Position: ");
+    scanf("%d", &choice);
+    switch (choice) {
+    case 1:
+        deletionAtBeginning();
+        break;
+    case 2:
+        deletionAtEnd();
+        break;
+    case 3:
+        deletionAtAnyPos();
+        break;
+    default:
+        break;
+    }
+    display();
 }
 
 
 // Linear Search
-int search()
-{
-	int element;
-	printf("Element: ");
-	scanf("%d", &element);
-	for (int i = 0; i < n; i++)
-	{
-		if (array[i] == element)
-		{
-			printf("Element %d found at Postion: %d\n", element, i + 1);
-			return i;
-		}
-	}
-	printf("Not found!\n");
-	return 1;
+int search() {
+    int x;
+    printf("Element To Search: ");
+    scanf("%d", &x);
+    for (int i = 0; i < n; i++) {
+        if (array[i] == x) {
+            printf("Element %d Found at Position: %d!\n", x, i);
+            return i;
+        }
+    }
+    printf("Element Not Found!\n");
+    return -1;
 }
 
 
 // Bubble Sort
-int sort()
-{
-	for (int i = 0; i < n; i++)
-	{
-		for (int j = 0; j < n; j++)
-		{
-			if (array[j] > array[j + 1])
-			{
-				int tmp = array[j];
-				array[j] = array[j + 1];
-				array[j + 1] = tmp;
-			}
-		}
-	}
-	printf("Sorted!\n");
-	return 0;
+int bubbleSort() {
+    int temp;
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n - 1; j++) {
+            if (array[j] > array[j + 1]) {
+                // Swap
+                temp = array[j];
+                array[j] = array[j + 1];
+                array[j + 1] = temp;
+            }        
+        }    
+    }
+    printf("Sorted Successfully!\n");
+    display();
 }
-
