@@ -11,13 +11,14 @@ void insertion();
 void deletion();
 int search();
 int bubbleSort();
+void reverseArray();
 
 
 void main() {
     createArray();    
     while (1) {
         int choice;
-        printf("Enter 1 to Create, 2 to Insert, 3 to Delete, 4 to Display, 5 to Search, 6 to Sort, 7 to exit: ");
+        printf("Enter 1 to Create, 2 to Insert, 3 to Delete, 4 to Display, 5 to Search, 6 to Sort, 7 to Reverse, 8 to exit: ");
         scanf("%d", &choice);
         switch (choice) {
         case 1:
@@ -39,6 +40,9 @@ void main() {
             bubbleSort();
             break;
         case 7:
+            reverseArray(0, n - 1);
+            break;
+        case 8:
             return;
         default:
             break;
@@ -198,4 +202,21 @@ int bubbleSort() {
     }
     printf("Sorted Successfully!\n");
     display();
+}
+
+
+// Array Reversal using recursion
+void reverseArray(int first, int last) {
+    // If we reached the middle of the array
+    if (first >= last) {
+        printf("Reversed Successfully!\n");
+        display();
+        return;
+    }
+    // Swap elements at the ends
+    int temp = array[first];
+    array[first] = array[last];
+    array[last] = temp;
+    // Call the function on array[first + 1:last - 1]
+    reverseArray(first + 1, last - 1);
 }
