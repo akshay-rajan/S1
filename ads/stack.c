@@ -1,5 +1,4 @@
 #include <stdio.h>
-#include <stdlib.h>
 
 #define size 10
 
@@ -7,23 +6,75 @@ int stack[size];
 int top = -1;
 
 
-int push();
-int pop();
-void display();
-int peek();
-int count();
-int IsEmpty();
-int IsFull();
+int isEmpty() {
+    if (top == -1) {
+        printf("Stack Underflow!\n");
+        return 1;
+    }
+    return 0;
+}
+
+int isFull() {
+    if (top == size - 1) {
+        printf("Stack Overflow!\n");
+        return 1;
+    }
+    return 0;
+}
+
+void display() {
+    if (isEmpty())
+        return;
+    for (int i = 0; i <= top; i++)
+        printf("%d ", stack[i]);
+    printf("\n");
+}
+
+int count() {
+    return top + 1;
+}
+
+// Insert an element into the stack
+void push() {
+    if (isFull())
+        return;
+    top++;
+    int value;
+    printf("Value: ");
+    scanf("%d", &value);
+    stack[top] = value;
+}
+
+// Remove an element from the stack
+int pop() {
+    if (isEmpty())
+        return -1;
+    int value = stack[top];
+    top--;
+    return value;
+}
+
+// Return an element at a particular position
+int peek() {
+    if (isEmpty())
+        return -1;
+    int pos;
+    printf("Position: ");
+    scanf("%d", &pos);
+    if (pos  < 1 || pos > top) {
+        printf("Invalid Position!");
+        return -1;
+    }
+    return stack[pos - 1];
+}
 
 
-void main()
-{
+void main() {
 	while (1) {
 		int choice;
-		printf("Enter 0 to display the stack, 1 to push, 2 to pop, 3 to peek, 4 to display the count, or 5 to exit: ");
+		printf("Enter 0 to display the stack, 1 to push, 2 to pop, 3 to peek, 4 to display the count, 5 to exit: ");
 		scanf("%d", &choice);
-		switch (choice)
-		{
+		switch (choice) {
 			case 0:
 				display();
 				break;
@@ -40,104 +91,9 @@ void main()
 				printf("%d\n", count());
 				break;
 			case 5:
-				exit(0);
+				return;
 			default:
 				break;
 		}
 	}	
 }
-
-
-// Print the stack
-void display()
-{
-	if (IsEmpty())
-		return;
-	
-	for (int i = 0; i <= top; i++)
-		printf("%d ", stack[i]);
-	printf("\n");
-}
-
-
-// Add an element
-int push()
-{
-	// Check if stack is full
-	if (IsFull())
-	{
-		printf("Overflow!\n");
-		return 0;
-	}
-	
-	// Add an element to the top of the stack
-	int element;
-	printf("Element: ");
-	scanf("%d", &element);
-	top++;
-	stack[top] = element;
-    display();
-    return element;
-}
-
-
-// Remove an element
-int pop()
-{
-	// Check if stack is empty
-	if (IsEmpty())
-	{
-		printf("Underflow!\n");
-		return 0;
-	}
-	
-	// Remove the element at the top of the stack and return it
-	int element = stack[top];
-	top--;
-    display();
-	return element;
-}
-
-
-// Return an element at a particular position
-int peek()
-{
-	int pos;
-	printf("Position: ");
-	scanf("%d", &pos);
-	
-	// Validation
-	if (pos > top + 1 || pos < 0)
-	{
-		printf("Invalid!\n");
-		return 1;
-	}
-	
-	int element = stack[pos - 1];
-	return element;
-}
-
-
-// Return total number of elements in the stack
-int count()
-{
-	return top + 1;
-}
-
-
-int IsEmpty()
-{
-	if (top == -1)
-		return 1;
-	return 0;	
-}
-
-int IsFull()
-{
-	if (top == size - 1)
-		return 1;
-	return 0;
-}
-
-
-
