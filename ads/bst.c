@@ -2,8 +2,7 @@
 #include <stdlib.h>
 
 
-struct node
-{
+struct node {
     int data;
     struct node *left;
     struct node *right;
@@ -21,7 +20,7 @@ void main()
 {
     while (1) {
         int choice;
-        printf("Enter 0 to display, 1 to insert, 2 to delete, 5 to exit:");
+        printf("Enter 0 to display, 1 to insert, 2 to delete, 5 to exit: ");
         scanf("%d", &choice);
         switch(choice) {
             case 0:
@@ -44,17 +43,15 @@ void main()
 
 // Insert a node into the tree and return the root
 struct node *insert(struct node *root, struct node *newnode) {
-    if (root == NULL) {
+    if (root == NULL)
         root = newnode;
-    } else if (root->data > newnode->data) {
+    else if (root->data > newnode->data)
         root->left = insert(root->left, newnode);
-    } else {
+    else
         root->right = insert(root->right, newnode);
-    }
     return root;
 }
-void insertion()
-{
+void insertion() {
     struct node *newnode;
     newnode = (struct node *) malloc(sizeof(struct node));
     printf("Element: ");
@@ -62,15 +59,13 @@ void insertion()
     newnode->left = newnode->right = NULL;
     root = insert(root, newnode);
     display();
-    return;
 }
 
 
 // Return the smallest node in a tree
 struct node *find_min(struct node *root) {
-	while (root->left != NULL) {
+	while (root->left != NULL)
 		root = root->left;
-	}
 	return root;
 }
 
@@ -121,8 +116,7 @@ void deletion() {
 
 // Perform all three traversals to display the tree
 // Root->Left->Right
-void preOrder(struct node *root)
-{
+void preOrder(struct node *root) {
     if (root == NULL)
         return;
 
@@ -131,8 +125,7 @@ void preOrder(struct node *root)
     preOrder(root->right);
 }
 // Left->Root->Right
-void inOrder(struct node *root)
-{
+void inOrder(struct node *root) {
     if (root == NULL)
         return;
 
@@ -141,8 +134,7 @@ void inOrder(struct node *root)
     inOrder(root->right);
 }
 // Left->Right->Root
-void postOrder(struct node *root)
-{
+void postOrder(struct node *root) {
     if (root == NULL)
         return;
 
@@ -150,7 +142,7 @@ void postOrder(struct node *root)
     postOrder(root->right);
     printf("%d -> ", root->data);   
 }
-int display(){
+int display() {
     if (root == NULL) {
         printf("Tree is empty!\n");
         return 1;
