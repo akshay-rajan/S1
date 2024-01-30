@@ -8,8 +8,7 @@ struct node {
 struct node *top = NULL;
 
 void push() {
-    struct node *newnode;
-    newnode = (struct node *) malloc(sizeof(struct node));
+    struct node *newnode = (struct node *) malloc(sizeof(struct node));
     printf("Value: ");
     scanf("%d", &newnode->data);
 
