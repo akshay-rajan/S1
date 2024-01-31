@@ -38,19 +38,17 @@ int count() {
 void push() {
     if (isFull())
         return;
-    top++;
     int value;
     printf("Value: ");
     scanf("%d", &value);
-    stack[top] = value;
+    stack[++top] = value;
 }
 
 // Remove an element from the stack
 int pop() {
     if (isEmpty())
         return -1;
-    int value = stack[top];
-    top--;
+    int value = stack[top--];
     return value;
 }
 
