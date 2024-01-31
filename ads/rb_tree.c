@@ -139,124 +139,6 @@ void insert(struct node *z) {
     insert_fixup(z);
 }
 
-// Balance the RB Tree after deletion
-void delete_fixup(struct node *x) {
-    // If the node is black
-    while (x != root && x->color == black) {
-        // If the node is a left child
-        if (x == x->parent->left) {
-            struct node *sibling = x->parent->right;
-            // If the sibling is red
-            if (sibling->color == red) {
-                // Swap colors of parent and sibling
-                x->parent->color = red;
-                sibling->color = black;
-                // Rotate parent towards DB
-                left_rotate(x->parent);
-                sibling = x->parent->right;
-            }
-            // If the sibling is black and both its children are black
-            if (sibling->left->color == black && sibling->right->color == black) {
-                // Make the sibling red
-                sibling->color = red;
-                // Add extra black to the parent (repeat)
-                x = x->parent;
-            }
-            else {
-                // If the sibling is black and its rear child is red
-                if (sibling->right->color == black) {
-                    // Swap the color of sibling and rear child
-                    sibling->left->color = black;
-                    // Rotate the sibling opposite to DB
-                    right_rotate(sibling);
-                    sibling = x->parent->right;
-                }
-                // If the sibling is black and the far child is red
-                sibling->color = sibling->parent->color;
-                // Swap the color of the parent and the far child
-                sibling->right->color = black;
-                x->parent->color = black;
-                // Rotate parent towards DB
-                left_rotate(x->parent);
-                x = root;
-            }
-        // If the node is a right child
-        } else {
-            struct node *sibling = x->parent->left;
-            if (sibling->color == red) {
-                x->parent->color = red;
-                sibling->color = black;
-                right_rotate(x->parent);
-                sibling = x->parent->left;
-            }
-            if (sibling->left->color == black && sibling->right->color == black) {
-                sibling->color = red;
-                x = x->parent;
-            } else {
-                if (sibling->left->color == black) {
-                    sibling->right->color = black;
-                    left_rotate(sibling);
-                    sibling = x->parent->left;
-                }
-                sibling->color = sibling->parent->color;
-                sibling->left->color = black;
-                x->parent->color = black;
-                right_rotate(x->parent);
-                x = root;
-            }            
-        }
-        x->color = black;
-    }
-    return;
-}
-// Return the minimum node in a Tree
-struct node *find_min(struct node *root) {
-	while (root->left != NULL) {
-		root = root->left;
-	}
-	return root;
-}
-// BST Deletion with Color Replacement
-struct node *delete(struct node *root, int value) {
-	if (root == NULL) {
-		printf("Not found!\n");
-		return root;
-	}
-	struct node *temp;
-	if (value < root->data) {
-		root->left = delete(root->left, value);
-	} else if (value > root->data) {
-		root->right = delete(root->right, value);
-	} else {
-		if (root->left == NULL) {
-			temp = root->right;
-			free(root);
-            delete_fixup(temp);
-			return temp;
-		} else if (root->right == NULL) {
-			temp = root->left;
-			free(root);
-            delete_fixup(temp);
-			return temp;
-		} else {
-            struct node *successor = find_min(root->right);
-            root->data = successor->data;
-            root->color = successor->color;
-            root->right = delete(root->right, root->data);
-            temp = successor->right;
-        }
-        // delete_fixup(successor->right);
-	}
-    delete_fixup(temp);
-	return root;
-}
-void deletion() {
-	int value;
-	printf("Node: ");
-	scanf("%d", &value);
-	root = delete(root, value);
-}
-
 
 // Display
 void preOrder(struct node *root) {
@@ -303,7 +185,7 @@ void display() {
 void main() {
     while (1) {
         int choice;
-        printf("Enter 1: Display, 2: Insert, 3: Delete --- ");
+        printf("Enter 1: Display, 2: Insert, 3: Exit --- ");
         scanf("%d", &choice);
         switch (choice) {
         case 1:
@@ -314,12 +196,9 @@ void main() {
             display();
             break;
         case 3:
-            deletion();
-            display();
-            break;
-        
-        default:
             return;
+        default:
+            break;
         }
     }    
 }
