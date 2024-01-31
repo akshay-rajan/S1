@@ -61,12 +61,9 @@ int enqueue() {
 	printf("Element: ");
 	scanf("%d", &value);
 	
-	// If empty
-	if (IsEmpty()) {
-		front = rear = 0;
-	} else {
-		rear = (rear + 1) % size;
-	}
+	if (IsEmpty())
+		front =  0;
+	rear = (rear + 1) % size;
 
 	queue[rear] = value;
     display();
