@@ -13,7 +13,7 @@ void main()
     int V[MAX_NODES] = {0};
 
     // Read the Adjacency matrix
-    int A[n][n], u, v;
+    int A[n][n];
     printf("Enter the Adjacency Matrix: \n");
     for (int i = 0; i < n; i++) {
         for (int j = 0; j < n; j++) {
